@@ -15,7 +15,7 @@ public class Main extends Application {
     @Override public void start(Stage stage) {
 
         /*// create the scene
-        stage.setTitle("Web View");
+        stage.setTitle("Web MainView");
         scene = new Scene(new Browser(),750,500, Color.web("#666970"));
         stage.setScene(scene);
         scene.getStylesheets().add("webviewsample/BrowserToolbar.css");
