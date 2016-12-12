@@ -2,21 +2,23 @@ package main;
 
 public class Controller {
 
-    private View mainView;
+    private MainView mainView;
     private MainModel mainModel;
+
+    String videoID = "IddapcoJokTfk";
 
     public void setMainVideoName(String videoName){
         mainModel.setMainVideoName(videoName);
     }
 
-    public String getMainVideoName(){
-        mainModel.getMainVideoName();
-    }
+    //public String getVideoTitle(){
+      //  mainModel.getVideoTitle();
+    //}
 
 
     public void updateMainView() {
-        View.addPlayer(String videoID);
-        View.setTitle(String getMainVideoName());
+        //mainView.addPlayer(videoID);
+       // mainView.setTitle(getVideoTitle());
     }
 
 }

@@ -4,14 +4,35 @@ import com.google.api.services.youtube.model.ResourceId;
 import com.google.api.services.youtube.model.SearchResult;
 import com.google.api.services.youtube.model.Thumbnail;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by tld on 12/12/2016.
  */
 public class MainTerminal {
 
+    private static final long NUMBER_OF_VIDEOS_RETURNED = 5;
+    static MainModel model = new MainModel();
 
+
+    private static String getInputQuery() throws IOException {
+
+        String inputQuery = "";
+
+        System.out.print("Please enter a search term: ");
+        BufferedReader bReader = new BufferedReader(new InputStreamReader(System.in));
+        inputQuery = bReader.readLine();
+
+        if (inputQuery.length() < 1) {
+            // Use the string "YouTube Developers Live" as a default.
+            inputQuery = "YouTube Developers Live";
+        }
+        return inputQuery;
+    }
 
     private static void prettyPrint(Iterator<SearchResult> iteratorSearchResults, String query) {
 
@@ -42,5 +63,28 @@ public class MainTerminal {
         }
     }
 
-    public static void main
+    public static void main(String[] args) throws IOException {
+        String menuQuery;
+        String searchQuery;
+        System.out.println("\n-------------------------------------------------------------\n");
+        System.out.println("\n----------Welcome to Youtube Terminal Monkey Boy-------------\n");
+        System.out.println("\n-------------------------------------------------------------\n");
+        System.out.println("What do you want to do ? \n");
+        System.out.println("1-Search\n");
+        BufferedReader bReader = new BufferedReader(new InputStreamReader(System.in));
+        menuQuery = bReader.readLine();
+        if(menuQuery.equals("1")){
+            searchQuery=getInputQuery();
+            List<SearchResult> searchResultList = model.search(NUMBER_OF_VIDEOS_RETURNED,searchQuery);
+            prettyPrint(searchResultList.iterator(),searchQuery);
+            System.out.println("Video title : "+searchResultList.get(1).getSnippet().getTitle());
+        }
+        else{
+            System.out.println("What do you want to do ? \n");
+
+        }
+
+
+    }
+
 }

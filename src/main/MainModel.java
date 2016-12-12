@@ -20,8 +20,10 @@ public class MainModel {
     private static final String PROPERTIES_FILENAME = "youtube.properties";
 
 
-    public String getMainVideoName() {
-        return mainVideoName;
+
+
+    public String getVideoTitle(int searchRank) {
+        return search(1,"kamino").get(1).getSnippet().getTitle(); //provisoire
     }
 
     public void setMainVideoName(String videoName){
@@ -29,7 +31,7 @@ public class MainModel {
     //this.mainVideoName=playlistItem.getSnippet().getTitle();
     }
 
-    public List<SearchResult> search(int count, String query) {
+    public List<SearchResult> search(long count, String query) {
 
         long NUMBER_OF_VIDEOS_RETURNED = count;
 
