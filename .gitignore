@@ -10,8 +10,9 @@
 
 # Folders & Project Files #
 out/*
-resources/*
+resources/client_secrets.json
 .idea/*
+src/META-INF/*
 pcd-2016-team-kamino.iml
 target/*
 
