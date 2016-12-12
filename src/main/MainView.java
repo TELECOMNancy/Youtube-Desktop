@@ -56,9 +56,12 @@ public class MainView extends Scene {
         l="l";
         TitleCase titlecase=new TitleCase(l,10,10);
         group.getChildren().add(titlecase);*/
+        //Player player= new Player("M7lc1UVf-VE");
+        //group.getChildren().add(player);
+
 
     }
-    public String getTitle(){
+   /* public String getTitle(){
         return this.title;
     }
     public void setTitle(String title){
@@ -67,7 +70,7 @@ public class MainView extends Scene {
     }
     public void updateTitle(){
         String title2=this.title;
-    }
+    }*/
    /* public Player getPlayer(){
         return this.player;
     }
