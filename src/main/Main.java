@@ -2,6 +2,9 @@ package main;
 
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
 import javafx.application.Application;
+import javafx.scene.Parent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -37,9 +40,11 @@ public class Main extends Application {
         //stage.show();
 
         //create Desktop
-        Group root2 = new Group();
+        AnchorPane root2 = new AnchorPane();
         //MainView mainView= new MainView(root2,300,200);
         Stage stage1 = new Stage();
+        //Parent mainView= new MainView(root2,1280,800);
+        root2.autosize();
         stage1.setScene(new MainView(root2,1280,800));
         stage1.show();
     }
