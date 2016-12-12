@@ -1,4 +1,4 @@
-package sample;
+package main;
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.auth.oauth2.StoredCredential;
@@ -20,7 +20,7 @@ import java.io.Reader;
 import java.util.List;
 
 /**
- * Shared class used by every sample. Contains methods for authorizing a user and caching credentials.
+ * Shared class used by every main. Contains methods for authorizing a user and caching credentials.
  */
 public class Auth {
 

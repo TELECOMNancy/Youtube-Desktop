@@ -1,14 +1,9 @@
-package sample;
+package main;
 
 import javafx.application.Application;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.Group;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 
 public class Main extends Application {
     private Scene scene;

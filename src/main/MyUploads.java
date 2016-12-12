@@ -1,4 +1,4 @@
-package sample;
+package main;
 /*
  * Copyright (c) 2012 Google Inc.
  *
@@ -60,7 +60,7 @@ public class MyUploads {
 
             // This object is used to make YouTube Data API requests.
             youtube = new YouTube.Builder(Auth.HTTP_TRANSPORT, Auth.JSON_FACTORY, credential).setApplicationName(
-                    "youtube-cmdline-myuploads-sample").build();
+                    "youtube-cmdline-myuploads-main").build();
 
             // Call the API's channels.list method to retrieve the
             // resource that represents the authenticated user's channel.
