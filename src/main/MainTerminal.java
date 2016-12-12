@@ -23,13 +23,12 @@ public class MainTerminal {
 
         String inputQuery = "";
 
-        System.out.print("Please enter a search term: ");
+        //System.out.print("Please enter a search term: ");
         BufferedReader bReader = new BufferedReader(new InputStreamReader(System.in));
         inputQuery = bReader.readLine();
 
         if (inputQuery.length() < 1) {
-            // Use the string "YouTube Developers Live" as a default.
-            inputQuery = "YouTube Developers Live";
+            System.out.print("Please enter a search term \n");
         }
         return inputQuery;
     }
@@ -64,26 +63,42 @@ public class MainTerminal {
     }
 
     public static void main(String[] args) throws IOException {
-        String menuQuery;
+        String menuQuery="0";
         String searchQuery;
+        String selectVideo;
+
         System.out.println("\n-------------------------------------------------------------\n");
         System.out.println("\n----------Welcome to Youtube Terminal Monkey Boy-------------\n");
         System.out.println("\n-------------------------------------------------------------\n");
-        System.out.println("What do you want to do ? \n");
-        System.out.println("1-Search\n");
-        BufferedReader bReader = new BufferedReader(new InputStreamReader(System.in));
-        menuQuery = bReader.readLine();
-        if(menuQuery.equals("1")){
-            searchQuery=getInputQuery();
-            List<SearchResult> searchResultList = model.search(NUMBER_OF_VIDEOS_RETURNED,searchQuery);
-            prettyPrint(searchResultList.iterator(),searchQuery);
-            System.out.println("Video title : "+searchResultList.get(1).getSnippet().getTitle());
-        }
-        else{
+        while (Integer.parseInt(menuQuery)<1 || Integer.parseInt(menuQuery)>1) {
             System.out.println("What do you want to do ? \n");
+            System.out.println("1-Search\n");
+            System.out.println("2-Quit\n");
+            menuQuery = getInputQuery();
+            switch (Integer.parseInt(menuQuery)){
+                case 1:
+                    System.out.print("Please enter a search term: ");
+                    searchQuery = getInputQuery();
 
+                    List<SearchResult> searchResultList = model.search(NUMBER_OF_VIDEOS_RETURNED,searchQuery);
+                    prettyPrint(searchResultList.iterator(),searchQuery);
+
+                    System.out.print("Please select a video (0-4) : ");
+                    selectVideo = getInputQuery();
+
+                    //model.initialize(searchQuery);
+                    System.out.println("    Video title : " + searchResultList.get(Integer.parseInt(selectVideo)).getSnippet().getTitle()+"\n");
+                    menuQuery="0";
+                    break;
+                case 2:
+                    return;
+
+                default:
+                    System.out.println("Invalid entry\n");
+
+
+            }
         }
-
 
     }
 

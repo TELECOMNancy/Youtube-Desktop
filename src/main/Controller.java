@@ -7,18 +7,20 @@ public class Controller {
 
     String videoID = "IddapcoJokTfk";
 
-    public void setMainVideoName(String videoName){
-        mainModel.setMainVideoName(videoName);
+    /*public void setMainTitle(String title){
+        this.videoID=title;
+        mainModel.setVideoTitle(title);
+    }*/
+
+    public String getMainTitle(){
+         return mainModel.getVideoTitle();
     }
 
-    //public String getVideoTitle(){
-      //  mainModel.getVideoTitle();
-    //}
 
 
     public void updateMainView() {
         //mainView.addPlayer(videoID);
-       // mainView.setTitle(getVideoTitle());
+       mainView.setTitle(getMainTitle());
     }
 
 }
