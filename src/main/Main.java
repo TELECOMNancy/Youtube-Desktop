@@ -12,7 +12,7 @@ import main.MainView;
 
 public class Main extends Application {
     private Scene scene;
-    @Override public void start(Stage stage) throws IOException {
+    @Override public void start(Stage stage) {
 
         // create the scene
 
@@ -21,7 +21,6 @@ public class Main extends Application {
         LocalServerReceiver localReceiver = new LocalServerReceiver.Builder().setPort(8080).build();
 
         stage.setScene(scene);
-        scene.getStylesheets().add("webviewsample/BrowserToolbar.css");
         stage.show();
 
         WebView webview = new WebView();
