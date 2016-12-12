@@ -1,8 +1,6 @@
-package sample;
+package main;
 
 import javafx.application.Application;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -22,12 +20,14 @@ public class Main extends Application {
         scene.getStylesheets().add("webviewsample/BrowserToolbar.css");
         stage.show();*/
 
-
         WebView webview = new WebView();
         webview.getEngine().load(
-                Main.class.getResource("/player.html").toExternalForm()
+                main.Main.class.getResource("/player.html").toExternalForm()
         );
-        stage.setScene(new Scene(webview));
+        String test = "M7lc1UVf-VE";
+        Player player = new Player("M7lc1UVf-VE");
+
+        stage.setScene(new Scene(player));
         stage.show();
 
         //create Desktop
