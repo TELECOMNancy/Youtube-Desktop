@@ -10,6 +10,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import main.MainView;
 
+import java.io.IOException;
+
 public class Main extends Application {
     private Scene scene;
     @Override public void start(Stage stage) throws IOException {

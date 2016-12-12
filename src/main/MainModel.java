@@ -18,18 +18,19 @@ public class MainModel {
 
     private String mainVideoName;
     private static final String PROPERTIES_FILENAME = "youtube.properties";
+    private SearchResult result;
 
+    /*public void initialize(String query){
+        this.result = this.search(5,query).get(1);
+    }*/
 
-
-
-    public String getVideoTitle(int searchRank) {
-        return search(1,"kamino").get(1).getSnippet().getTitle(); //provisoire
+    public String getVideoTitle() {
+        return result.getSnippet().getTitle(); //provisoire
     }
 
-    public void setMainVideoName(String videoName){
-
-    //this.mainVideoName=playlistItem.getSnippet().getTitle();
-    }
+    //public void setVideoTitle(String videoName){
+      //  result.setSnippet()
+    //}
 
     public List<SearchResult> search(long count, String query) {
 
