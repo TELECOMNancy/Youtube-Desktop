@@ -25,9 +25,7 @@ public class MainView extends Scene {
 
     public MainView(@NamedArg("root") Parent root, @NamedArg("width") double width, @NamedArg("height") double height) {
         super(root, width, height);
-        WebView browser = new WebView();
-        WebEngine webEngine = browser.getEngine();
-        webEngine.load("https://google.com");
+
         // create the Desktop
         Stage stage= new Stage();
         stage.setTitle("Youtube Desktop");
@@ -38,27 +36,34 @@ public class MainView extends Scene {
         rectangleRed.setWidth(250);
         rectangleRed.setHeight(height);
         rectangleRed.setFill(Color.RED);
+
         //Group group= new Group();
-        group= (Group)root;
+        group = (Group)root;
         group.getChildren().add(rectangleRed);
+
         //Création bouton home
         Bouton home= new Bouton("Home",20,40,210,50,Color.WHITE);
         group.getChildren().add(home);
+
         //Création bouton My Videos
         Bouton myVideos= new Bouton("My Videos",20,110,210,50,Color.WHITE);
         group.getChildren().add(myVideos);
+
         //Création bouton Connection
         Bouton connection= new Bouton("Connection",1100,40,210,50,Color.WHITE);
         group.getChildren().add(connection);
+
         //intégration player
         group.autoSizeChildrenProperty();
         /*String l= new String();
         l="l";
         TitleCase titlecase=new TitleCase(l,10,10);
         group.getChildren().add(titlecase);*/
-        //Player player= new Player("M7lc1UVf-VE");
-        //group.getChildren().add(player);
+        Player player= new Player("M7lc1UVf-VE");
+        group.getChildren().add(player);
 
+        //Browser brow = new Browser();
+        //group.getChildren().add(brow);
 
     }
    /* public String getTitle(){

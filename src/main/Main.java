@@ -27,8 +27,8 @@ public class Main extends Application {
         String test = "M7lc1UVf-VE";
         Player player = new Player("M7lc1UVf-VE");
 
-        stage.setScene(new Scene(player));
-        stage.show();
+        //stage.setScene(new Scene(player));
+        //stage.show();
 
         //create Desktop
         Group root2 = new Group();
