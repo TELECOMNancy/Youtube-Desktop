@@ -33,13 +33,15 @@ public class Player extends Region {
             htmlString = htmlString.replace("$videoId", videoId);
             File newHtmlFile = new File("./resources/player.html");
             FileUtils.writeStringToFile(newHtmlFile, htmlString, (Charset) null);
+            final String pageURI= newHtmlFile.toURI().toString();
+            this.videoPlayer.getEngine().load(
+                    pageURI
+            );
         }
         catch (java.io.IOException e) {
             System.out.println(e.getMessage());
         }
-        this.videoPlayer.getEngine().load(
-                main.Main.class.getResource("/player.html").toExternalForm()
-        );
+
         this.getChildren().add(videoPlayer);
 
     }
