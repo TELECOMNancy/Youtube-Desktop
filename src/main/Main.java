@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import main.MainView;
 
 public class Main extends Application {
     private Scene scene;
@@ -28,6 +29,13 @@ public class Main extends Application {
         );
         stage.setScene(new Scene(webview));
         stage.show();
+
+        //create Desktop
+        Group root2 = new Group();
+        //MainView mainView= new MainView(root2,300,200);
+        Stage stage1 = new Stage();
+        stage1.setScene(new MainView(root2,1280,800));
+        stage1.show();
     }
 
 
