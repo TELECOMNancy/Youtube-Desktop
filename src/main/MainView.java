@@ -58,9 +58,16 @@ public class MainView extends Scene {
 
         root.autosize();
         //intégration player
-        //Player player= new Player("M7lc1UVf-VE");
-        //root.getChildren().add(player);
+        group.autoSizeChildrenProperty();
+        /*String l= new String();
+        l="l";
+        TitleCase titlecase=new TitleCase(l,10,10);
+        group.getChildren().add(titlecase);*/
+        Player player= new Player("M7lc1UVf-VE");
+        group.getChildren().add(player);
 
+        //Browser brow = new Browser();
+        //group.getChildren().add(brow);
 
     }
     /*public String getTitle(){

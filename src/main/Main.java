@@ -1,5 +1,6 @@
 package main;
 
+import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
@@ -14,14 +15,17 @@ import main.MainView;
 
 public class Main extends Application {
     private Scene scene;
-    @Override public void start(Stage stage) {
+    @Override public void start(Stage stage) throws IOException {
 
-        /*// create the scene
-        stage.setTitle("Web MainView");
-        scene = new Scene(new Browser(),750,500, Color.web("#666970"));
+        // create the scene
+
+        stage.setTitle("Web View");
+        scene = new Scene(new AuthenticateView("https://accounts.google.com/o/oauth2/auth?client_id=204695483539-g0pk6ikrf9o6n702rd8ndfq2t8ta859d.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%2Foauth2callback&scope=https://www.googleapis.com/auth/youtube&response_type=code&access_type=offline"),750,500, Color.web("#666970"));
+        LocalServerReceiver localReceiver = new LocalServerReceiver.Builder().setPort(8080).build();
+
         stage.setScene(scene);
         scene.getStylesheets().add("webviewsample/BrowserToolbar.css");
-        stage.show();*/
+        stage.show();
 
         WebView webview = new WebView();
         webview.getEngine().load(
@@ -30,8 +34,8 @@ public class Main extends Application {
         String test = "M7lc1UVf-VE";
         Player player = new Player("M7lc1UVf-VE");
 
-        stage.setScene(new Scene(player));
-        stage.show();
+        //stage.setScene(new Scene(player));
+        //stage.show();
 
         //create Desktop
         AnchorPane root2 = new AnchorPane();
@@ -46,5 +50,7 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
+
+
     }
 }
