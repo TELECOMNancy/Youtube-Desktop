@@ -1,6 +1,8 @@
 package main;
 
 import com.sun.org.apache.regexp.internal.RE;
+import com.sun.org.apache.xpath.internal.operations.Plus;
+import com.sun.org.apache.xpath.internal.operations.String;
 import javafx.beans.NamedArg;
 import javafx.scene.Group;
 import javafx.scene.Parent;
@@ -16,6 +18,9 @@ import javafx.stage.Stage;
  * Created by quentin on 10/12/2016.
  */
 public class MainView extends Scene {
+   // private Player player;
+    private Group group;
+    private String title;
 
 
     public MainView(@NamedArg("root") Parent root, @NamedArg("width") double width, @NamedArg("height") double height) {
@@ -33,7 +38,7 @@ public class MainView extends Scene {
         rectangleRed.setWidth(250);
         rectangleRed.setHeight(height);
         rectangleRed.setFill(Color.RED);
-        Group group= new Group();
+        //Group group= new Group();
         group= (Group)root;
         group.getChildren().add(rectangleRed);
         //Création bouton home
@@ -46,10 +51,32 @@ public class MainView extends Scene {
         Bouton connection= new Bouton("Connection",1100,40,210,50,Color.WHITE);
         group.getChildren().add(connection);
         //intégration player
-
+        group.autoSizeChildrenProperty();
+        /*String l= new String();
+        l="l";
+        TitleCase titlecase=new TitleCase(l,10,10);
+        group.getChildren().add(titlecase);*/
 
     }
+    public String getTitle(){
+        return this.title;
+    }
+    public void setTitle(String title){
+        this.title=title;
+        updateTitle();
+    }
+    public void updateTitle(){
+        String title2=this.title;
+    }
+   /* public Player getPlayer(){
+        return this.player;
+    }
+    public void addPlayer(){
+        group.getChildren().add(player);
+    }
+    public void removePlayer(){
 
+    }*/
 
 
 
