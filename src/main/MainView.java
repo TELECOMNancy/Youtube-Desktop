@@ -1,15 +1,12 @@
 package main;
 
-import com.sun.org.apache.regexp.internal.RE;
-import com.sun.org.apache.xpath.internal.operations.Plus;
-import com.sun.org.apache.xpath.internal.operations.String;
+//import com.sun.org.apache.xpath.internal.operations.String;
 import javafx.beans.NamedArg;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -21,6 +18,7 @@ public class MainView extends Scene {
    // private Player player;
     private Group group;
     private String title;
+    private TitleCase titleCase;
 
 
     public MainView(@NamedArg("root") Parent root, @NamedArg("width") double width, @NamedArg("height") double height) {
@@ -29,6 +27,7 @@ public class MainView extends Scene {
         // create the Desktop
         Stage stage= new Stage();
         stage.setTitle("Youtube Desktop");
+
         //Création du rectangle rouge
         Rectangle rectangleRed= new Rectangle();
         rectangleRed.setTranslateX(0);
@@ -36,9 +35,7 @@ public class MainView extends Scene {
         rectangleRed.setWidth(250);
         rectangleRed.setHeight(height);
         rectangleRed.setFill(Color.RED);
-
-        //Group group= new Group();
-        group = (Group)root;
+        group= (Group)root;
         group.getChildren().add(rectangleRed);
 
         //Création bouton home
@@ -66,16 +63,20 @@ public class MainView extends Scene {
         //group.getChildren().add(brow);
 
     }
-   /* public String getTitle(){
+    public String getTitle(){
         return this.title;
     }
     public void setTitle(String title){
         this.title=title;
-        updateTitle();
+        titleCase=new TitleCase(this.title,10,10);
+        group.getChildren().add(titleCase);
     }
-    public void updateTitle(){
-        String title2=this.title;
+    /*public void updateTitle(){
+        TitleCase titlecase=new TitleCase(this.title,10,10);
+        group.getChildren().add(titlecase);
     }*/
+
+
    /* public Player getPlayer(){
         return this.player;
     }
