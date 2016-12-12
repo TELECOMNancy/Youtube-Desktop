@@ -9,6 +9,7 @@
 *.ear
 
 # Folders & Project Files #
+resources/player.html
 out/*
 resources/client_secrets.json
 .idea/*
