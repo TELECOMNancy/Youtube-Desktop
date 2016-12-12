@@ -1,7 +1,9 @@
 package main;
 
+import com.google.api.client.auth.oauth2.AuthorizationCodeRequestUrl;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.auth.oauth2.StoredCredential;
+import com.google.api.client.auth.oauth2.TokenResponse;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
@@ -12,12 +14,17 @@ import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.store.DataStore;
 import com.google.api.client.util.store.FileDataStoreFactory;
+import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.net.URL;
 import java.util.List;
+
+import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
 /**
  * Shared class used by every main. Contains methods for authorizing a user and caching credentials.
@@ -44,6 +51,7 @@ public class Auth {
      *
      * @param scopes              list of scopes needed to run youtube upload.
      * @param credentialDatastore name of the credential datastore to cache OAuth tokens
+     *
      */
     public static Credential authorize(List<String> scopes, String credentialDatastore) throws IOException {
 
@@ -68,10 +76,18 @@ public class Auth {
                 HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, scopes).setCredentialDataStore(datastore)
                 .build();
 
-        // Build the local server and bind it to port 8080
+        // Build the local server and bind it to port 8080 => launch AuthenticateView
+
         LocalServerReceiver localReceiver = new LocalServerReceiver.Builder().setPort(8080).build();
+
+        // Getting the redirect URI
+
+        //String redirectUri = localReceiver.getRedirectUri();
+
 
         // Authorize.
         return new AuthorizationCodeInstalledApp(flow, localReceiver).authorize("user");
     }
+
+
 }

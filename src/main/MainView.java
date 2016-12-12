@@ -23,9 +23,6 @@ public class MainView extends Scene {
 
     public MainView(@NamedArg("root") Parent root, @NamedArg("width") double width, @NamedArg("height") double height) {
         super(root, width, height);
-        WebView browser = new WebView();
-        WebEngine webEngine = browser.getEngine();
-        webEngine.load("https://google.com");
 
         // create the Desktop
         Stage stage= new Stage();
@@ -55,9 +52,15 @@ public class MainView extends Scene {
 
         //intégration player
         group.autoSizeChildrenProperty();
-        //Player player= new Player("M7lc1UVf-VE");
-        //group.getChildren().add(player);
+        /*String l= new String();
+        l="l";
+        TitleCase titlecase=new TitleCase(l,10,10);
+        group.getChildren().add(titlecase);*/
+        Player player= new Player("M7lc1UVf-VE");
+        group.getChildren().add(player);
 
+        //Browser brow = new Browser();
+        //group.getChildren().add(brow);
 
     }
     public String getTitle(){
