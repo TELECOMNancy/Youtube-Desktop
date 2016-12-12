@@ -20,7 +20,7 @@ public class Controller {
 
     public void updateMainView() {
         //mainView.addPlayer(videoID);
-       mainView.setTitle(getMainTitle());
+      // mainView.setTitle(getMainTitle());
     }
 
 }

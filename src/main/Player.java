@@ -55,7 +55,7 @@ public class Player extends Region {
     @Override protected void layoutChildren() {
         double w = getWidth();
         double h = getHeight();
-        layoutInArea(videoPlayer,400,200,700,400,0, HPos.CENTER, VPos.CENTER);
+        layoutInArea(videoPlayer,400,200,660,380,0, HPos.CENTER, VPos.CENTER);
     }
 
     @Override protected double computePrefWidth(double height) {
