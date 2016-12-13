@@ -1,6 +1,7 @@
 package main;
 
 import javafx.application.Application;
+import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -15,13 +16,16 @@ public class Main extends Application {
 
 
         //create Desktop
-        AnchorPane root2 = new AnchorPane();
-        //MainView mainView= new MainView(root2,300,200);
-        Stage stage1 = new Stage();
-        //Parent mainView= new MainView(root2,1280,800);
-        root2.autosize();
-        stage1.setScene(new OldMainView(root2,1280,800));
-        stage1.show();
+        AnchorPane root = new AnchorPane();
+        //Stage stage = new Stage();
+        Scene mainView= new MainView(root,1280,800);
+        stage.setScene(mainView);
+        root.autosize();
+        //stage.setScene(new OldMainView(root,1280,800));
+        stage.show();
+
+
+
     }
 
 
