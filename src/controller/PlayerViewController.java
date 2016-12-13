@@ -17,10 +17,28 @@ import java.io.IOException;
  * Created by léo on 13/12/2016.
  */
 public class PlayerViewController  {
-    /*@FXML
-    //private Text description;
-    private MainModel model;
+    private PlayerModel model;
+    private Player player;
+    @FXML
+    private Text description;
+    //private MainModel model;
     @FXML
     private Text title;
-    */
+    @FXML
+    private AnchorPane anchorPlayerVideo;
+
+
+    public void initPlayerModel(PlayerModel model){
+        this.model = model;
+        title.setText(model.getTitle());
+        this.player=model.getPlayer();
+        anchorPlayerVideo.getChildren().add(player);
+        anchorPlayerVideo.setBottomAnchor(player,0.0);
+        anchorPlayerVideo.setTopAnchor(player,0.0);
+        anchorPlayerVideo.setRightAnchor(player,0.0);
+        anchorPlayerVideo.setLeftAnchor(player,0.0);
+
+    }
+
+
 }
