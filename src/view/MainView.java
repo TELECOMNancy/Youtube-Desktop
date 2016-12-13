@@ -16,7 +16,7 @@ public class MainView extends Scene {
    // private Player player;
     private Group group;
     //private String title;
-    private TitleCase titleCase;
+    //private TitleCase titleCase;
     private Region window;
     private double width;
     private double heigth;
@@ -36,8 +36,8 @@ public class MainView extends Scene {
         root.setRightAnchor(background,0.0);
         root.autosize();
 
-        AnchorPane player = FXMLLoader.load(getClass().getResource("../view/PlayerAnchor.fxml"));
-        background.setBottomAnchor(player,0.0);
+        //AnchorPane player = FXMLLoader.load(getClass().getResource("../view/PlayerAnchor.fxml"));
+        //background.setBottomAnchor(player,0.0);
 
 
 

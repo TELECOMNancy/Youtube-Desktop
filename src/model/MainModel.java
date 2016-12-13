@@ -35,22 +35,7 @@ public class MainModel{
         this.result = this.search(5,query).get(1);
     }*/
 
-    //Used for videoListView
 
-    public String getVideoTitle(SearchResult video) {
-
-        return video.getSnippet().getTitle();
-    }
-
-    public String getVideoThumbnail(SearchResult video){
-        Thumbnail thumbnail = video.getSnippet().getThumbnails().getDefault();
-        return thumbnail.getUrl();
-    }
-
-    public ResourceId getVideoID(SearchResult video){
-        ResourceId rId = video.getId();
-        return rId;
-    }
 
     //Used for UploadView
 
