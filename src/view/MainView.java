@@ -45,17 +45,7 @@ public class MainView extends Scene {
 
     }
 
-    @FXML
-    void switchToPlayer(ActionEvent event, AnchorPane root, String videoid) {
-        try {
-            AnchorPane centerPlayer = FXMLLoader.load(getClass().getResource("../view/PlayerAnchor.fxml"));
-            root.setBottomAnchor(centerPlayer,0.0);
-            Player player= new Player(videoid);
-            centerPlayer.getChildren().add(player);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 
 
 }
