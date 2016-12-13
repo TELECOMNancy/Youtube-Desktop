@@ -21,11 +21,6 @@ public class BackgroundController {
         this.mainModel = model;
     }
 
-    public void initMainModel(VideoListModel model){
-        this.videoListModel = model;
-    }
-
-
     @FXML
     private JFXButton homeButton;
 
@@ -59,6 +54,7 @@ public class BackgroundController {
 
     @FXML
     void clickSearch(){
+
 
     }
 
