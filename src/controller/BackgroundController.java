@@ -4,10 +4,13 @@ import com.google.api.services.youtube.model.Video;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.AnchorPane;
 import model.MainModel;
 import model.VideoListModel;
 
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 
 /**
  * Created by tld on 13/12/2016.
@@ -15,6 +18,7 @@ import java.awt.event.ActionEvent;
 public class BackgroundController {
     private MainModel mainModel;
     private VideoListModel videoListModel;
+    AnchorPane root;
 
 
     public void initMainModel(MainModel model){
@@ -55,10 +59,22 @@ public class BackgroundController {
 
     @FXML
     void keySearch(){
+
     }
 
     @FXML
-    void clickSearch(){
+    void clickSearch() throws IOException {
+        FXMLLoader videoListLoader = new FXMLLoader(getClass().getResource("../view/VideoListView.fxml"));
+        AnchorPane videoList = videoListLoader.load();
+        root.getChildren().add(videoList);
+        root.setBottomAnchor(videoList,0.0);
+        root.setTopAnchor(videoList,0.0);
+        root.setLeftAnchor(videoList,0.0);
+        root.setRightAnchor(videoList,0.0);
+        root.autosize();
+        VideoListController videoListController = videoListLoader.getController();
+        VideoListModel videoListModel = new VideoListModel(searchField.getText());
+        videoListController.initModel(videoListModel);
 
     }
 
@@ -78,7 +94,9 @@ public class BackgroundController {
     }
 
 
-
+    public void setRoot(AnchorPane root){
+        this.root=root;
+    }
 
 
 

@@ -38,6 +38,7 @@ public class Main extends Application {
         root.setRightAnchor(background,0.0);
         root.autosize();
         BackgroundController backgroundController = backgroundLoader.getController();
+        backgroundController.setRoot(root);
         MainModel model = new MainModel();
         backgroundController.initMainModel(model);
 
