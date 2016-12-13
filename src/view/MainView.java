@@ -1,14 +1,11 @@
 package view;
 
 import javafx.beans.NamedArg;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.scene.text.TextFlow;
-import main.TitleCase;
 
 import java.io.IOException;
 
@@ -19,7 +16,6 @@ public class MainView extends Scene {
    // private Player player;
     private Group group;
     //private String title;
-    private TitleCase titleCase;
     private Region window;
     private double width;
     private double heigth;

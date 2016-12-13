@@ -11,12 +11,20 @@ import java.awt.event.ActionEvent;
  * Created by tld on 13/12/2016.
  */
 public class BackgroundController {
+    private MainModel model;
+
+    public void initModel(MainModel model){
+        this.model = model;
+    }
 
     @FXML
     private JFXButton homeButton;
 
+
+
     @FXML
     private  JFXButton testSample;
+
 
     @FXML
     private JFXTextField searchField;
@@ -38,13 +46,16 @@ public class BackgroundController {
 
 
     @FXML
-    void keySearch(){
-    }
-
+    private  JFXButton profileButton;
 
     @FXML
-    boolean switchToLogged(){
-        return
+    void switchToLogged(){
+
+        model.signIn();
+        signInButton.setDisable(true);
+        profileButton.setDisable(false);
+        signInButton.setVisible(false);
+        profileButton.setVisible(true);
     }
 
 
