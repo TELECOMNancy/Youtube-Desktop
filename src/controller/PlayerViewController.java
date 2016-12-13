@@ -38,7 +38,7 @@ public class PlayerViewController  {
 
     @FXML
     void update(SearchResult video) {
-        //title.setText(""+model.getVideoId());
+        title.setText(""+model.getVideoTitle(video));
         //description.setText(VideoDescription);
     }
 }
