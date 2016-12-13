@@ -19,19 +19,45 @@ public class MainModel {
 
     private String mainVideoName;
     private static final String PROPERTIES_FILENAME = "youtube.properties";
-    private SearchResult result;
+    private SearchResult video;
+    VideoSnippet uploadVideo = new VideoSnippet();
 
     /*public void initialize(String query){
         this.result = this.search(5,query).get(1);
     }*/
 
+
     public String getVideoTitle() {
-        return result.getSnippet().getTitle(); //provisoire
+
+        return video.getSnippet().getTitle();
     }
 
-    //public void setVideoTitle(String videoName){
-      //  result.setSnippet()
-    //}
+    public String getVideoThumbnail(){
+        Thumbnail thumbnail = video.getSnippet().getThumbnails().getDefault();
+        return thumbnail.getUrl();
+    }
+
+    public String getVideoDesc(){
+
+        return video.getSnippet().getDescription();
+    }
+
+    public void setVideoTitle(String videoName){
+
+        uploadVideo.setDescription(videoName);
+    }  //WOP
+
+    public void setVideoThumbnail(String img){
+
+        //uploadVideo.setDescription(img);
+    } //WOP
+
+    public void setVideoDesc(String videoDesc){
+
+        uploadVideo.setDescription(videoDesc);
+    } //WOP
+
+    //search by keywords
 
     public List<SearchResult> search(long count, String query) {
 
@@ -114,7 +140,8 @@ public class MainModel {
         return null;
     }
 
-    //function signIn() returns true after sucessfully signing in,
+
+    //returns true after sucessfully signing in
 
     public boolean signIn(){
 
@@ -141,6 +168,10 @@ public class MainModel {
         }
         return signedIn;
     }
+
+
+
+
 
 
 }
