@@ -10,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.text.TextFlow;
 import main.TitleCase;
-import view.Player;
 
 import java.io.IOException;
 
@@ -33,7 +32,7 @@ public class OldMainView extends Scene {
         this.heigth=height;
         this.width=width;
 
-        /*AnchorPane background = FXMLLoader.load(getClass().getResource("../view/Background.fxml"));
+        /*AnchorPane background = FXMLLoader.load(getClass().getResource("../view/BackgroundView.fxml"));
         root.getChildren().add(background);
         root.setBottomAnchor(background,0.0);
         root.setTopAnchor(background,0.0);
@@ -70,7 +69,7 @@ public class OldMainView extends Scene {
     @FXML
     void switchToPlayer(ActionEvent event, AnchorPane root, String videoid) {
         try {
-            AnchorPane centerPlayer = FXMLLoader.load(getClass().getResource("../view/PlayerAnchor.fxml"));
+            AnchorPane centerPlayer = FXMLLoader.load(getClass().getResource("PlayerView.fxml"));
             root.setBottomAnchor(centerPlayer,0.0);
             Player player= new Player(videoid);
             centerPlayer.getChildren().add(player);

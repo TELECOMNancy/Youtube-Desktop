@@ -27,22 +27,28 @@ java -jar YoutubeDesktopV1.jar
 ## Day 2 
 
 1. Recherche des vidéos 
-2. Affichage de la liste des résultats
+2. Affichage de la liste des résultats de la recherche
 3. Affichage du player de la vidéo sélectionnée
-4. Mise en place de la connexion
+4. Mise en place de la connexion (solution alternative)
 
 ## Day 3 
 
 1. Mise en place de la page personnelle
 2. Affichage des vidéos upload
 3. Modification des informations de cette vidéo
+4. Upload d'une vidÃ©o
 
 ## Day 4 
 
-1. Upload d'une vidéo
+1. Gestion de playlist
+2. Gestion des vidÃ©os aimÃ©es
+3. Affichage des commentaires.
 
 
-## Day 5 
+## Day 5
+
+1. Recherche de chaines
+2. Streaming API
 
 
 
