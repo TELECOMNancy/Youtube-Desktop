@@ -1,29 +1,23 @@
 package main;
 
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Rectangle;
 
 /**
  * Created by léo on 12/12/2016.
  */
 public class LateralRed extends VBox {
-    //private HBox hBox;
     public LateralRed (double width, double heigth) {
-        System.out.println(this.isResizable());
+
         this.setPrefHeight(heigth);
         this.setPrefWidth(width/8);
         double h=this.getPrefHeight();
         double w=this.getPrefWidth();
 
-
         //Création bouton home
         //Bouton home = new Bouton("Home", 20, 40, 210, 50, Color.WHITE);
-
 
         //Création bouton My Videos
         //Bouton myVideos = new Bouton("My Videos", 20, 110, 210, 50, Color.WHITE);
@@ -81,7 +75,5 @@ public class LateralRed extends VBox {
         this.layoutChildren();
 
     */}
-    /*public HBox gethBox(){
-        return this.hBox;
-    }*/
+
 }
