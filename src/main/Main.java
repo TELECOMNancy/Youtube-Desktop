@@ -1,16 +1,12 @@
 package main;
 
-import controller.BackgroundController;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import model.MainModel;
 import view.MainView;
 import view.OldMainView;
+import view.TestView;
 
 import java.io.IOException;
 
