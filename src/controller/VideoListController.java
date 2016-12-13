@@ -1,5 +1,6 @@
 package controller;
 
+import com.google.api.services.youtube.model.SearchResult;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -78,6 +79,17 @@ public class VideoListController {
     @FXML protected void fifthVideo(ActionEvent event) {
         System.out.println(videoListModel.getSearchResult().get(4).getId().getVideoId());
         System.out.println(videoListModel.getSearchResult().get(4).getSnippet().getTitle());
+    }
+    @FXML
+    void switchToPlayer(ActionEvent event, AnchorPane root, SearchResult video) {
+        try {
+            AnchorPane centerPlayer = FXMLLoader.load(getClass().getResource("../view/PlayerAnchor.fxml"));
+            root.setBottomAnchor(centerPlayer,0.0);
+            PlayerModel player= new PlayerModel(video);
+            centerPlayer.getChildren().add(player.getPlayer());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

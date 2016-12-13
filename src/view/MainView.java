@@ -1,14 +1,11 @@
 package view;
 
 import javafx.beans.NamedArg;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.scene.text.TextFlow;
-import main.TitleCase;
 
 import java.io.IOException;
 
@@ -36,8 +33,11 @@ public class MainView extends Scene {
         root.setTopAnchor(background,0.0);
         root.setLeftAnchor(background,0.0);
         root.setRightAnchor(background,0.0);
-
         root.autosize();
+
+        //AnchorPane player = FXMLLoader.load(getClass().getResource("../view/PlayerAnchor.fxml"));
+        //background.setBottomAnchor(player,0.0);
+
 
 
 

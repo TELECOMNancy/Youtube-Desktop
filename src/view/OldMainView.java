@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.text.TextFlow;
-import main.TitleCase;
 
 import java.io.IOException;
 
@@ -20,7 +19,6 @@ public class OldMainView extends Scene {
     // private Player player;
     private Group group;
     //private String title;
-    private TitleCase titleCase;
     private Region window;
     private double width;
     private double heigth;
