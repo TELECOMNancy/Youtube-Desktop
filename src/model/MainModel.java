@@ -19,7 +19,7 @@ import java.util.List;
  * Created by tld on 12/12/2016.
  */
 
-public class MainModel {
+public class MainModel{
 
     private String mainVideoName;
     private static final String PROPERTIES_FILENAME = "youtube.properties";

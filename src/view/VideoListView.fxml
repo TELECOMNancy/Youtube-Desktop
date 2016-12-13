@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<ScrollPane prefHeight="515.0" prefWidth="445.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane prefHeight="515.0" prefWidth="445.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VideoListController">
    <content>
       <AnchorPane prefHeight="615.0" prefWidth="424.0">
          <children>
@@ -15,22 +15,27 @@
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <JFXButton prefHeight="189.0" prefWidth="409.0" />
+                        <JFXButton fx:id="firstButton" text="firstButton" onAction="#handleSubmitButtonAction" prefHeight="140.0" prefWidth="350.0" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <JFXButton prefHeight="182.0" prefWidth="297.0" />
+                        <JFXButton fx:id="secondButton" text="secondButton" onAction="#handleSubmitButtonAction" prefHeight="140.0" prefWidth="350.0" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <JFXButton prefHeight="184.0" prefWidth="376.0" />
+                        <JFXButton fx:id="thirdButton" text="thirdButton" onAction="#handleSubmitButtonAction" prefHeight="140.0" prefWidth="350.0" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <JFXButton prefHeight="139.0" prefWidth="349.0" />
+                        <JFXButton fx:id="fourthButton" text="fourthButton" onAction="#handleSubmitButtonAction" prefHeight="140.0" prefWidth="350.0" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <JFXButton fx:id="fifthButton" text="fifthButton" onAction="#handleSubmitButtonAction" prefHeight="140.0" prefWidth="350.0" />
                      </children>
                   </HBox>
                </children>

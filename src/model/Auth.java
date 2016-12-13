@@ -71,9 +71,9 @@ public class Auth {
                 HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, scopes).setCredentialDataStore(datastore)
                 .build();
 
-        // Build the local server and bind it to port 8080 => launch AuthenticateView
+        // Build the local server and bind it to port 8080
 
-        LocalServerReceiver localReceiver = new LocalServerReceiver.Builder().setPort(8084).build();
+        LocalServerReceiver localReceiver = new LocalServerReceiver.Builder().setPort(8080).build();
 
         // Getting the redirect URI
 
