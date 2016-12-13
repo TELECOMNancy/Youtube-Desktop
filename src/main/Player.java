@@ -20,8 +20,7 @@ import java.io.InputStream;
  */
 public class Player extends Region {
 
-    final WebView videoPlayer = new WebView();
-    final WebEngine videoEngine = videoPlayer.getEngine();
+    WebView videoPlayer = new WebView();
 
     public Player(String videoId) {
         String htmlString;
@@ -44,20 +43,8 @@ public class Player extends Region {
                 htmlStringFinal
         );
 
-        /*En faire un model, vue?*/
-        videoEngine.locationProperty().addListener(new ChangeListener<String>() {
-            public void changed(ObservableValue<? extends String> ov, final String oldLoc, final String loc) {
-                if (!loc.contains("google.com")) {
-                    Platform.runLater(new Runnable() {
-                        public void run() {
-                            videoPlayer.getEngine().loadContent(
-                                    htmlStringFinal
-                            );
-                        }
-                    });
-                }
-            }
-        });
+        this.listening(htmlStringFinal);
+
 
 
 
@@ -78,5 +65,26 @@ public class Player extends Region {
 
     @Override protected double computePrefHeight(double width) {
         return 500;
+    }
+
+    public void listening(final String htmlString) {
+        final String htmlStringFinal  = htmlString;
+        this.videoPlayer.getEngine().locationProperty().addListener(new ChangeListener<String>() {
+            public void changed(ObservableValue<? extends String> prop, final String before, final String after) {
+                if (!before.equals(after)) {
+                    Platform.runLater(new Runnable() {
+                        public void run() {
+                            getChildren().remove(videoPlayer);
+                            videoPlayer = new WebView();
+                            videoPlayer.getEngine().loadContent(
+                                    htmlStringFinal
+                            );
+                            getChildren().add(videoPlayer);
+                            listening(htmlString);
+                        }
+                    });
+                }
+            }
+        });
     }
 }
