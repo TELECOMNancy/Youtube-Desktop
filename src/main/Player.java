@@ -43,7 +43,19 @@ public class Player extends Region {
                 htmlStringFinal
         );
 
-        this.listening(htmlStringFinal);
+        videoPlayer.getEngine().locationProperty().addListener(new ChangeListener<String>() {
+            public void changed(ObservableValue<? extends String> prop, final String before, final String after) {
+                System.out.println("Loaded: " + after);
+                Platform.runLater(new Runnable() {
+                    public void run() {
+                        if (after == null || !after.startsWith("http://docs.oracle.com/javafx/2/get_started")) {
+                            System.out.println("Access denied: " + after);
+                            videoPlayer.getEngine().loadContent(htmlStringFinal);
+                        }
+                    }
+                });
+            }
+        });
 
 
 
@@ -67,24 +79,4 @@ public class Player extends Region {
         return 500;
     }
 
-    public void listening(final String htmlString) {
-        final String htmlStringFinal  = htmlString;
-        this.videoPlayer.getEngine().locationProperty().addListener(new ChangeListener<String>() {
-            public void changed(ObservableValue<? extends String> prop, final String before, final String after) {
-                if (!before.equals(after)) {
-                    Platform.runLater(new Runnable() {
-                        public void run() {
-                            getChildren().remove(videoPlayer);
-                            videoPlayer = new WebView();
-                            videoPlayer.getEngine().loadContent(
-                                    htmlStringFinal
-                            );
-                            getChildren().add(videoPlayer);
-                            listening(htmlString);
-                        }
-                    });
-                }
-            }
-        });
-    }
 }
