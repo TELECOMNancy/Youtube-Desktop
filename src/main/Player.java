@@ -1,6 +1,9 @@
 package main;
 
 
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
@@ -25,22 +28,40 @@ public class Player extends Region {
 
 
     public Player(String videoId) {
-
+        String htmlString;
+        final String htmlStringFinal;
         getStyleClass().add("browser");
-        File htmlTemplateFile = new File("./resources/template.html");
+        File htmlTemplateFile = new File(getClass().getClassLoader().getResource("template.html").getFile());
+
         try {
-            String htmlString = FileUtils.readFileToString(htmlTemplateFile, (Charset) null);
-            htmlString = htmlString.replace("$videoId", videoId);
-            File newHtmlFile = new File("./resources/player.html");
-            FileUtils.writeStringToFile(newHtmlFile, htmlString, (Charset) null);
-            final String pageURI= newHtmlFile.toURI().toString();
-            this.videoPlayer.getEngine().load(
-                    pageURI
+            htmlString = FileUtils.readFileToString(htmlTemplateFile, (Charset) null);
+            htmlStringFinal = htmlString.replace("$videoId", videoId);
+
+            this.videoPlayer.getEngine().loadContent(
+                   htmlStringFinal
             );
+
+            /*En faire un model, vue?*/
+            videoPlayer.getEngine().locationProperty().addListener(new ChangeListener<String>() {
+                public void changed(ObservableValue<? extends String> prop, final String before, final String after) {
+                    System.out.println("Loaded: " + after);
+                    Platform.runLater(new Runnable() {
+                        public void run() {
+                            if (after == null || !after.startsWith("http://docs.oracle.com/javafx/2/get_started")) {
+                                System.out.println("Access denied: " + after);
+                                videoPlayer.getEngine().loadContent(htmlStringFinal);
+                            }
+                        }
+                    });
+                }
+            });
         }
+
         catch (java.io.IOException e) {
             System.out.println(e.getMessage());
         }
+
+
 
         this.getChildren().add(videoPlayer);
 

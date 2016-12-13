@@ -37,13 +37,6 @@ public class MainView extends Scene {
         this.width=width;
 
 
-
-
-        /*WebView browser = new WebView();
-        WebEngine webEngine = browser.getEngine();
-        webEngine.load("https://google.com");*/
-
-
 ;
         VBox lateral=new LateralRed(width,height);
         root.getChildren().add(lateral);
