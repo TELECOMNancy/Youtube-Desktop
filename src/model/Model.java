@@ -14,8 +14,8 @@ public class Model {
     }
 
 
-    public ResourceId getVideoID(SearchResult video){
-        ResourceId rId = video.getId();
+    public String getVideoID(SearchResult video){
+        String rId = video.getId().getVideoId();
         return rId;
     }
 

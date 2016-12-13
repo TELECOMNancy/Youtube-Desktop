@@ -1,6 +1,11 @@
 package main;
 
+import com.google.api.services.youtube.model.ResourceId;
+import com.google.api.services.youtube.model.SearchResult;
+import com.google.api.services.youtube.model.SearchResultSnippet;
+import com.google.api.services.youtubeAnalytics.model.Group;
 import controller.BackgroundController;
+import controller.PlayerViewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -9,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import model.MainModel;
+import model.PlayerModel;
 import view.MainView;
 import view.OldMainView;
 
@@ -40,6 +46,16 @@ public class Main extends Application {
         BackgroundController backgroundController = backgroundLoader.getController();
         MainModel model = new MainModel();
         backgroundController.initModel(model);
+
+        FXMLLoader playerViewLoader = new FXMLLoader(getClass().getResource("../view/PlayerView.fxml"));
+        AnchorPane playerView = playerViewLoader.load();
+        background.getChildren().add(playerView);
+        background.setBottomAnchor(playerView,100.0);
+        background.setLeftAnchor(playerView,200.0);
+        PlayerViewController playerViewController=playerViewLoader.getController();
+        PlayerModel playerModel= new PlayerModel("_GuOjXYl5ew","TEST");
+
+        playerViewController.initModel(playerModel);
 
 
         Scene scene = new Scene(root,1280,800);
