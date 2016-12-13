@@ -1,14 +1,11 @@
 package view;
 
 import javafx.beans.NamedArg;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.scene.text.TextFlow;
-import main.TitleCase;
 
 import java.io.IOException;
 

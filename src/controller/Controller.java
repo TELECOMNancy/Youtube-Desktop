@@ -1,13 +1,16 @@
 package controller;
 
+import com.google.api.services.youtube.model.SearchResult;
 import view.MainView;
 import model.MainModel;
+
+
 
 public class Controller {
 
     private MainView mainView;
     private MainModel mainModel;
-
+    SearchResult result;
 
     /*public void setMainTitle(String title){
         this.videoID=title;
@@ -15,7 +18,7 @@ public class Controller {
     }*/
 
     public String getMainTitle(){
-         return mainModel.getVideoTitle();
+         return mainModel.getVideoTitle(result);
     }
 
 
