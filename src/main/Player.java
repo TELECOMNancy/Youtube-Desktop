@@ -15,6 +15,9 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import org.apache.commons.io.FileUtils;
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.net.URLDecoder;
 import java.nio.charset.Charset;
 
 
@@ -31,7 +34,15 @@ public class Player extends Region {
         String htmlString;
         final String htmlStringFinal;
         getStyleClass().add("browser");
-        File htmlTemplateFile = new File(getClass().getClassLoader().getResource("template.html").getFile());
+        File htmlTemplateFile;
+        URL resource = getClass().getClassLoader().getResource("template.html");
+        try {
+            String filePath = URLDecoder.decode(resource.getFile(), "UTF-8");
+            htmlTemplateFile = new File(filePath);
+        }
+        catch (UnsupportedEncodingException e) {
+            htmlTemplateFile = new File(resource.getFile());
+        }
 
         try {
             htmlString = FileUtils.readFileToString(htmlTemplateFile, (Charset) null);
