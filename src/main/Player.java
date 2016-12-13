@@ -7,6 +7,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.layout.Region;
+import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import org.apache.commons.io.IOUtils;
 import java.io.IOException;
@@ -20,6 +21,7 @@ import java.io.InputStream;
 public class Player extends Region {
 
     final WebView videoPlayer = new WebView();
+    final WebEngine videoEngine = videoPlayer.getEngine();
 
     public Player(String videoId) {
         String htmlString;
@@ -43,17 +45,17 @@ public class Player extends Region {
         );
 
         /*En faire un model, vue?*/
-        videoPlayer.getEngine().locationProperty().addListener(new ChangeListener<String>() {
-            public void changed(ObservableValue<? extends String> prop, final String before, final String after) {
-                System.out.println("Loaded: " + after);
-                Platform.runLater(new Runnable() {
-                    public void run() {
-                        if (after == null || !after.startsWith("http://docs.oracle.com/javafx/2/get_started")) {
-                            System.out.println("Access denied: " + after);
-                            videoPlayer.getEngine().loadContent(htmlStringFinal);
+        videoEngine.locationProperty().addListener(new ChangeListener<String>() {
+            public void changed(ObservableValue<? extends String> ov, final String oldLoc, final String loc) {
+                if (!loc.contains("google.com")) {
+                    Platform.runLater(new Runnable() {
+                        public void run() {
+                            videoPlayer.getEngine().loadContent(
+                                    htmlStringFinal
+                            );
                         }
-                    }
-                });
+                    });
+                }
             }
         });
 
