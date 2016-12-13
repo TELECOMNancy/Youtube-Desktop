@@ -3,6 +3,7 @@ package controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
+import model.MainModel;
 
 import java.awt.event.ActionEvent;
 
@@ -18,38 +19,37 @@ public class BackgroundController {
     private  JFXButton testSample;
 
     @FXML
-    void clickHome(){
-
-    }
-
-    @FXML
-    void clickSample(){
-
-    }
-
-    @FXML
     private JFXTextField searchField;
-
-    @FXML
-    void keySearch(){
-
-    }
-
-    @FXML
-    private JFXButton signInButton;
-
-    @FXML
-    void switchToLogged(){
-
-
-    }
 
     @FXML
     private  JFXButton profileButton;
 
     @FXML
-    void switchToProfile(){
+    private JFXButton signInButton;
 
+
+    @FXML
+    void clickHome(){
+    }
+
+    @FXML
+    void clickSample(){
+    }
+
+
+    @FXML
+    void keySearch(){
+    }
+
+
+    @FXML
+    boolean switchToLogged(){
+        return
+    }
+
+
+    @FXML
+    void switchToProfile(){
     }
 
 
