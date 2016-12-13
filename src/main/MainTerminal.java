@@ -5,6 +5,7 @@ import com.google.api.services.youtube.model.SearchResult;
 import com.google.api.services.youtube.model.Thumbnail;
 import com.google.api.services.youtube.model.Video;
 import model.MainModel;
+import model.Model;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,7 +19,8 @@ import java.util.List;
 public class MainTerminal {
 
     private static final long NUMBER_OF_VIDEOS_RETURNED = 5;
-    static MainModel model = new MainModel();
+    static Model model = new Model();
+    static MainModel mainModel= new MainModel();
 
 
     private static String getInputQuery() throws IOException {
@@ -83,7 +85,7 @@ public class MainTerminal {
                     System.out.print("Please enter a search term: ");
                     searchQuery = getInputQuery();
 
-                    List<SearchResult> searchResultList = model.search(NUMBER_OF_VIDEOS_RETURNED,searchQuery);
+                    List<SearchResult> searchResultList = mainModel.search(NUMBER_OF_VIDEOS_RETURNED,searchQuery);
                     prettyPrint(searchResultList.iterator(),searchQuery);
 
                     System.out.print("Please select a video (0-4) : ");
@@ -96,7 +98,7 @@ public class MainTerminal {
                     menuQuery="0";
                     break;
                 case 2:
-                   model.signIn();
+                   mainModel.signIn();
                     break;
                 case 3:
                     return;

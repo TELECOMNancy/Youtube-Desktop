@@ -16,7 +16,6 @@ public class MainView extends Scene {
    // private Player player;
     private Group group;
     //private String title;
-    //private TitleCase titleCase;
     private Region window;
     private double width;
     private double heigth;
