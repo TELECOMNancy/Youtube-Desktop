@@ -3,6 +3,7 @@ package main;
 import com.google.api.services.youtube.model.ResourceId;
 import com.google.api.services.youtube.model.SearchResult;
 import com.google.api.services.youtube.model.Thumbnail;
+import com.google.api.services.youtube.model.Video;
 import model.MainModel;
 
 import java.io.BufferedReader;
@@ -89,7 +90,9 @@ public class MainTerminal {
                     selectVideo = getInputQuery();
 
                     //model.initialize(searchQuery);
-                    System.out.println("    Video title : " + searchResultList.get(Integer.parseInt(selectVideo)).getSnippet().getTitle()+"\n");
+                    System.out.println("    Video title : " + model.getVideoTitle(searchResultList.get(Integer.parseInt(selectVideo)))+"\n");
+                    System.out.println("    Video id : " + model.getVideoID(searchResultList.get(Integer.parseInt(selectVideo)))+"\n");
+                    System.out.println("    Video thumbnail URL : " + model.getVideoThumbnail(searchResultList.get(Integer.parseInt(selectVideo)))+"\n");
                     menuQuery="0";
                     break;
                 case 2:
