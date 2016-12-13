@@ -1,11 +1,13 @@
-package main;
+package controller;
+
+import view.MainView;
+import model.MainModel;
 
 public class Controller {
 
     private MainView mainView;
     private MainModel mainModel;
 
-    String videoID = "IddapcoJokTfk";
 
     /*public void setMainTitle(String title){
         this.videoID=title;
@@ -15,7 +17,6 @@ public class Controller {
     public String getMainTitle(){
          return mainModel.getVideoTitle();
     }
-
 
 
     public void updateMainView() {

@@ -1,4 +1,4 @@
-package main;
+package view;
 
 
 import javafx.application.Platform;
@@ -7,7 +7,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.layout.Region;
-import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import org.apache.commons.io.IOUtils;
 import java.io.IOException;
@@ -35,14 +34,13 @@ public class Player extends Region {
             htmlString = "";
         }
 
-
-        //htmlString = FileUtils.readFileToString(htmlTemplateFile, (Charset) null);
         htmlStringFinal = htmlString.replace("$videoId", videoId);
 
         this.videoPlayer.getEngine().loadContent(
                 htmlStringFinal
         );
 
+        //Prevent from quitting the player
         videoPlayer.getEngine().locationProperty().addListener(new ChangeListener<String>() {
             public void changed(ObservableValue<? extends String> prop, final String before, final String after) {
                 System.out.println("Loaded: " + after);
@@ -56,10 +54,6 @@ public class Player extends Region {
                 });
             }
         });
-
-
-
-
 
         this.getChildren().add(videoPlayer);
 

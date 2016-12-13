@@ -1,4 +1,4 @@
-package main;
+package model;
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 import com.google.common.collect.Lists;
+
 import java.util.List;
 
 /**

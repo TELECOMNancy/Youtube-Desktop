@@ -10,6 +10,7 @@ import javafx.scene.text.Text;
  * Created by léo on 12/12/2016.
  */
 public class TitleCase extends Parent {
+
     public TitleCase(String l, int posX, int posY){
         Text titlecase=new Text(l);
         titlecase.setFont(new Font(22));

@@ -3,6 +3,7 @@ package main;
 import com.google.api.services.youtube.model.ResourceId;
 import com.google.api.services.youtube.model.SearchResult;
 import com.google.api.services.youtube.model.Thumbnail;
+import model.MainModel;
 
 import java.io.BufferedReader;
 import java.io.IOException;

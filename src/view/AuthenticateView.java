@@ -1,4 +1,4 @@
-package main;
+package view;
 
 import javafx.scene.layout.Region;
 import javafx.scene.web.WebEngine;
