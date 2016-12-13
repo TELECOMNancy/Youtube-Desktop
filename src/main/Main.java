@@ -17,7 +17,7 @@ import java.io.IOException;
 
 public class Main extends Application {
     private Scene scene;
-    @Override public void start(Stage stage) {
+    @Override public void start(Stage stage) throws IOException {
 
 
         //create Desktop
