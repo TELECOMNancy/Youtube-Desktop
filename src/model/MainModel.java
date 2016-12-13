@@ -24,7 +24,6 @@ public class MainModel {
     private String mainVideoName;
     private static final String PROPERTIES_FILENAME = "youtube.properties";
 
-    private SearchResult video;
 
 
     private static YouTube youtube;
@@ -38,21 +37,20 @@ public class MainModel {
 
     //Used for videoListView
 
-    public String getVideoTitle() {
+    public String getVideoTitle(SearchResult video) {
 
         return video.getSnippet().getTitle();
     }
 
-    public String getVideoThumbnail(){
+    public String getVideoThumbnail(SearchResult video){
         Thumbnail thumbnail = video.getSnippet().getThumbnails().getDefault();
         return thumbnail.getUrl();
     }
 
-    public String getVideoDesc(){
-
-        return video.getSnippet().getDescription();
+    public ResourceId getVideoID(SearchResult video){
+        ResourceId rId = video.getId();
+        return rId;
     }
-
 
     //Used for UploadView
 
@@ -65,10 +63,7 @@ public class MainModel {
         //snippet.setDescription(img);
     } //WOP
 
-    public void setVideoDesc(VideoSnippet snippet, String videoDesc){
 
-        snippet.setDescription(videoDesc);
-    } //WOP
 
 
     //search by keywords, used for videoListView
@@ -198,14 +193,15 @@ public class MainModel {
             // Other supporting settings are "unlisted" and "private."
             Video videoObjectDefiningMetadata = new Video();
             VideoStatus status = new VideoStatus();
-            status.setPrivacyStatus("public");
+            String stringStatus="";                                         //a choisir dans la vue
+            status.setPrivacyStatus(stringStatus);
             videoObjectDefiningMetadata.setStatus(status);
 
             // Most of the video's metadata is set on the VideoSnippet object.
             VideoSnippet snippet = new VideoSnippet();
             //ADD SET METADATA FUNCTION HERE
             setVideoTitle(snippet, "TEXTFIELD LISTENER HERE");
-            setVideoDesc(snippet, "TEXTFIELD LISTENER HERE");
+
             //setthumbnail ?
 
             videoObjectDefiningMetadata.setSnippet(snippet);
