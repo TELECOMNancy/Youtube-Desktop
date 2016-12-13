@@ -2,6 +2,7 @@
 <html>
 <body>
 <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+
 <div id="ytplayer"></div>
 
 <script>
@@ -21,11 +22,15 @@
             videoId: '$videoId',
             playerVars: {
                 autoplay: 0,
-                controls: 2,
-                rel: 0
+                controls: 0,
+                rel: 0,
+                showinfo: 0,
+                modestbranding:1
             }
         });
     }
 </script>
+
+
 </body>
 </html>
