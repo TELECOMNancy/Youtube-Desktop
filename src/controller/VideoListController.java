@@ -4,11 +4,15 @@ import com.google.api.services.youtube.model.SearchResult;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import model.PlayerModel;
 import model.VideoListModel;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +21,9 @@ import java.util.List;
  */
 public class VideoListController {
 
-    VideoListModel videoListModel;
+    private VideoListModel videoListModel;
     private ArrayList<ImageView> listImageView = new ArrayList<ImageView>();
+    private ArrayList<JFXButton> listButton = new ArrayList<JFXButton>();
 
     @FXML
     private JFXButton firstButton;
@@ -29,7 +34,7 @@ public class VideoListController {
     @FXML
     private JFXButton fourthButton;
     @FXML
-    private JFXButton fifthtButton;
+    private JFXButton fifthButton;
 
     @FXML
     private ImageView imageView0;
@@ -44,8 +49,13 @@ public class VideoListController {
 
 
 
-    public void initModel(VideoListModel videoListModel) {
+    public void initVideoListModel(VideoListModel videoListModel) {
         this.videoListModel = videoListModel;
+        listButton.add(firstButton);
+        listButton.add(secondButton);
+        listButton.add(thirdButton);
+        listButton.add(fourthButton);
+        listButton.add(fifthButton);
         listImageView.add(imageView0);
         listImageView.add(imageView1);
         listImageView.add(imageView2);
@@ -53,32 +63,33 @@ public class VideoListController {
         listImageView.add(imageView4);
         for (int i =0; i<5; i++) {
             listImageView.get(i).setImage(new Image(this.videoListModel.getSearchResult().get(i).getSnippet().getThumbnails().getDefault().getUrl()));
+            listButton.get(i).setText(videoListModel.getSearchResult().get(i).getSnippet().getTitle());
         }
     }
 
     @FXML protected void firstVideo(ActionEvent event) {
         System.out.println(videoListModel.getSearchResult().get(0).getId().getVideoId());
-        System.out.println(videoListModel.getSearchResult().get(4).getSnippet().getTitle());
+
     }
 
     @FXML protected void secondVideo(ActionEvent event) {
         System.out.println(videoListModel.getSearchResult().get(1).getId().getVideoId());
-        System.out.println(videoListModel.getSearchResult().get(4).getSnippet().getTitle());
+
     }
 
     @FXML protected void thirdVideo(ActionEvent event) {
         System.out.println(videoListModel.getSearchResult().get(2).getId().getVideoId());
-        System.out.println(videoListModel.getSearchResult().get(4).getSnippet().getTitle());
+
     }
 
     @FXML protected void fourthVideo(ActionEvent event) {
         System.out.println(videoListModel.getSearchResult().get(3).getId().getVideoId());
-        System.out.println(videoListModel.getSearchResult().get(4).getSnippet().getTitle());
+
     }
 
     @FXML protected void fifthVideo(ActionEvent event) {
         System.out.println(videoListModel.getSearchResult().get(4).getId().getVideoId());
-        System.out.println(videoListModel.getSearchResult().get(4).getSnippet().getTitle());
+
     }
     @FXML
     void switchToPlayer(ActionEvent event, AnchorPane root, SearchResult video) {

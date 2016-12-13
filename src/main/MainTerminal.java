@@ -4,6 +4,7 @@ import com.google.api.services.youtube.model.ResourceId;
 import com.google.api.services.youtube.model.SearchResult;
 import com.google.api.services.youtube.model.Thumbnail;
 import com.google.api.services.youtube.model.Video;
+import model.BackgroundModel;
 import model.MainModel;
 import model.Model;
 
@@ -19,8 +20,9 @@ import java.util.List;
 public class MainTerminal {
 
     private static final long NUMBER_OF_VIDEOS_RETURNED = 5;
-    static Model model = new Model();
-    static MainModel mainModel= new MainModel();
+
+    static BackgroundModel backgroundModel= new BackgroundModel();
+    static MainModel mainModel = new MainModel();
 
 
     private static String getInputQuery() throws IOException {
@@ -85,7 +87,7 @@ public class MainTerminal {
                     System.out.print("Please enter a search term: ");
                     searchQuery = getInputQuery();
 
-                    List<SearchResult> searchResultList = mainModel.search(NUMBER_OF_VIDEOS_RETURNED,searchQuery);
+                    List<SearchResult> searchResultList = backgroundModel.search(NUMBER_OF_VIDEOS_RETURNED,searchQuery);
                     prettyPrint(searchResultList.iterator(),searchQuery);
 
                     System.out.print("Please select a video (0-4) : ");
