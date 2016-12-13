@@ -1,12 +1,15 @@
 package main;
 
+import controller.BackgroundController;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import model.MainModel;
 import view.MainView;
 import view.OldMainView;
-import view.TestView;
+
 
 import java.io.IOException;
 
@@ -36,7 +39,8 @@ public class Main extends Application {
         BackgroundController backgroundController = backgroundLoader.getController();
         backgroundController.setRoot(root);
         MainModel model = new MainModel();
-        backgroundController.initMainModel(model);
+        backgroundController.initMainModel(model,background);
+
 
 
         Scene scene = new Scene(root,1280,800);

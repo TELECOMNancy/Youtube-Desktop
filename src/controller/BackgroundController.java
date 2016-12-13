@@ -5,29 +5,39 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
+import model.BackgroundModel;
 import model.MainModel;
 import model.VideoListModel;
-
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 /**
  * Created by tld on 13/12/2016.
  */
 public class BackgroundController {
+
+    private BackgroundModel backgroundModel;
     private MainModel mainModel;
     private VideoListModel videoListModel;
-    AnchorPane root;
+    private AnchorPane root;
+    private AnchorPane background;
 
 
-    public void initMainModel(MainModel model){
-        this.mainModel = model;
+    public void initBackgroundModel(BackgroundModel model){
+        this.backgroundModel = model;
     }
 
-    public void initMainModel(VideoListModel model){
+    public void initVideoListModel(VideoListModel model){
         this.videoListModel = model;
     }
+
+    public void initMainModel(MainModel model, AnchorPane background){
+        this.mainModel = model;
+        this.background=background;
+
+    }
+
 
 
     @FXML
@@ -64,17 +74,19 @@ public class BackgroundController {
 
     @FXML
     void clickSearch() throws IOException {
-        FXMLLoader videoListLoader = new FXMLLoader(getClass().getResource("../view/VideoListView.fxml"));
-        AnchorPane videoList = videoListLoader.load();
-        root.getChildren().add(videoList);
-        root.setBottomAnchor(videoList,0.0);
-        root.setTopAnchor(videoList,0.0);
-        root.setLeftAnchor(videoList,0.0);
-        root.setRightAnchor(videoList,0.0);
-        root.autosize();
+
+        FXMLLoader videoListLoader = new FXMLLoader(getClass().getResource("/view/VideoListView.fxml"));
+
+        ScrollPane videoList = videoListLoader.load();
+        background.getChildren().add(videoList);
+        background.setBottomAnchor(videoList,100.0);
+        background.setTopAnchor(videoList,100.0);
+        background.setLeftAnchor(videoList,100.0);
+        background.setRightAnchor(videoList,100.0);
+        background.autosize();
         VideoListController videoListController = videoListLoader.getController();
-        VideoListModel videoListModel = new VideoListModel(searchField.getText());
-        videoListController.initModel(videoListModel);
+        VideoListModel videoListModel = new VideoListModel(searchField.getText(), new BackgroundModel());
+        videoListController.initVideoListModel(videoListModel);
 
     }
 
