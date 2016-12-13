@@ -1,15 +1,16 @@
 package main;
 
+import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.*;
-
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 import java.util.Properties;
+import com.google.common.collect.Lists;
+import java.util.List;
 
 /**
  * Created by tld on 12/12/2016.
@@ -18,19 +19,45 @@ public class MainModel {
 
     private String mainVideoName;
     private static final String PROPERTIES_FILENAME = "youtube.properties";
-    private SearchResult result;
+    private SearchResult video;
+    VideoSnippet uploadVideo = new VideoSnippet();
 
     /*public void initialize(String query){
         this.result = this.search(5,query).get(1);
     }*/
 
+
     public String getVideoTitle() {
-        return result.getSnippet().getTitle(); //provisoire
+
+        return video.getSnippet().getTitle();
     }
 
-    //public void setVideoTitle(String videoName){
-      //  result.setSnippet()
-    //}
+    public String getVideoThumbnail(){
+        Thumbnail thumbnail = video.getSnippet().getThumbnails().getDefault();
+        return thumbnail.getUrl();
+    }
+
+    public String getVideoDesc(){
+
+        return video.getSnippet().getDescription();
+    }
+
+    public void setVideoTitle(String videoName){
+
+        uploadVideo.setDescription(videoName);
+    }  //WOP
+
+    public void setVideoThumbnail(String img){
+
+        //uploadVideo.setDescription(img);
+    } //WOP
+
+    public void setVideoDesc(String videoDesc){
+
+        uploadVideo.setDescription(videoDesc);
+    } //WOP
+
+    //search by keywords
 
     public List<SearchResult> search(long count, String query) {
 
@@ -112,6 +139,39 @@ public class MainModel {
 
         return null;
     }
+
+
+    //returns true after sucessfully signing in
+
+    public boolean signIn(){
+
+        boolean signedIn=false;
+
+        List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.upload");
+
+        try {
+
+            Credential credential = Auth.authorize(scopes, "myuploads");
+            signedIn=true;
+
+
+        } catch (GoogleJsonResponseException e) {
+
+            e.printStackTrace();
+            System.err.println("There was a service error: " + e.getDetails().getCode() + " : "
+                    + e.getDetails().getMessage());
+
+        } catch (Throwable t) {
+
+            t.printStackTrace();
+
+        }
+        return signedIn;
+    }
+
+
+
+
 
 
 }

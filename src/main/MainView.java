@@ -4,6 +4,8 @@ package main;
 import javafx.beans.NamedArg;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
@@ -61,6 +63,7 @@ public class MainView extends Scene {
         root.getChildren().add(signin);*/
 
         root.autosize();
+
         //intégration player
         /*String l= new String();
         //l="l";
@@ -73,19 +76,19 @@ public class MainView extends Scene {
         //group.getChildren().add(brow);
 
     }
-    /*public String getTitle(){
-        return this.title;
-    }
-    public void setTitle(String title1){
 
-        Text text= new Text(title1);
-        this.title= new TextFlow(text);
-        .getChildren().add(title);
-    }*/
-    /*public void updateTitle(){
-        TitleCase titlecase=new TitleCase(this.title,10,10);
-        group.getChildren().add(titlecase);
-    }*/
+    @FXML
+    void switchToPlayer(ActionEvent event, AnchorPane root, String videoid) {
+        try {
+            AnchorPane centerPlayer = FXMLLoader.load(getClass().getResource("PlayerAnchor.fxml"));
+            root.setBottomAnchor(centerPlayer,0.0);
+            Player player= new Player(videoid);
+            centerPlayer.getChildren().add(player);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
    /* public Player getPlayer(){
