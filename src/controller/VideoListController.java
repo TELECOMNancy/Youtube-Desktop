@@ -113,7 +113,7 @@ public class VideoListController {
     @FXML
     void switchToPlayer(ActionEvent event, AnchorPane root, SearchResult video) {
         try {
-            AnchorPane centerPlayer = FXMLLoader.load(getClass().getResource("../view/PlayerAnchor.fxml"));
+            AnchorPane centerPlayer = FXMLLoader.load(getClass().getResource("/view/PlayerView.fxml"));
             root.setBottomAnchor(centerPlayer,0.0);
             PlayerModel player= new PlayerModel(video);
             centerPlayer.getChildren().add(player.getPlayer());

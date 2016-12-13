@@ -27,7 +27,7 @@ public class MainView extends Scene {
         this.heigth=height;
         this.width=width;
 
-        AnchorPane background = FXMLLoader.load(getClass().getResource("../view/BackgroundView.fxml"));
+        AnchorPane background = FXMLLoader.load(getClass().getResource("/view/BackgroundView.fxml"));
         root.getChildren().add(background);
         root.setBottomAnchor(background,0.0);
         root.setTopAnchor(background,0.0);
