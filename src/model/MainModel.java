@@ -19,7 +19,7 @@ import java.util.List;
  * Created by tld on 12/12/2016.
  */
 
-public class MainModel{
+public class MainModel extends Model{
 
     private String mainVideoName;
     private static final String PROPERTIES_FILENAME = "youtube.properties";
@@ -67,7 +67,7 @@ public class MainModel{
 
 
     //search by keywords, used for videoListView
-
+    @Override
     public List<SearchResult> search(long count, String query) {
 
         long NUMBER_OF_VIDEOS_RETURNED = count;
