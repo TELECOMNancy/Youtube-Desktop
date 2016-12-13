@@ -8,8 +8,6 @@ import controller.BackgroundController;
 import controller.PlayerViewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -17,6 +15,7 @@ import model.MainModel;
 import model.PlayerModel;
 import view.MainView;
 import view.OldMainView;
+
 
 import java.io.IOException;
 
@@ -44,8 +43,10 @@ public class Main extends Application {
         root.setRightAnchor(background,0.0);
         root.autosize();
         BackgroundController backgroundController = backgroundLoader.getController();
+        backgroundController.setRoot(root);
         MainModel model = new MainModel();
-        backgroundController.initModel(model);
+        backgroundController.initMainModel(model,background);
+
 
         FXMLLoader playerViewLoader = new FXMLLoader(getClass().getResource("../view/PlayerView.fxml"));
         AnchorPane playerView = playerViewLoader.load();

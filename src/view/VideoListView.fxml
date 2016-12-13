@@ -2,40 +2,45 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<ScrollPane prefHeight="515.0" prefWidth="445.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VideoListController">
+<ScrollPane prefHeight="809.0" prefWidth="445.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VideoListController">
    <content>
-      <AnchorPane prefHeight="615.0" prefWidth="424.0">
+      <AnchorPane prefHeight="807.0" prefWidth="424.0">
          <children>
-            <VBox prefHeight="538.0" prefWidth="314.0" spacing="10.0" AnchorPane.bottomAnchor="-145.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox prefHeight="600.0" prefWidth="314.0" spacing="10.0" AnchorPane.bottomAnchor="-145.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <JFXButton fx:id="firstButton" text="firstButton" onAction="#handleSubmitButtonAction" prefHeight="140.0" prefWidth="350.0" />
+                        <ImageView fx:id="imageView0" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                        <JFXButton fx:id="firstButton" onAction="#firstVideo" prefHeight="140.0" prefWidth="350.0" text="firstButton" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <JFXButton fx:id="secondButton" text="secondButton" onAction="#handleSubmitButtonAction" prefHeight="140.0" prefWidth="350.0" />
+                        <ImageView fx:id="imageView1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                        <JFXButton fx:id="secondButton" onAction="#secondVideo" prefHeight="140.0" prefWidth="350.0" text="secondButton" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <JFXButton fx:id="thirdButton" text="thirdButton" onAction="#handleSubmitButtonAction" prefHeight="140.0" prefWidth="350.0" />
+                        <ImageView fx:id="imageView2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                        <JFXButton fx:id="thirdButton" onAction="#thirdVideo" prefHeight="140.0" prefWidth="350.0" text="thirdButton" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <JFXButton fx:id="fourthButton" text="fourthButton" onAction="#handleSubmitButtonAction" prefHeight="140.0" prefWidth="350.0" />
+                        <ImageView fx:id="imageView3" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                        <JFXButton fx:id="fourthButton" onAction="#fourthVideo" prefHeight="140.0" prefWidth="350.0" text="fourthButton" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <JFXButton fx:id="fifthButton" text="fifthButton" onAction="#handleSubmitButtonAction" prefHeight="140.0" prefWidth="350.0" />
+                        <ImageView fx:id="imageView4" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                        <JFXButton fx:id="fifthButton" onAction="#fifthVideo" prefHeight="140.0" prefWidth="350.0" text="fifthButton" />
                      </children>
                   </HBox>
                </children>
