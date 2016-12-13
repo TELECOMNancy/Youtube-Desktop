@@ -28,7 +28,7 @@ public class PlayerViewController  {
     private AnchorPane anchorPlayerVideo;
 
 
-    public void initModel(PlayerModel model){
+    public void initPlayerModel(PlayerModel model){
         this.model = model;
         title.setText(model.getTitle());
         this.player=model.getPlayer();

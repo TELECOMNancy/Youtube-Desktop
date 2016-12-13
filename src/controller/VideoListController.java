@@ -5,10 +5,12 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import model.BackgroundModel;
 import model.PlayerModel;
 import model.VideoListModel;
 
@@ -22,8 +24,10 @@ import java.util.List;
 public class VideoListController {
 
     private VideoListModel videoListModel;
+    private AnchorPane background;
     private ArrayList<ImageView> listImageView = new ArrayList<ImageView>();
     private ArrayList<JFXButton> listButton = new ArrayList<JFXButton>();
+
 
     @FXML
     private JFXButton firstButton;
@@ -49,7 +53,8 @@ public class VideoListController {
 
 
 
-    public void initVideoListModel(VideoListModel videoListModel) {
+    public void initVideoListModel(VideoListModel videoListModel, AnchorPane background) {
+        this.background = background;
         this.videoListModel = videoListModel;
         listButton.add(firstButton);
         listButton.add(secondButton);
@@ -67,9 +72,21 @@ public class VideoListController {
         }
     }
 
-    @FXML protected void firstVideo(ActionEvent event) {
+    @FXML protected void firstVideo(ActionEvent event) throws IOException {
         System.out.println(videoListModel.getSearchResult().get(0).getId().getVideoId());
 
+        FXMLLoader playerLoader = new FXMLLoader(getClass().getResource("/view/PlayerView.fxml"));
+
+        AnchorPane player = playerLoader.load();
+        background.getChildren().add(player);
+        background.setBottomAnchor(player,100.0);
+        background.setTopAnchor(player,100.0);
+        background.setLeftAnchor(player,100.0);
+        background.setRightAnchor(player,100.0);
+        background.autosize();
+        PlayerViewController playerViewController = playerLoader.getController();
+        PlayerModel playerModel = new PlayerModel(videoListModel.getSearchResult().get(0));
+        playerViewController.initPlayerModel(playerModel);
     }
 
     @FXML protected void secondVideo(ActionEvent event) {
@@ -80,6 +97,7 @@ public class VideoListController {
     @FXML protected void thirdVideo(ActionEvent event) {
         System.out.println(videoListModel.getSearchResult().get(2).getId().getVideoId());
 
+
     }
 
     @FXML protected void fourthVideo(ActionEvent event) {
@@ -89,6 +107,7 @@ public class VideoListController {
 
     @FXML protected void fifthVideo(ActionEvent event) {
         System.out.println(videoListModel.getSearchResult().get(4).getId().getVideoId());
+
 
     }
     @FXML

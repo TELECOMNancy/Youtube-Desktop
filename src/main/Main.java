@@ -56,7 +56,7 @@ public class Main extends Application {
         PlayerViewController playerViewController=playerViewLoader.getController();
         PlayerModel playerModel= new PlayerModel("_GuOjXYl5ew","TEST");
 
-        playerViewController.initModel(playerModel);
+        playerViewController.initPlayerModel(playerModel);
 
 
         Scene scene = new Scene(root,1280,800);
