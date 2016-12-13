@@ -73,7 +73,8 @@ public class MainTerminal {
         while (Integer.parseInt(menuQuery)<1 || Integer.parseInt(menuQuery)>1) {
             System.out.println("What do you want to do ? \n");
             System.out.println("1-Search\n");
-            System.out.println("2-Quit\n");
+            System.out.println("2-Sign in\n");
+            System.out.println("3-Quit\n");
             menuQuery = getInputQuery();
             switch (Integer.parseInt(menuQuery)){
                 case 1:
@@ -91,6 +92,9 @@ public class MainTerminal {
                     menuQuery="0";
                     break;
                 case 2:
+                   model.signIn();
+                    break;
+                case 3:
                     return;
 
                 default:
