@@ -39,9 +39,9 @@ public class MainView extends Scene {
 
 
 
-        WebView browser = new WebView();
+        /*WebView browser = new WebView();
         WebEngine webEngine = browser.getEngine();
-        webEngine.load("https://google.com");
+        webEngine.load("https://google.com");*/
 
 
 ;
