@@ -39,7 +39,7 @@ public class Main extends Application {
         root.autosize();
         BackgroundController backgroundController = backgroundLoader.getController();
         MainModel model = new MainModel();
-        backgroundController.initModel(model);
+        backgroundController.initMainModel(model);
 
 
         Scene scene = new Scene(root,1280,800);

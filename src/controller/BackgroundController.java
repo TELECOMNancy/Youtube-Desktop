@@ -1,9 +1,11 @@
 package controller;
 
+import com.google.api.services.youtube.model.Video;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import model.MainModel;
+import model.VideoListModel;
 
 import java.awt.event.ActionEvent;
 
@@ -11,11 +13,18 @@ import java.awt.event.ActionEvent;
  * Created by tld on 13/12/2016.
  */
 public class BackgroundController {
-    private MainModel model;
+    private MainModel mainModel;
+    private VideoListModel videoListModel;
 
-    public void initModel(MainModel model){
-        this.model = model;
+
+    public void initMainModel(MainModel model){
+        this.mainModel = model;
     }
+
+    public void initMainModel(VideoListModel model){
+        this.videoListModel = model;
+    }
+
 
     @FXML
     private JFXButton homeButton;
@@ -42,6 +51,7 @@ public class BackgroundController {
     @FXML
     void keySearch(){
 
+
     }
 
     @FXML
@@ -53,7 +63,7 @@ public class BackgroundController {
     @FXML
     void switchToLogged(){
 
-        model.signIn();
+        mainModel.signIn();
         signInButton.setDisable(true);
         profileButton.setDisable(false);
         signInButton.setVisible(false);

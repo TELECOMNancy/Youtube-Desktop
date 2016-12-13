@@ -19,7 +19,7 @@
             <JFXButton fx:id="testSample" buttonType="RAISED" layoutX="23.0" layoutY="72.0" onMouseClicked="#clickSample" ripplerFill="WHITE" text="Sample" textFill="WHITE" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
          </children>
       </AnchorPane>
-      <JFXTextField fx:id="searchField" layoutX="183.0" layoutY="15.0" onKeyPressed="#keySearch" AnchorPane.topAnchor="15.0" />
+      <JFXTextField fx:id="searchField" layoutX="183.0" layoutY="15.0" onMouseClicked="#keySearch" AnchorPane.topAnchor="15.0" />
       <Text layoutX="122.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search :" wrappingWidth="60.00000125169754" AnchorPane.topAnchor="23.0" />
       <JFXButton fx:id="signInButton" buttonType="RAISED" layoutX="493.0" layoutY="18.0" onMouseClicked="#switchToLogged" text="Sign in" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="18.0" />
       <JFXButton fx:id="profileButton" buttonType="RAISED" disable="true" layoutX="515.0" layoutY="18.0" onMouseClicked="#switchToProfile" text="Profile" visible="false" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="18.0" />
