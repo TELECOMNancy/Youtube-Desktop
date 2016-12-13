@@ -14,7 +14,7 @@ import javafx.scene.Scene;
 import model.MainModel;
 import model.PlayerModel;
 import view.MainView;
-import view.OldMainView;
+
 
 
 import java.io.IOException;
@@ -34,7 +34,7 @@ public class Main extends Application {
 
         AnchorPane root = new AnchorPane();
 
-        FXMLLoader backgroundLoader = new FXMLLoader(getClass().getResource("../view/BackgroundView.fxml"));
+        FXMLLoader backgroundLoader = new FXMLLoader(getClass().getResource("/view/BackgroundView.fxml"));
         AnchorPane background = backgroundLoader.load();
         root.getChildren().add(background);
         root.setBottomAnchor(background,0.0);
@@ -48,13 +48,13 @@ public class Main extends Application {
         backgroundController.initMainModel(model,background);
 
 
-        FXMLLoader playerViewLoader = new FXMLLoader(getClass().getResource("../view/PlayerView.fxml"));
+        FXMLLoader playerViewLoader = new FXMLLoader(getClass().getResource("/view/PlayerView.fxml"));
         AnchorPane playerView = playerViewLoader.load();
         background.getChildren().add(playerView);
         background.setBottomAnchor(playerView,100.0);
         background.setLeftAnchor(playerView,200.0);
         PlayerViewController playerViewController=playerViewLoader.getController();
-        PlayerModel playerModel= new PlayerModel("_GuOjXYl5ew","TEST");
+        PlayerModel playerModel= new PlayerModel("_GuOjXYl5ew","Youtube Rewind 2016");
 
         playerViewController.initPlayerModel(playerModel);
 
