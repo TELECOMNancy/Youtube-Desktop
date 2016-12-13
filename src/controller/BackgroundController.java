@@ -21,7 +21,6 @@ public class BackgroundController {
     private JFXButton homeButton;
 
 
-
     @FXML
     private  JFXButton testSample;
 
@@ -29,11 +28,12 @@ public class BackgroundController {
     @FXML
     private JFXTextField searchField;
 
-    @FXML
-    private  JFXButton profileButton;
 
     @FXML
     private JFXButton signInButton;
+
+    @FXML
+    private  JFXButton profileButton;
 
 
     @FXML
@@ -44,9 +44,14 @@ public class BackgroundController {
     void clickSample(){
     }
 
+    @FXML
+    void keySearch(){
+    }
 
     @FXML
-    private  JFXButton profileButton;
+    void clickSearch(){
+
+    }
 
     @FXML
     void switchToLogged(){
