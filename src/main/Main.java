@@ -1,9 +1,5 @@
 package main;
 
-import com.google.api.services.youtube.model.ResourceId;
-import com.google.api.services.youtube.model.SearchResult;
-import com.google.api.services.youtube.model.SearchResultSnippet;
-import com.google.api.services.youtubeAnalytics.model.Group;
 import controller.BackgroundController;
 import controller.PlayerViewController;
 import javafx.application.Application;
@@ -14,7 +10,6 @@ import javafx.scene.Scene;
 import model.BackgroundModel;
 import model.MainModel;
 import model.PlayerModel;
-import view.MainView;
 
 
 
