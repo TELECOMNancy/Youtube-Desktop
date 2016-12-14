@@ -7,10 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import model.BackgroundModel;
-import model.MainModel;
-import model.PlayerModel;
-import model.VideoListModel;
+import model.*;
+
 import java.io.IOException;
 
 /**
@@ -107,7 +105,7 @@ public class BackgroundController {
 
     @FXML
     void switchToProfile() throws IOException{
-        FXMLLoader channelViewLoader = new FXMLLoader(getClass().getResource("/view/ChannelView.fxml"));
+        /*FXMLLoader channelViewLoader = new FXMLLoader(getClass().getResource("/view/ChannelView.fxml"));
 
         AnchorPane channelView = channelViewLoader.load();
         background.getChildren().add(channelView);
@@ -126,7 +124,7 @@ public class BackgroundController {
 
         ChannelController channelController = channelViewLoader.getController();
         ChannelModel channelModel = new ChannelModel(uploadList);
-        channelController.initChannelModel(channelModel,uploadListLoader);
+        channelController.initChannelModel(channelModel,uploadListLoader);*/
     }
 
 

@@ -24,6 +24,7 @@ public class Model {
 
 
 
+
     public String getVideoTitle(PlaylistItem video) {
         return video.getSnippet().getTitle();
     }

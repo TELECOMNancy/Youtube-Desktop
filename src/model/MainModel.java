@@ -6,10 +6,17 @@ import com.google.api.client.googleapis.media.MediaHttpUploader;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.client.http.InputStreamContent;
+import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.*;
+
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Properties;
 import com.google.common.collect.Lists;
 
@@ -26,22 +33,21 @@ public class MainModel extends Model{
     private BackgroundModel backgroundModel;
     private VideoListModel videoListModel;
 
-
-
-
-
     private static YouTube youtube;
     private static final String VIDEO_FILE_FORMAT = "video/*";
     private static final String SAMPLE_VIDEO_FILENAME = "sample-video.mp4";
     private static final String PROPERTIES_FILENAME = "youtube.properties";
+    private static final String CREDENTIALS_DIRECTORY = ".oauth-credentials";
 
 
 
-    /*public void initialize(String query){
-        this.result = this.search(5,query).get(1);
-    }*/
+    public String getChannelTitle(SearchResult video) {
+        return video.getSnippet().getChannelTitle();
+    }
 
-
+    public String getChannelTitle(PlaylistItem video) {
+        return video.getSnippet().getChannelTitle();
+    }
 
     public void setPlayerModel(PlayerModel playerModel){
         this.playerModel=playerModel;
@@ -58,21 +64,6 @@ public class MainModel extends Model{
     public BackgroundModel getBackgroundModel(){
         return this.backgroundModel;
     }
-
-    //Used for UploadView
-
-    public void setVideoTitle(VideoSnippet snippet, String videoName){
-
-        snippet.setDescription(videoName);
-    }  //WOP
-    public void setVideoThumbnail(VideoSnippet snippet, String img){
-
-        //snippet.setDescription(img);
-    } //WOP
-
-
-
-    //returns true after sucessfully signing in, used for mainView
 
     public boolean signIn(){
 
@@ -100,6 +91,25 @@ public class MainModel extends Model{
         return signedIn;
     }
 
+    public void signOut() {
+
+        try {
+            Paths.get(System.getProperty("user.home"),CREDENTIALS_DIRECTORY);
+
+            Path chemin = FileSystems.getDefault().getPath("/Users/madmax/.oauth-credentials");
+
+        } catch (GoogleJsonResponseException e) {
+
+            e.printStackTrace();
+            System.err.println("There was a service error: " + e.getDetails().getCode() + " : "
+                    + e.getDetails().getMessage());
+
+        } catch (Throwable t) {
+
+            t.printStackTrace();
+
+        }
+    }
 
     public List<SearchResult> search(long count, String query) {
 

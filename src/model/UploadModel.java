@@ -38,6 +38,7 @@ public class UploadModel {
             youtube = new YouTube.Builder(Auth.HTTP_TRANSPORT, Auth.JSON_FACTORY, credential).setApplicationName(
                         "youtube-uploadvideo").build();
 
+
             // step1: Add extra information to the video before uploading.
             // Set the video to be publicly visible. This is the default setting.
             // Other supporting settings are "unlisted" and "private."
