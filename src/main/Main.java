@@ -47,6 +47,8 @@ public class Main extends Application {
         root.setRightAnchor(background,0.0);
         root.autosize();
         BackgroundModel backgroundModel = new BackgroundModel(mainModel);
+        backgroundModel.setBackground(background);
+        mainModel.setBackgroundModel(backgroundModel);
         BackgroundController backgroundController = backgroundLoader.getController();
         backgroundController.initBackgroundController(backgroundModel,background);
 
@@ -66,7 +68,7 @@ public class Main extends Application {
         PlayerModel playerModel= new PlayerModel("_GuOjXYl5ew","Youtube Rewind 2016");
         mainModel.setPlayerModel(playerModel);
         PlayerViewController playerViewController=playerViewLoader.getController();
-        playerViewController.initPlayerModel(playerModel,background);
+        playerViewController.initPlayerModel(playerModel);
 
         System.out.println("main player"+background.getChildren()+"\n");
 

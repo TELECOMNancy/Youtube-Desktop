@@ -44,6 +44,7 @@ public class VideoListController {
                        if (event.getSource().equals(listButton.get(j))) {
                            try {
                                initPlayer(new PlayerModel(tempVideoListModel.getSearchResult().get(j)));
+
                            }
                            catch (IOException e){
 
@@ -59,9 +60,16 @@ public class VideoListController {
     }
 
     public void initPlayer(PlayerModel playerModel) throws IOException{
-        AnchorPane background= videoListModel.getMainModel().getBackgroundModel().getBackground();
+        System.out.println(videoListModel.getMainModel());
+        System.out.println(videoListModel.getMainModel().getBackgroundModel());
+        System.out.println(videoListModel.getMainModel().getBackgroundModel().getMainChildren());
+        videoListModel.getMainModel().setPlayerModel(playerModel);
 
+
+
+        AnchorPane background= videoListModel.getMainModel().getBackgroundModel().getBackground();
         FXMLLoader playerLoader = new FXMLLoader(getClass().getResource("/view/PlayerView.fxml"));
+
         background.getChildren().remove(videoListModel.getMainModel().getBackgroundModel().getMainChildren());
         AnchorPane player = playerLoader.load();
         //background.setPlayerView(player);
