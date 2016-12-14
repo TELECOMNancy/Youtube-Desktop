@@ -21,9 +21,11 @@ public class ChannelModel extends Model {
     private ScrollPane upload;
     private ScrollPane playlist;
     private ScrollPane liked;
+
     public ChannelModel(ScrollPane upload) {
         this.upload=upload;
     }
+
     public ChannelModel(){
 
     }

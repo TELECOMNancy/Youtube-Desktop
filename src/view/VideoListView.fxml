@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import java.net.URL?>
 <ScrollPane prefHeight="2000" prefWidth="445.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VideoListController">
    <content>
       <AnchorPane prefHeight="807.0" prefWidth="424.0">
