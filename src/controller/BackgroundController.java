@@ -23,6 +23,7 @@ public class BackgroundController {
     private VideoListModel videoListModel;
     private AnchorPane root;
     private AnchorPane background;
+    private AnchorPane playerView;
 
 
     public void initBackgroundModel(BackgroundModel model){
@@ -37,6 +38,10 @@ public class BackgroundController {
         this.mainModel = model;
         this.background=background;
 
+    }
+
+    public void setPlayerView(AnchorPane playerView) {
+        this.playerView = playerView;
     }
 
 
@@ -92,14 +97,15 @@ public class BackgroundController {
 
         ScrollPane videoList = videoListLoader.load();
         background.getChildren().add(videoList);
+        background.getChildren().remove(this.playerView);
         background.setBottomAnchor(videoList,100.0);
         background.setTopAnchor(videoList,100.0);
         background.setLeftAnchor(videoList,100.0);
         background.setRightAnchor(videoList,100.0);
         background.autosize();
         VideoListController videoListController = videoListLoader.getController();
-        VideoListModel videoListModel = new VideoListModel(searchField.getText(), new BackgroundModel());
-        videoListController.initVideoListModel(videoListModel, background, videoList);
+        VideoListModel videoListModel = new VideoListModel(searchField.getText(),mainModel,background,videoList);
+        videoListController.initVideoListModel(videoListModel);
 
     }
 
