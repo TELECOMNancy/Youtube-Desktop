@@ -13,10 +13,7 @@ import com.google.api.services.youtube.model.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.util.Properties;
 import com.google.common.collect.Lists;
 
@@ -94,20 +91,14 @@ public class MainModel extends Model{
     public void signOut() {
 
         try {
-            Paths.get(System.getProperty("user.home"),CREDENTIALS_DIRECTORY);
-
-            Path chemin = FileSystems.getDefault().getPath("/Users/madmax/.oauth-credentials");
-
-        } catch (GoogleJsonResponseException e) {
-
-            e.printStackTrace();
-            System.err.println("There was a service error: " + e.getDetails().getCode() + " : "
-                    + e.getDetails().getMessage());
-
-        } catch (Throwable t) {
-
-            t.printStackTrace();
-
+            Files.delete(Paths.get("/Users/madmax/.oauth-credentials"));
+        } catch (NoSuchFileException x) {
+            System.err.format("%s: no such" + " file or directory%n", Paths.get("/Users/madmax/.oauth-credentials"));
+        } catch (DirectoryNotEmptyException x) {
+            System.err.format("%s not empty%n", Paths.get("/Users/madmax/.oauth-credentials"));
+        } catch (IOException x) {
+            // File permission problems are caught here.
+            System.err.println(x);
         }
     }
 

@@ -73,10 +73,16 @@ public class MainTerminal {
         System.out.println("=============================================================\n");
 
         while (playlistEntries.hasNext()) {
+
             PlaylistItem playlistItem = playlistEntries.next();
+            Video video = new Video();
+
             System.out.println(" video name  = " + playlistItem.getSnippet().getTitle());
             System.out.println(" video id    = " + playlistItem.getContentDetails().getVideoId());
-            System.out.println(" upload date = " + playlistItem.getSnippet().getPublishedAt());
+
+            for (int i=0;i<playlistListResponse.getItems().size();i++){
+            System.out.println(" thumbnail = " + playlistListResponse.getItems().get(i).getSnippet().getThumbnails().getDefault().getUrl());
+            }
             System.out.println("\n-------------------------------------------------------------\n");
         }
     }
@@ -148,6 +154,7 @@ public class MainTerminal {
 
                 case 5:
                     List<PlaylistItem> playlistItemList = channelModel.myUploads();
+
                     prettyPrint(playlistItemList.size(), playlistItemList.iterator());
 
 
@@ -155,6 +162,8 @@ public class MainTerminal {
 
                 case 6:
                     return;
+
+
 
                 default:
                     System.out.println("Invalid entry\n");
