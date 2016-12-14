@@ -5,18 +5,14 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
-import model.BackgroundModel;
 import model.PlayerModel;
 import model.VideoListModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by quentin on 13/12/2016.
@@ -24,7 +20,7 @@ import java.util.List;
 public class VideoListController {
 
     private VideoListModel videoListModel;
-    private AnchorPane background;
+
     private ArrayList<ImageView> listImageView = new ArrayList<ImageView>();
     private ArrayList<JFXButton> listButton = new ArrayList<JFXButton>();
 
@@ -53,8 +49,7 @@ public class VideoListController {
 
 
 
-    public void initVideoListModel(VideoListModel videoListModel, AnchorPane background) {
-        this.background = background;
+    public void initVideoListModel(VideoListModel videoListModel) {
         this.videoListModel = videoListModel;
         listButton.add(firstButton);
         listButton.add(secondButton);
@@ -67,17 +62,18 @@ public class VideoListController {
         listImageView.add(imageView3);
         listImageView.add(imageView4);
         for (int i =0; i<5; i++) {
-            listImageView.get(i).setImage(new Image(this.videoListModel.getSearchResult().get(i).getSnippet().getThumbnails().getDefault().getUrl()));
-            listButton.get(i).setText(videoListModel.getSearchResult().get(i).getSnippet().getTitle());
+            listImageView.get(i).setImage(new Image(this.videoListModel.getVideoThumbnail(videoListModel.getSearchResult().get(i))));
+            listButton.get(i).setText(this.videoListModel.getVideoTitle(videoListModel.getSearchResult().get(i)));
         }
     }
 
-    @FXML protected void firstVideo(ActionEvent event) throws IOException {
-        System.out.println(videoListModel.getSearchResult().get(0).getId().getVideoId());
+    public void initPlayer(PlayerModel playerModel) throws IOException{
+        AnchorPane background= videoListModel.getBackground();
 
         FXMLLoader playerLoader = new FXMLLoader(getClass().getResource("/view/PlayerView.fxml"));
-
+        videoListModel.getBackground().getChildren().remove(videoListModel.getVideoListView());
         AnchorPane player = playerLoader.load();
+        //background.setPlayerView(player);
         background.getChildren().add(player);
         background.setBottomAnchor(player,100.0);
         background.setTopAnchor(player,100.0);
@@ -85,28 +81,33 @@ public class VideoListController {
         background.setRightAnchor(player,100.0);
         background.autosize();
         PlayerViewController playerViewController = playerLoader.getController();
-        PlayerModel playerModel = new PlayerModel(videoListModel.getSearchResult().get(0));
         playerViewController.initPlayerModel(playerModel);
     }
 
-    @FXML protected void secondVideo(ActionEvent event) {
-        System.out.println(videoListModel.getSearchResult().get(1).getId().getVideoId());
-
-    }
-
-    @FXML protected void thirdVideo(ActionEvent event) {
-        System.out.println(videoListModel.getSearchResult().get(2).getId().getVideoId());
+    @FXML protected void firstVideo(ActionEvent event) throws IOException {
+        this.initPlayer(new PlayerModel(videoListModel.getSearchResult().get(0)));
 
 
     }
 
-    @FXML protected void fourthVideo(ActionEvent event) {
-        System.out.println(videoListModel.getSearchResult().get(3).getId().getVideoId());
+    @FXML protected void secondVideo(ActionEvent event)throws IOException {
+        this.initPlayer(new PlayerModel(videoListModel.getSearchResult().get(1)));
 
     }
 
-    @FXML protected void fifthVideo(ActionEvent event) {
-        System.out.println(videoListModel.getSearchResult().get(4).getId().getVideoId());
+    @FXML protected void thirdVideo(ActionEvent event) throws IOException{
+        this.initPlayer(new PlayerModel(videoListModel.getSearchResult().get(2)));
+
+
+    }
+
+    @FXML protected void fourthVideo(ActionEvent event) throws IOException{
+        this.initPlayer(new PlayerModel(videoListModel.getSearchResult().get(3)));
+
+    }
+
+    @FXML protected void fifthVideo(ActionEvent event) throws IOException{
+        this.initPlayer(new PlayerModel(videoListModel.getSearchResult().get(4)));
 
 
     }

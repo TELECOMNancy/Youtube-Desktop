@@ -3,6 +3,8 @@ package model;
 import com.google.api.services.youtube.model.SearchResult;
 import com.google.api.services.youtube.model.Video;
 import controller.BackgroundController;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.AnchorPane;
 
 import java.util.List;
 
@@ -12,6 +14,16 @@ import java.util.List;
 public class VideoListModel extends Model{
 
     List<SearchResult> searchResult;
+    private AnchorPane background;
+    private ScrollPane videoListView;
+
+    public AnchorPane getBackground() {
+        return background;
+    }
+
+    public ScrollPane getVideoListView() {
+        return videoListView;
+    }
 
     List<Video> uploadVideo;
 
@@ -19,11 +31,10 @@ public class VideoListModel extends Model{
         return searchResult;
     }
 
-    public List<Video> getUploadVideo(){return uploadVideo;}
-
-    public VideoListModel(String query, BackgroundModel model) {
+    public VideoListModel(String query,MainModel model, AnchorPane background, ScrollPane videoListView) {
         searchResult = model.search(5,query);
-        //System.out.println(searchResult);
+        this.background = background;
+        this.videoListView = videoListView;
     }
 
     public VideoListModel(ChannelModel model) {

@@ -1,5 +1,6 @@
 package model;
 
+import com.google.api.services.youtube.model.PlaylistItem;
 import com.google.api.services.youtube.model.SearchResult;
 import com.google.api.services.youtube.model.Video;
 import javafx.scene.text.Text;
@@ -21,10 +22,16 @@ public class PlayerModel extends Model{
         this.player=new Player(model.getVideoID(video));
     }
 
-    public PlayerModel(String videoid, String videotitle){
+    public PlayerModel(PlaylistItem video){
         model=new Model();
-        this.title= videotitle;
-        this.player=new Player(videoid);
+        this.title= ""+model.getVideoTitle(video);
+        this.player=new Player(model.getVideoID(video));
+    }
+
+    public PlayerModel(String videoId, String videoTitle){
+        model=new Model();
+        this.title= videoTitle;
+        this.player=new Player(videoId);
     }
 
 
