@@ -107,6 +107,7 @@ public class BackgroundController {
         VideoListModel videoListModel = new VideoListModel(searchField.getText(),mainModel,background,videoList);
         videoListController.initVideoListModel(videoListModel);
 
+
     }
 
     @FXML
