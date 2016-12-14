@@ -73,7 +73,7 @@ public class VideoListController {
         background.setRightAnchor(player,100.0);
         background.autosize();
         PlayerViewController playerViewController = playerLoader.getController();
-        playerViewController.initPlayerModel(playerModel);
+        playerViewController.initPlayerModel(playerModel,background);
     }
 
 
