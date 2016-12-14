@@ -72,12 +72,8 @@ public class Main extends Application {
         playerViewController.initPlayerModel(playerModel);
 
 
-
-
-
-
-
         Scene scene = new Scene(root,1280,800);
+        stage.setTitle("Youtube Desktop");
         stage.setScene(scene);
         //stage.setScene(new OldMainView(root,1280,800));
         stage.show();
