@@ -50,6 +50,10 @@ public class BackgroundModel {
         return this.background;
     }
 
+    public void setBackground(AnchorPane background){
+        this.background=background;
+    }
+
 
 
 

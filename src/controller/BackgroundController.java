@@ -64,7 +64,7 @@ public class BackgroundController {
         backgroundView.autosize();
         PlayerViewController playerViewController = playerLoader.getController();
         PlayerModel playerModel = new PlayerModel("_GuOjXYl5ew","Youtube Rewind 2016");
-        playerViewController.initPlayerModel(playerModel,backgroundView);
+        playerViewController.initPlayerModel(playerModel);
     }
 
     @FXML
@@ -78,7 +78,7 @@ public class BackgroundController {
 
     @FXML
     void clickSearch() throws IOException {
-
+        backgroundModel.getMainModel().getPlayerModel().getPlayer().getVideoPlayer().getEngine().load(null);
         FXMLLoader videoListLoader = new FXMLLoader(getClass().getResource("/view/VideoListView.fxml"));
         ScrollPane videoList = videoListLoader.load();
         backgroundView.getChildren().remove(backgroundModel.getMainChildren());

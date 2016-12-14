@@ -100,7 +100,6 @@ public class MainModel extends Model{
         return signedIn;
     }
 
-    private static final String PROPERTIES_FILENAME = "youtube.properties";
 
     public List<SearchResult> search(long count, String query) {
 
