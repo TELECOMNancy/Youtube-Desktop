@@ -18,6 +18,11 @@ import java.util.List;
  */
 
 public class UploadModel {
+    MainModel mainModel;
+
+    public UploadModel(MainModel mainModel){
+        this.mainModel=mainModel;
+    }
 
 
     private static YouTube youtube;

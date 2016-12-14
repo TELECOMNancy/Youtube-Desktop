@@ -12,10 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import model.BackgroundModel;
-import model.ChannelModel;
-import model.PlayerModel;
-import model.VideoListModel;
+import model.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -53,7 +50,20 @@ public class ChannelController {
 
 
     @FXML
-    protected void clickUpload(ActionEvent e) {
+    protected void clickUpload(ActionEvent e) throws IOException {
+        channelModel.getMainModel().getBackgroundModel().getBackground().getChildren().remove(channelModel.getMainModel().getBackgroundModel().getMainChildren());
+        FXMLLoader uploadLoader = new FXMLLoader(getClass().getResource("/view/UploadView.fxml"));
+        AnchorPane uploadView = uploadLoader.load();
+        channelModel.getMainModel().getBackgroundModel().getBackground().getChildren().add(channelView);
+        channelModel.getMainModel().getBackgroundModel().setMainChildren(channelView);
+        channelModel.getMainModel().getBackgroundModel().getBackground().setBottomAnchor(channelView,100.0);
+        channelModel.getMainModel().getBackgroundModel().getBackground().setTopAnchor(channelView,100.0);
+        channelModel.getMainModel().getBackgroundModel().getBackground().setLeftAnchor(channelView,200.0);
+        //background.setRightAnchor(player,100.0);
+        channelModel.getMainModel().getBackgroundModel().getBackground().autosize();
+        UploadController uploadController = uploadLoader.getController();
+        UploadModel uploadModel = new UploadModel(channelModel.getMainModel());
+        uploadController.initUploadModel(uploadModel);
 
     }
 
