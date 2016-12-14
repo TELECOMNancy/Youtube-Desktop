@@ -1,7 +1,6 @@
 package model;
 
 import com.google.api.services.youtube.model.SearchResult;
-import controller.BackgroundController;
 
 import java.util.List;
 
@@ -10,15 +9,22 @@ import java.util.List;
  */
 public class VideoListModel extends Model{
 
-    List<SearchResult> searchResult;
+    private List<SearchResult> searchResult;
+
+    private MainModel mainModel;
+
 
     public List<SearchResult> getSearchResult() {
         return searchResult;
     }
 
-    public VideoListModel(String query, MainModel model) {
-        searchResult = model.search(5,query);
-        //System.out.println(searchResult);
+    public MainModel getMainModel() {
+        return mainModel;
+    }
+
+    public VideoListModel(String query, MainModel mainModel, int nbResult) {
+        searchResult = mainModel.search(nbResult,query);
+        this.mainModel = mainModel;
     }
 
 }
