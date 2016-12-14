@@ -62,8 +62,8 @@ public class VideoListController {
         listImageView.add(imageView3);
         listImageView.add(imageView4);
         for (int i =0; i<5; i++) {
-            listImageView.get(i).setImage(new Image(this.videoListModel.getSearchResult().get(i).getSnippet().getThumbnails().getDefault().getUrl()));
-            listButton.get(i).setText(videoListModel.getSearchResult().get(i).getSnippet().getTitle());
+            listImageView.get(i).setImage(new Image(this.videoListModel.getVideoThumbnail(videoListModel.getSearchResult().get(i))));
+            listButton.get(i).setText(this.videoListModel.getVideoTitle(videoListModel.getSearchResult().get(i)));
         }
     }
 

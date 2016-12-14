@@ -1,17 +1,12 @@
 package main;
 
-import com.google.api.services.youtube.model.ResourceId;
-import com.google.api.services.youtube.model.SearchResult;
-import com.google.api.services.youtube.model.Thumbnail;
-import com.google.api.services.youtube.model.Video;
-import model.BackgroundModel;
-import model.MainModel;
-import model.Model;
-import model.UploadModel;
+import com.google.api.services.youtube.model.*;
+import model.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -26,6 +21,7 @@ public class MainTerminal {
     static MainModel mainModel = new MainModel();
     static Model model = new Model();
     static UploadModel uploadModel = new UploadModel();
+    static ChannelModel channelModel = new ChannelModel();
 
 
     private static String getInputQuery() throws IOException {
@@ -71,6 +67,20 @@ public class MainTerminal {
         }
     }
 
+    private static void prettyPrint(int size, Iterator<PlaylistItem> playlistEntries) {
+        System.out.println("=============================================================");
+        System.out.println("\t\tTotal Videos Uploaded: " + size);
+        System.out.println("=============================================================\n");
+
+        while (playlistEntries.hasNext()) {
+            PlaylistItem playlistItem = playlistEntries.next();
+            System.out.println(" video name  = " + playlistItem.getSnippet().getTitle());
+            System.out.println(" video id    = " + playlistItem.getContentDetails().getVideoId());
+            System.out.println(" upload date = " + playlistItem.getSnippet().getPublishedAt());
+            System.out.println("\n-------------------------------------------------------------\n");
+        }
+    }
+
     public static void main(String[] args) throws IOException {
         String menuQuery="0";
         String searchQuery;
@@ -78,7 +88,6 @@ public class MainTerminal {
         String uploadPath;
         String status;
         String uploadDesc;
-        //String uploadThumbnail;
         String selectVideo;
 
         System.out.println("\n-------------------------------------------------------------\n");
@@ -89,7 +98,8 @@ public class MainTerminal {
             System.out.println("1-Search\n");
             System.out.println("2-Sign in\n");
             System.out.println("3-Upload a video\n");
-            System.out.println("4-Quit\n");
+            System.out.println("4-Print my uploads\n");
+            System.out.println("5-Quit\n");
             menuQuery = getInputQuery();
             switch (Integer.parseInt(menuQuery)){
 
@@ -134,6 +144,13 @@ public class MainTerminal {
                     break;
 
                 case 4:
+                    List<PlaylistItem> playlistItemList = channelModel.myUploads();
+                    prettyPrint(playlistItemList.size(), playlistItemList.iterator());
+
+
+                    break;
+
+                case 5:
                     return;
 
                 default:
