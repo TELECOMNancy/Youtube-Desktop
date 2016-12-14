@@ -2,9 +2,12 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.JFXTextField;
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import model.UploadModel;
@@ -21,39 +24,48 @@ public class UploadController {
     private String description;
     private String status;
     @FXML
-    private JFXCheckBox PublicCheck;
+    private JFXRadioButton publicButton;
     @FXML
-    private JFXCheckBox UnlistedCheck;
+    private JFXRadioButton unreferencedButton;
     @FXML
-    private JFXCheckBox PrivateCheck;
+    private JFXRadioButton privateButton;
     @FXML
     private JFXButton BrowseButton;
     @FXML
     private JFXButton UploadButton;
     @FXML
+    private JFXButton titleOkButton;
+    @FXML
+    private JFXButton descriptionOkButton;
+    @FXML
     private Text pathText;
     @FXML
     private Text TitleText;
-
-
+    @FXML
+    private JFXTextField TitleField;
+    @FXML
+    private JFXTextField DescriptionField;
 
     @FXML
-    void clickPublic (ActionEvent e){
-
+    void titleOk(ActionEvent e){
+        this.title=TitleField.getText();
     }
 
     @FXML
-    void clickPrivate (ActionEvent e){
-
+    void DescriptionOk(ActionEvent e){
+        this.description=DescriptionField.getText();
     }
 
-    @FXML
-    void clickUnlisted(ActionEvent e){
-
-    }
 
     @FXML
     void clickUpload (ActionEvent e){
+        if (publicButton.isSelected()){
+            this.status="public";
+        } else if (privateButton.isSelected()) {
+            this.status="private";
+        } else if (unreferencedButton.isSelected()) {
+            this.status="unlisted";
+        }
         model.getMainModel().getUploadModel().upload(title,path,description,status);
     }
 
