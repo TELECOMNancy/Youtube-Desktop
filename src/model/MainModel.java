@@ -21,8 +21,58 @@ import java.util.List;
 
 public class MainModel extends Model{
 
+    private String mainVideoName;
+    private PlayerModel playerModel;
+    private BackgroundModel backgroundModel;
+    private VideoListModel videoListModel;
 
-    //returns true after successfully signing in, used for mainView
+
+
+
+
+    private static YouTube youtube;
+    private static final String VIDEO_FILE_FORMAT = "video/*";
+    private static final String SAMPLE_VIDEO_FILENAME = "sample-video.mp4";
+    private static final String PROPERTIES_FILENAME = "youtube.properties";
+
+
+
+    /*public void initialize(String query){
+        this.result = this.search(5,query).get(1);
+    }*/
+
+
+
+    public void setPlayerModel(PlayerModel playerModel){
+        this.playerModel=playerModel;
+    }
+
+    public PlayerModel getPlayerModel(){
+        return this.playerModel;
+    }
+
+    public void setBackgroundModel(BackgroundModel backgroundModel){
+        this.backgroundModel=backgroundModel;
+    }
+
+    public BackgroundModel getBackgroundModel(){
+        return this.backgroundModel;
+    }
+
+    //Used for UploadView
+
+    public void setVideoTitle(VideoSnippet snippet, String videoName){
+
+        snippet.setDescription(videoName);
+    }  //WOP
+    public void setVideoThumbnail(VideoSnippet snippet, String img){
+
+        //snippet.setDescription(img);
+    } //WOP
+
+
+
+    //returns true after sucessfully signing in, used for mainView
 
     public boolean signIn(){
 

@@ -17,7 +17,7 @@ public class MainTerminal {
 
     private static final long NUMBER_OF_VIDEOS_RETURNED = 5;
 
-    static BackgroundModel backgroundModel= new BackgroundModel();
+
     static MainModel mainModel = new MainModel();
     static Model model = new Model();
     static UploadModel uploadModel = new UploadModel();

@@ -28,16 +28,17 @@ public class PlayerViewController  {
     private AnchorPane anchorPlayerVideo;
 
 
-    public void initPlayerModel(PlayerModel model){
+    public void initPlayerModel(PlayerModel model,AnchorPane background){
+
         this.model = model;
         title.setText(model.getTitle());
         this.player=model.getPlayer();
+        anchorPlayerVideo.getChildren().clear();
         anchorPlayerVideo.getChildren().add(player);
         anchorPlayerVideo.setBottomAnchor(player,0.0);
         anchorPlayerVideo.setTopAnchor(player,0.0);
         anchorPlayerVideo.setRightAnchor(player,0.0);
         anchorPlayerVideo.setLeftAnchor(player,0.0);
-
     }
 
 

@@ -9,6 +9,7 @@ import com.google.api.services.youtube.model.*;
 public class Model {
 
 
+
     public String getVideoTitle(SearchResult video) {
         return video.getSnippet().getTitle();
     }
