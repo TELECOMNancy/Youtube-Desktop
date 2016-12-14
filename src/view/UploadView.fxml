@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -20,19 +20,19 @@
       <AnchorPane fx:id="AnchorStatus" layoutX="4.0" layoutY="245.0" prefHeight="161.0" prefWidth="250.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="245.0">
          <children>
             <VBox prefHeight="119.0" prefWidth="102.0" spacing="15.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="10.0">
-               <children>
-                  <JFXCheckBox fx:id="PublicCheck" checkedColor="#da1717" onMouseClicked="#clickPublic" text="Public" />
-                  <JFXCheckBox fx:id="PrivateCheck" checkedColor="#da1717" onMouseClicked="#clickPrivate" text="Private" />
-                  <JFXCheckBox fx:id="UnlistedCheck" checkedColor="#da1717" onMouseClicked="#clickUnlisted" text="Unlisted" />
-               </children>
                <padding>
                   <Insets top="10.0" />
                </padding>
+               <children>
+                  <JFXRadioButton fx:id="publicButton" text="Public" />
+                  <JFXRadioButton fx:id="privateButton" text="Private" />
+                  <JFXRadioButton fx:id="unreferencedButton" text="Unreferenced" />
+               </children>
             </VBox>
             <Text fx:id="TextStatus" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
          </children>
       </AnchorPane>
-      <JFXButton fx:id="UploadButton" layoutX="321.0" layoutY="445.0" onMouseClicked="#clickUpload" text="Upload" AnchorPane.bottomAnchor="50.0">
+      <JFXButton fx:id="UploadButton" buttonType="RAISED" layoutX="321.0" layoutY="445.0" onMouseClicked="#clickUpload" ripplerFill="WHITE" style="-fx-background-color: #e60000;" text="Upload" textFill="WHITE" AnchorPane.bottomAnchor="50.0">
          <font>
             <Font name="System Bold" size="21.0" />
          </font></JFXButton>

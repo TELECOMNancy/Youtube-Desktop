@@ -38,6 +38,7 @@ public class Main extends Application {
 
         AnchorPane root = new AnchorPane();
 
+
         FXMLLoader backgroundLoader = new FXMLLoader(getClass().getResource("/view/BackgroundView.fxml"));
         AnchorPane background = backgroundLoader.load();
         root.getChildren().add(background);
@@ -45,7 +46,7 @@ public class Main extends Application {
         root.setTopAnchor(background,0.0);
         root.setLeftAnchor(background,0.0);
         root.setRightAnchor(background,0.0);
-        root.autosize();
+        //root.autosize();
         BackgroundModel backgroundModel = new BackgroundModel(mainModel);
         backgroundModel.setBackground(background);
         mainModel.setBackgroundModel(backgroundModel);
@@ -61,10 +62,10 @@ public class Main extends Application {
         AnchorPane playerView = playerViewLoader.load();
         background.getChildren().add(playerView);
         backgroundModel.setMainChildren(playerView);
-        background.setBottomAnchor(playerView,100.0);
-        background.setTopAnchor(playerView,100.0);
-        background.setLeftAnchor(playerView,200.0);
-        //background.setRightAnchor(playerView,100.0);
+        background.setBottomAnchor(playerView,30.0);
+        background.setTopAnchor(playerView,150.0);
+        background.setLeftAnchor(playerView,300.0);
+        background.setRightAnchor(playerView,50.0);
         PlayerModel playerModel= new PlayerModel("_GuOjXYl5ew","Youtube Rewind 2016");
         mainModel.setPlayerModel(playerModel);
         PlayerViewController playerViewController=playerViewLoader.getController();
