@@ -7,10 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import model.BackgroundModel;
-import model.MainModel;
-import model.PlayerModel;
-import model.VideoListModel;
+import model.*;
+
 import java.io.IOException;
 
 /**
@@ -56,13 +54,13 @@ public class BackgroundController {
         AnchorPane player = playerLoader.load();
         backgroundView.getChildren().add(player);
         backgroundModel.setMainChildren(player);
-        backgroundView.setBottomAnchor(player,100.0);
-        backgroundView.setTopAnchor(player,100.0);
-        backgroundView.setLeftAnchor(player,200.0);
-        //background.setRightAnchor(player,100.0);
+        backgroundView.setBottomAnchor(player,30.0);
+        backgroundView.setTopAnchor(player,150.0);
+        backgroundView.setLeftAnchor(player,300.0);
+        backgroundView.setRightAnchor(player,50.0);
         backgroundView.autosize();
         PlayerViewController playerViewController = playerLoader.getController();
-        PlayerModel playerModel = new PlayerModel("_GuOjXYl5ew","Youtube Rewind 2016");
+        PlayerModel playerModel = new PlayerModel("_GuOjXYl5ew","Youtube Rewind 2016",backgroundModel.getMainModel());
         playerViewController.initPlayerModel(playerModel);
     }
 
@@ -85,7 +83,7 @@ public class BackgroundController {
         backgroundModel.setMainChildren(videoList);
         backgroundView.setBottomAnchor(videoList,100.0);
         backgroundView.setTopAnchor(videoList,100.0);
-        backgroundView.setLeftAnchor(videoList,100.0);
+        backgroundView.setLeftAnchor(videoList,150.0);
         backgroundView.setRightAnchor(videoList,100.0);
         backgroundView.autosize();
         VideoListController videoListController = videoListLoader.getController();
@@ -106,7 +104,22 @@ public class BackgroundController {
 
 
     @FXML
-    void switchToProfile() throws IOException{/*
+    void switchToProfile() throws IOException{
+        backgroundModel.getMainModel().getPlayerModel().getPlayer().getVideoPlayer().getEngine().load(null);
+        backgroundView.getChildren().remove(backgroundModel.getMainChildren());
+        FXMLLoader channelLoader = new FXMLLoader(getClass().getResource("/view/ChannelView.fxml"));
+        AnchorPane channelView = channelLoader.load();
+        backgroundView.getChildren().add(channelView);
+        backgroundModel.setMainChildren(channelView);
+        backgroundView.setBottomAnchor(channelView,100.0);
+        backgroundView.setTopAnchor(channelView,100.0);
+        backgroundView.setLeftAnchor(channelView,200.0);
+        //background.setRightAnchor(player,100.0);
+        backgroundView.autosize();
+        ChannelController channelController = channelLoader.getController();
+        ChannelModel channelModel = new ChannelModel(backgroundModel.getMainModel());
+        channelController.initChannelModel(channelModel);
+        /*
         FXMLLoader channelViewLoader = new FXMLLoader(getClass().getResource("/view/ChannelView.fxml"));
 
         AnchorPane channelView = channelViewLoader.load();
