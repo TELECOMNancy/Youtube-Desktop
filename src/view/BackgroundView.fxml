@@ -3,24 +3,19 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="389.0" prefWidth="593.0" style="-fx-background-color: white ;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BackgroundController">
    <children>
       <AnchorPane layoutX="32.0" layoutY="26.0" prefHeight="389.0" prefWidth="106.0" style="-fx-background-color: #F44336;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXButton fx:id="homeButton" buttonType="RAISED" layoutX="20.0" layoutY="26.0" onMouseClicked="#clickHome" ripplerFill="WHITE" text="Home" textFill="WHITE" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="26.0">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </JFXButton>
+            <JFXButton fx:id="homeButton" buttonType="RAISED" layoutX="20.0" layoutY="26.0" onMouseClicked="#clickHome" ripplerFill="WHITE" text="Home" textFill="WHITE" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="26.0" />
          </children>
       </AnchorPane>
-      <JFXTextField fx:id="searchField" layoutX="203.0" layoutY="15.0" onMouseClicked="#keySearch" AnchorPane.topAnchor="15.0" />
+      <JFXTextField fx:id="searchField" focusColor="#f44336" layoutX="203.0" layoutY="15.0" onMouseClicked="#keySearch" AnchorPane.topAnchor="15.0" />
       <Text layoutX="142.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search :" wrappingWidth="60.00000125169754" AnchorPane.topAnchor="23.0" />
       <JFXButton fx:id="signInButton" buttonType="RAISED" layoutX="493.0" layoutY="18.0" onMouseClicked="#switchToLogged" ripplerFill="#d32f2f" style="-fx-background-color: #FF5252;" text="Sign in" textFill="WHITE" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="18.0" />
       <JFXButton fx:id="profileButton" buttonType="RAISED" disable="true" layoutX="515.0" layoutY="18.0" onMouseClicked="#switchToProfile" text="Profile" visible="false" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="18.0" />
-      <JFXButton fx:id="searchButton" buttonType="RAISED" layoutX="360.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#clickSearch" text="Ok" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="17.0" />
+      <JFXButton fx:id="searchButton" buttonType="RAISED" layoutX="360.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#clickSearch" ripplerFill="#f44336" text="Ok" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="17.0" />
    </children>
 </AnchorPane>

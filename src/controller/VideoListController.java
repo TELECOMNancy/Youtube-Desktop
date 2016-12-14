@@ -77,8 +77,8 @@ public class VideoListController {
         videoListModel.getMainModel().getBackgroundModel().setMainChildren(player);
         background.setBottomAnchor(player,100.0);
         background.setTopAnchor(player,100.0);
-        background.setLeftAnchor(player,100.0);
-        background.setRightAnchor(player,100.0);
+        background.setLeftAnchor(player,300.0);
+        background.setRightAnchor(player,50.0);
         background.autosize();
         PlayerViewController playerViewController = playerLoader.getController();
         playerViewController.initPlayerModel(playerModel);

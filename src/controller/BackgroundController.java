@@ -56,10 +56,10 @@ public class BackgroundController {
         AnchorPane player = playerLoader.load();
         backgroundView.getChildren().add(player);
         backgroundModel.setMainChildren(player);
-        backgroundView.setBottomAnchor(player,100.0);
-        backgroundView.setTopAnchor(player,100.0);
-        backgroundView.setLeftAnchor(player,200.0);
-        //background.setRightAnchor(player,100.0);
+        backgroundView.setBottomAnchor(player,30.0);
+        backgroundView.setTopAnchor(player,150.0);
+        backgroundView.setLeftAnchor(player,300.0);
+        backgroundView.setRightAnchor(player,50.0);
         backgroundView.autosize();
         PlayerViewController playerViewController = playerLoader.getController();
         PlayerModel playerModel = new PlayerModel("_GuOjXYl5ew","Youtube Rewind 2016");
@@ -85,7 +85,7 @@ public class BackgroundController {
         backgroundModel.setMainChildren(videoList);
         backgroundView.setBottomAnchor(videoList,100.0);
         backgroundView.setTopAnchor(videoList,100.0);
-        backgroundView.setLeftAnchor(videoList,100.0);
+        backgroundView.setLeftAnchor(videoList,150.0);
         backgroundView.setRightAnchor(videoList,100.0);
         backgroundView.autosize();
         VideoListController videoListController = videoListLoader.getController();

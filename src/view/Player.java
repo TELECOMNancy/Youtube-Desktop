@@ -55,6 +55,7 @@ public class Player extends Region {
             }
         });
 
+        this.getVideoPlayer().setMinWidth(1000);
         this.getChildren().add(videoPlayer);
 
     }
@@ -65,11 +66,11 @@ public class Player extends Region {
 
 
     @Override protected double computePrefWidth(double height) {
-        return 750;
+        return 1000;
     }
 
     @Override protected double computePrefHeight(double width) {
-        return 500;
+        return 600;
     }
 
 }
