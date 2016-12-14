@@ -22,10 +22,9 @@ import java.io.IOException;
 
 public class Main extends Application {
 
+
     //private Scene scene;
     @Override public void start(Stage stage) throws IOException {
-
-
 
         /*view
         //create Desktop
@@ -37,6 +36,7 @@ public class Main extends Application {
 
 
         AnchorPane root = new AnchorPane();
+        mainModel.initStage(stage);
 
 
         FXMLLoader backgroundLoader = new FXMLLoader(getClass().getResource("/view/BackgroundView.fxml"));
@@ -85,9 +85,9 @@ public class Main extends Application {
     }
 
 
+
+
     public static void main(String[] args) {
         launch(args);
-
-
     }
 }
