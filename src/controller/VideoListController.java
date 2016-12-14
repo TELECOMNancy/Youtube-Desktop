@@ -24,7 +24,7 @@ import java.util.List;
 public class VideoListController {
 
     private VideoListModel videoListModel;
-    private AnchorPane background;
+    private AnchorPane backgroundView;
     private ArrayList<ImageView> listImageView = new ArrayList<ImageView>();
     private ArrayList<JFXButton> listButton = new ArrayList<JFXButton>();
 
@@ -53,8 +53,7 @@ public class VideoListController {
 
 
 
-    public void initVideoListModel(VideoListModel videoListModel, AnchorPane background) {
-        this.background = background;
+    public void initVideoListModel(VideoListModel videoListModel) {
         this.videoListModel = videoListModel;
         listButton.add(firstButton);
         listButton.add(secondButton);
@@ -74,11 +73,11 @@ public class VideoListController {
 
     @FXML protected void firstVideo(ActionEvent event) throws IOException {
         System.out.println(videoListModel.getSearchResult().get(0).getId().getVideoId());
-
         FXMLLoader playerLoader = new FXMLLoader(getClass().getResource("/view/PlayerView.fxml"));
-
         AnchorPane player = playerLoader.load();
-        background.getChildren().add(player);
+        backgroundView.getChildren().remove(backgroundModel.getMainChildren());
+        backgroundView.getChildren().add(player);
+        backgroundModel.setMainChildren(player);
         background.setBottomAnchor(player,100.0);
         background.setTopAnchor(player,100.0);
         background.setLeftAnchor(player,100.0);

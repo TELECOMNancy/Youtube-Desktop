@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import model.BackgroundModel;
 import model.MainModel;
 import model.PlayerModel;
@@ -19,26 +20,14 @@ import java.io.IOException;
 public class BackgroundController {
 
     private BackgroundModel backgroundModel;
-    private MainModel mainModel;
-    private VideoListModel videoListModel;
-    private AnchorPane root;
-    private AnchorPane background;
+    private AnchorPane backgroundView;
 
 
-    public void initBackgroundModel(BackgroundModel model){
-        this.backgroundModel = model;
+
+    public void initBackgroundController(BackgroundModel backgroundModel,AnchorPane backgroundView){
+        this.backgroundModel=backgroundModel;
+        this.backgroundView=backgroundView;
     }
-
-    public void initVideoListModel(VideoListModel model){
-        this.videoListModel = model;
-    }
-
-    public void initMainModel(MainModel model, AnchorPane background){
-        this.mainModel = model;
-        this.background=background;
-
-    }
-
 
 
     @FXML
@@ -62,18 +51,20 @@ public class BackgroundController {
 
     @FXML
     void clickHome() throws IOException{
+        backgroundModel.getMainModel().getPlayerModel().getPlayer().getVideoPlayer().getEngine().load(null);
+        backgroundView.getChildren().remove(backgroundModel.getMainChildren());
         FXMLLoader playerLoader = new FXMLLoader(getClass().getResource("/view/PlayerView.fxml"));
-
         AnchorPane player = playerLoader.load();
-        background.getChildren().add(player);
-        background.setBottomAnchor(player,100.0);
-        background.setTopAnchor(player,100.0);
-        background.setLeftAnchor(player,200.0);
+        backgroundView.getChildren().add(player);
+        backgroundModel.setMainChildren(player);
+        backgroundView.setBottomAnchor(player,100.0);
+        backgroundView.setTopAnchor(player,100.0);
+        backgroundView.setLeftAnchor(player,200.0);
         //background.setRightAnchor(player,100.0);
-        background.autosize();
+        backgroundView.autosize();
         PlayerViewController playerViewController = playerLoader.getController();
         PlayerModel playerModel = new PlayerModel("_GuOjXYl5ew","Youtube Rewind 2016");
-        playerViewController.initPlayerModel(playerModel);
+        playerViewController.initPlayerModel(playerModel,backgroundView);
     }
 
     @FXML
@@ -89,24 +80,25 @@ public class BackgroundController {
     void clickSearch() throws IOException {
 
         FXMLLoader videoListLoader = new FXMLLoader(getClass().getResource("/view/VideoListView.fxml"));
-
         ScrollPane videoList = videoListLoader.load();
-        background.getChildren().add(videoList);
-        background.setBottomAnchor(videoList,100.0);
-        background.setTopAnchor(videoList,100.0);
-        background.setLeftAnchor(videoList,100.0);
-        background.setRightAnchor(videoList,100.0);
-        background.autosize();
+        backgroundView.getChildren().remove(backgroundModel.getMainChildren());
+        backgroundView.getChildren().add(videoList);
+        backgroundModel.setMainChildren(videoList);
+        backgroundView.setBottomAnchor(videoList,100.0);
+        backgroundView.setTopAnchor(videoList,100.0);
+        backgroundView.setLeftAnchor(videoList,100.0);
+        backgroundView.setRightAnchor(videoList,100.0);
+        backgroundView.autosize();
         VideoListController videoListController = videoListLoader.getController();
-        VideoListModel videoListModel = new VideoListModel(searchField.getText(), new BackgroundModel());
-        videoListController.initVideoListModel(videoListModel, background);
+        VideoListModel videoListModel = new VideoListModel(searchField.getText(), backgroundModel.getMainModel(),20);
+        videoListController.initVideoListModel(videoListModel);
 
     }
 
     @FXML
     void switchToLogged(){
 
-        mainModel.signIn();
+        backgroundModel.getMainModel().signIn();
         signInButton.setDisable(true);
         profileButton.setDisable(false);
         signInButton.setVisible(false);
@@ -118,10 +110,6 @@ public class BackgroundController {
     void switchToProfile(){
     }
 
-
-    public void setRoot(AnchorPane root){
-        this.root=root;
-    }
 
 
 

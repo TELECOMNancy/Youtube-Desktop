@@ -21,8 +21,9 @@ public class MainTerminal {
 
     private static final long NUMBER_OF_VIDEOS_RETURNED = 5;
 
-    static BackgroundModel backgroundModel= new BackgroundModel();
+
     static MainModel mainModel = new MainModel();
+    static BackgroundModel backgroundModel= new BackgroundModel(mainModel);
     private Model model;
 
 
@@ -88,7 +89,7 @@ public class MainTerminal {
                     System.out.print("Please enter a search term: ");
                     searchQuery = getInputQuery();
 
-                    List<SearchResult> searchResultList = backgroundModel.search(NUMBER_OF_VIDEOS_RETURNED,searchQuery);
+                    List<SearchResult> searchResultList = mainModel.search(NUMBER_OF_VIDEOS_RETURNED,searchQuery);
                     prettyPrint(searchResultList.iterator(),searchQuery);
 
                     System.out.print("Please select a video (0-4) : ");

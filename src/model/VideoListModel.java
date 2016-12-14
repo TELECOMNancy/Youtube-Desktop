@@ -16,8 +16,9 @@ public class VideoListModel extends Model{
         return searchResult;
     }
 
-    public VideoListModel(String query, BackgroundModel model) {
+    public VideoListModel(String query, MainModel model) {
         searchResult = model.search(5,query);
         //System.out.println(searchResult);
     }
+
 }
