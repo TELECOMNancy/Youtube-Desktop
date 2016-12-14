@@ -22,10 +22,9 @@ import java.io.IOException;
 
 public class Main extends Application {
 
+
     //private Scene scene;
     @Override public void start(Stage stage) throws IOException {
-
-
 
         /*view
         //create Desktop
@@ -37,6 +36,7 @@ public class Main extends Application {
 
 
         AnchorPane root = new AnchorPane();
+        mainModel.initStage(stage);
 
 
         FXMLLoader backgroundLoader = new FXMLLoader(getClass().getResource("/view/BackgroundView.fxml"));
@@ -62,10 +62,10 @@ public class Main extends Application {
         AnchorPane playerView = playerViewLoader.load();
         background.getChildren().add(playerView);
         backgroundModel.setMainChildren(playerView);
-        background.setBottomAnchor(playerView,100.0);
-        background.setTopAnchor(playerView,100.0);
-        background.setLeftAnchor(playerView,200.0);
-        //background.setRightAnchor(playerView,100.0);
+        background.setBottomAnchor(playerView,30.0);
+        background.setTopAnchor(playerView,150.0);
+        background.setLeftAnchor(playerView,300.0);
+        background.setRightAnchor(playerView,50.0);
         PlayerModel playerModel= new PlayerModel("_GuOjXYl5ew","Youtube Rewind 2016",mainModel);
         mainModel.setPlayerModel(playerModel);
         PlayerViewController playerViewController=playerViewLoader.getController();
@@ -89,9 +89,9 @@ public class Main extends Application {
     }
 
 
+
+
     public static void main(String[] args) {
         launch(args);
-
-
     }
 }

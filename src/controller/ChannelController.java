@@ -1,5 +1,6 @@
 package controller;
 
+import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.PlaylistItem;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
@@ -16,6 +17,7 @@ import model.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -71,6 +73,7 @@ public class ChannelController {
         this.channelModel=channelModel;
         final List<PlaylistItem> myUploadsItemList = channelModel.myUploads();
         final List<PlaylistItem> tempMyUploadsItemList = myUploadsItemList;
+        final Iterator iterator = tempMyUploadsItemList.iterator();
 
         /*AnchorUpload.getChildren().add(model.getUpload());
         VideoListController uploadListController = uploadListLoader.getController();
@@ -80,10 +83,9 @@ public class ChannelController {
         //final VideoListModel uploadListModel = this.videoListModel;
         //while(tempMyUploadsItemList.iterator().hasNext()) {
         for (int i=0; i<myUploadsItemList.size();i++) {
-            final PlaylistItem myUploadsItem = tempMyUploadsItemList.iterator().next();
-            System.out.println(myUploadsItem.getSnippet());
+            PlaylistItem myUploadsItem = (PlaylistItem)iterator.next();
             //ImageView image = new ImageView(channelModel.getMainModel().getVideoThumbnail(myUploadsItem));
-            JFXButton button = new JFXButton(channelModel.getMainModel().getVideoTitle(myUploadsItem));
+            JFXButton button = new JFXButton(myUploadsItem.getSnippet().getTitle());
             button.setOnAction(new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent event) {
                     for (int j=0; j<myUploadsItemList.size(); j++) {

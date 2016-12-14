@@ -57,10 +57,10 @@ public class PlayerModel {
         //background.setPlayerView(player);
         background.getChildren().add(player);
         this.getMainModel().getBackgroundModel().setMainChildren(player);
-        background.setBottomAnchor(player,100.0);
-        background.setTopAnchor(player,100.0);
-        background.setLeftAnchor(player,100.0);
-        background.setRightAnchor(player,100.0);
+        background.setBottomAnchor(player,30.0);
+        background.setTopAnchor(player,150.0);
+        background.setLeftAnchor(player,300.0);
+        background.setRightAnchor(player,50.0);
         background.autosize();
         PlayerViewController playerViewController = playerLoader.getController();
         playerViewController.initPlayerModel(this);

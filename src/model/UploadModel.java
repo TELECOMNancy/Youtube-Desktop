@@ -9,6 +9,7 @@ import com.google.api.services.youtube.model.Video;
 import com.google.api.services.youtube.model.VideoSnippet;
 import com.google.api.services.youtube.model.VideoStatus;
 import com.google.common.collect.Lists;
+import main.Main;
 
 import java.io.IOException;
 import java.util.List;
@@ -24,11 +25,21 @@ public class UploadModel {
         this.mainModel=mainModel;
     }
 
+    private MainModel mainModel;
+
 
     private static YouTube youtube;
 
     //defines the MIME type. Here: video type (mpeg, mp4, quicktime, x-ms-wmv, x-msvideo, x-flv, webm)
     private static final String VIDEO_FILE_FORMAT = "video/*";
+
+    public UploadModel(){
+        //this.mainModel=mainModel;
+    }
+
+    public MainModel getMainModel(){
+        return mainModel;
+    }
 
 
     public void upload(String videoTitle, String pathToFile, String videoDesc, String videoStatus){
