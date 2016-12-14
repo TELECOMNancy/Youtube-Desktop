@@ -21,7 +21,7 @@ public class MainTerminal {
     static MainModel mainModel = new MainModel();
     static Model model = new Model();
     static UploadModel uploadModel = new UploadModel();
-    static ChannelModel channelModel = new ChannelModel();
+    static ChannelModel channelModel = new ChannelModel(mainModel);
 
 
     private static String getInputQuery() throws IOException {
@@ -110,7 +110,7 @@ public class MainTerminal {
             menuQuery = getInputQuery();
             switch (Integer.parseInt(menuQuery)){
 
-                case 1:
+                case 1: /* Search */
 
                     System.out.print("Please enter a search term: ");
                     searchQuery = getInputQuery();
@@ -127,7 +127,7 @@ public class MainTerminal {
                     menuQuery="0";
                     break;
 
-                case 2:
+                case 2: /* Sign in */
 
                     mainModel.signIn();
                     break;

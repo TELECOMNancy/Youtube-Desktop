@@ -30,7 +30,7 @@ public class VideoListModel extends Model{
         this.mainModel = mainModel;
     }
 
-    public VideoListModel(ChannelModel model) {
+    public VideoListModel(ChannelModel channelModel) {
         //uploadVideo=model.myUploads();
     }
 }

@@ -16,6 +16,7 @@ import java.io.InputStream;
 import java.nio.file.*;
 import java.util.Properties;
 import com.google.common.collect.Lists;
+import javafx.stage.Stage;
 
 import java.util.List;
 
@@ -29,6 +30,8 @@ public class MainModel extends Model{
     private PlayerModel playerModel;
     private BackgroundModel backgroundModel;
     private VideoListModel videoListModel;
+    private UploadModel uploadModel;
+    private Stage stage;
 
     private static YouTube youtube;
     private static final String VIDEO_FILE_FORMAT = "video/*";
@@ -38,12 +41,16 @@ public class MainModel extends Model{
 
 
 
-    public String getChannelTitle(SearchResult video) {
-        return video.getSnippet().getChannelTitle();
+    /*public void initialize(String query){
+        this.result = this.search(5,query).get(1);
+    }*/
+
+    public void initStage(Stage stage){
+        this.stage=stage;
     }
 
-    public String getChannelTitle(PlaylistItem video) {
-        return video.getSnippet().getChannelTitle();
+    public Stage getStage(){
+        return stage;
     }
 
     public void setPlayerModel(PlayerModel playerModel){
@@ -58,9 +65,46 @@ public class MainModel extends Model{
         this.backgroundModel=backgroundModel;
     }
 
+    public UploadModel getUploadModel(){
+        return this.uploadModel;
+    }
+
+    public void setUploadModel(UploadModel uploadModel) {
+        this.uploadModel=uploadModel;
+    }
+
     public BackgroundModel getBackgroundModel(){
         return this.backgroundModel;
     }
+
+    //Used for UploadView
+
+    public void setVideoTitle(VideoSnippet snippet, String videoName){
+
+        snippet.setDescription(videoName);
+    }  //WOP
+    public void setVideoThumbnail(VideoSnippet snippet, String img){
+
+        //snippet.setDescription(img);
+    } //WOP
+
+
+
+    public String getVideoTitle(PlaylistItem video) {
+
+        return video.getSnippet().getTitle();
+    }
+    public String getVideoID(PlaylistItem video){
+        String rId = video.getContentDetails().getVideoId();
+        return rId;
+    }
+    public String getVideoThumbnail(PlaylistItem video){
+        Thumbnail thumbnail = video.getSnippet().getThumbnails().getDefault();
+        return thumbnail.getUrl();
+    }
+
+
+    //returns true after sucessfully signing in, used for mainView
 
     public boolean signIn(){
 

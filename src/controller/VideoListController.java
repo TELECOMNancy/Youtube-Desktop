@@ -31,7 +31,7 @@ public class VideoListController {
 
 
 
-    public void initVideoListModel(VideoListModel videoListModel) {
+    public void initVideoListModel(final VideoListModel videoListModel) {
         this.videoListModel = videoListModel;
         final VideoListModel tempVideoListModel = this.videoListModel;
         final int nbResults = 20;
@@ -43,7 +43,8 @@ public class VideoListController {
                    for (int j=0; j<nbResults; j++) {
                        if (event.getSource().equals(listButton.get(j))) {
                            try {
-                               initPlayer(new PlayerModel(tempVideoListModel.getSearchResult().get(j)));
+                               PlayerModel playerModel = new PlayerModel(tempVideoListModel.getSearchResult().get(j),videoListModel.getMainModel());
+                               playerModel.initPlayer();
 
                            }
                            catch (IOException e){
@@ -57,31 +58,6 @@ public class VideoListController {
            mainVBox.getChildren().add(new HBox(image, button));
         }
 
-    }
-
-    public void initPlayer(PlayerModel playerModel) throws IOException{
-        System.out.println(videoListModel.getMainModel());
-        System.out.println(videoListModel.getMainModel().getBackgroundModel());
-        System.out.println(videoListModel.getMainModel().getBackgroundModel().getMainChildren());
-        videoListModel.getMainModel().setPlayerModel(playerModel);
-
-
-
-        AnchorPane background= videoListModel.getMainModel().getBackgroundModel().getBackground();
-        FXMLLoader playerLoader = new FXMLLoader(getClass().getResource("/view/PlayerView.fxml"));
-
-        background.getChildren().remove(videoListModel.getMainModel().getBackgroundModel().getMainChildren());
-        AnchorPane player = playerLoader.load();
-        //background.setPlayerView(player);
-        background.getChildren().add(player);
-        videoListModel.getMainModel().getBackgroundModel().setMainChildren(player);
-        background.setBottomAnchor(player,100.0);
-        background.setTopAnchor(player,100.0);
-        background.setLeftAnchor(player,300.0);
-        background.setRightAnchor(player,50.0);
-        background.autosize();
-        PlayerViewController playerViewController = playerLoader.getController();
-        playerViewController.initPlayerModel(playerModel);
     }
 
 

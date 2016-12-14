@@ -21,14 +21,16 @@ public class ChannelModel extends Model {
     private ScrollPane upload;
     private ScrollPane playlist;
     private ScrollPane liked;
+    private MainModel mainModel;
 
-    public ChannelModel(ScrollPane upload) {
-        this.upload=upload;
+    public ChannelModel(MainModel mainModel) {
+        this.mainModel=mainModel;
     }
 
-    public ChannelModel(){
-
+    public MainModel getMainModel(){
+        return this.mainModel;
     }
+
 
     public ScrollPane getUpload(){
         return upload;
