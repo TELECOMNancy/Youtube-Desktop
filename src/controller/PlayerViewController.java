@@ -29,6 +29,7 @@ public class PlayerViewController  {
 
 
     public void initPlayerModel(PlayerModel model){
+
         this.model = model;
         title.setText(model.getTitle());
         this.player=model.getPlayer();
@@ -37,7 +38,6 @@ public class PlayerViewController  {
         anchorPlayerVideo.setTopAnchor(player,0.0);
         anchorPlayerVideo.setRightAnchor(player,0.0);
         anchorPlayerVideo.setLeftAnchor(player,0.0);
-
     }
 
 

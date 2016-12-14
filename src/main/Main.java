@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import model.BackgroundModel;
 import model.MainModel;
 import model.PlayerModel;
 import view.MainView;
@@ -20,6 +21,7 @@ import view.MainView;
 import java.io.IOException;
 
 public class Main extends Application {
+
     //private Scene scene;
     @Override public void start(Stage stage) throws IOException {
 
@@ -30,6 +32,8 @@ public class Main extends Application {
         AnchorPane root = new AnchorPane();
         //Stage stage = new Stage();
         Scene mainView= new MainView(root,1280,800);*/
+
+        MainModel mainModel = new MainModel();
 
 
         AnchorPane root = new AnchorPane();
@@ -42,23 +46,34 @@ public class Main extends Application {
         root.setLeftAnchor(background,0.0);
         root.setRightAnchor(background,0.0);
         root.autosize();
+        BackgroundModel backgroundModel = new BackgroundModel(mainModel);
+        backgroundModel.setBackground(background);
+        mainModel.setBackgroundModel(backgroundModel);
         BackgroundController backgroundController = backgroundLoader.getController();
-        backgroundController.setRoot(root);
-        MainModel model = new MainModel();
-        backgroundController.initMainModel(model,background);
+        backgroundController.initBackgroundController(backgroundModel,background);
+
+        System.out.println("main control"+background.getChildren()+"\n");
+
+
 
 
         FXMLLoader playerViewLoader = new FXMLLoader(getClass().getResource("/view/PlayerView.fxml"));
         AnchorPane playerView = playerViewLoader.load();
         background.getChildren().add(playerView);
+        backgroundModel.setMainChildren(playerView);
         background.setBottomAnchor(playerView,100.0);
         background.setTopAnchor(playerView,100.0);
         background.setLeftAnchor(playerView,200.0);
         //background.setRightAnchor(playerView,100.0);
-        PlayerViewController playerViewController=playerViewLoader.getController();
         PlayerModel playerModel= new PlayerModel("_GuOjXYl5ew","Youtube Rewind 2016");
-
+        mainModel.setPlayerModel(playerModel);
+        PlayerViewController playerViewController=playerViewLoader.getController();
         playerViewController.initPlayerModel(playerModel);
+
+        System.out.println("main player"+background.getChildren()+"\n");
+
+
+
 
 
         Scene scene = new Scene(root,1280,800);

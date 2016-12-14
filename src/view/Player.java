@@ -59,6 +59,10 @@ public class Player extends Region {
 
     }
 
+    public WebView getVideoPlayer(){
+        return this.videoPlayer;
+    }
+
 
     @Override protected double computePrefWidth(double height) {
         return 750;
