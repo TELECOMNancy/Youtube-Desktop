@@ -86,7 +86,7 @@ public class BackgroundController {
         background.autosize();
         VideoListController videoListController = videoListLoader.getController();
         VideoListModel videoListModel = new VideoListModel(searchField.getText(), new BackgroundModel());
-        videoListController.initVideoListModel(videoListModel, background);
+        videoListController.initVideoListModel(videoListModel, background, videoList);
 
     }
 

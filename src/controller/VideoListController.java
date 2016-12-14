@@ -25,6 +25,7 @@ public class VideoListController {
 
     private VideoListModel videoListModel;
     private AnchorPane background;
+    private ScrollPane videoListView;
     private ArrayList<ImageView> listImageView = new ArrayList<ImageView>();
     private ArrayList<JFXButton> listButton = new ArrayList<JFXButton>();
 
@@ -53,8 +54,9 @@ public class VideoListController {
 
 
 
-    public void initVideoListModel(VideoListModel videoListModel, AnchorPane background) {
+    public void initVideoListModel(VideoListModel videoListModel, AnchorPane background, ScrollPane videoListView) {
         this.background = background;
+        this.videoListView = videoListView;
         this.videoListModel = videoListModel;
         listButton.add(firstButton);
         listButton.add(secondButton);
@@ -76,7 +78,7 @@ public class VideoListController {
         System.out.println(videoListModel.getSearchResult().get(0).getId().getVideoId());
 
         FXMLLoader playerLoader = new FXMLLoader(getClass().getResource("/view/PlayerView.fxml"));
-
+        background.getChildren().remove(videoListView);
         AnchorPane player = playerLoader.load();
         background.getChildren().add(player);
         background.setBottomAnchor(player,100.0);
