@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 import com.google.common.collect.Lists;
+import javafx.stage.Stage;
 
 import java.util.List;
 
@@ -25,6 +26,8 @@ public class MainModel extends Model{
     private PlayerModel playerModel;
     private BackgroundModel backgroundModel;
     private VideoListModel videoListModel;
+    private UploadModel uploadModel;
+    private Stage stage;
 
 
 
@@ -41,7 +44,13 @@ public class MainModel extends Model{
         this.result = this.search(5,query).get(1);
     }*/
 
+    public void initStage(Stage stage){
+        this.stage=stage;
+    }
 
+    public Stage getStage(){
+        return stage;
+    }
 
     public void setPlayerModel(PlayerModel playerModel){
         this.playerModel=playerModel;
@@ -53,6 +62,13 @@ public class MainModel extends Model{
 
     public void setBackgroundModel(BackgroundModel backgroundModel){
         this.backgroundModel=backgroundModel;
+    }
+
+    public UploadModel getUploadModel(){
+        return this.uploadModel;
+    }
+    public void setUploadModel(UploadModel uploadModel) {
+        this.uploadModel=uploadModel;
     }
 
     public BackgroundModel getBackgroundModel(){
