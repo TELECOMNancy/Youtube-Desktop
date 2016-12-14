@@ -18,11 +18,16 @@ import java.io.File;
  * Created by M.ESCAMEZ on 14/12/2016.
  */
 public class UploadController {
-    private UploadModel model;
+    private UploadModel uploadModel;
     private String path;
     private String title;
     private String description;
     private String status;
+
+    public void initUploadModel(UploadModel uploadModel){
+        this.uploadModel=uploadModel;
+    }
+
     @FXML
     private JFXRadioButton publicButton;
     @FXML
@@ -47,18 +52,18 @@ public class UploadController {
     private JFXTextField DescriptionField;
 
     @FXML
-    void titleOk(ActionEvent e){
+    void titleOk(){
         this.title=TitleField.getText();
     }
 
     @FXML
-    void DescriptionOk(ActionEvent e){
+    void DescriptionOk(){
         this.description=DescriptionField.getText();
     }
 
 
     @FXML
-    void clickUpload (ActionEvent e){
+    void clickUpload (){
         if (publicButton.isSelected()){
             this.status="public";
         } else if (privateButton.isSelected()) {
@@ -66,15 +71,15 @@ public class UploadController {
         } else if (unreferencedButton.isSelected()) {
             this.status="unlisted";
         }
-        model.getMainModel().getUploadModel().upload(title,path,description,status);
+        uploadModel.getMainModel().getUploadModel().upload(title,path,description,status);
     }
 
     @FXML
-    void clickBrowse(ActionEvent e){
+    void clickBrowse(){
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Choose a video");
         chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Video Files","mpeg","mp4", "quicktime", "x-ms-wmv", "x-msvideo", "x-flv, webm"), new FileChooser.ExtensionFilter("All Files", "*.*"));
-        File file = chooser.showOpenDialog(model.getMainModel().getStage());
+        File file = chooser.showOpenDialog(uploadModel.getMainModel().getStage());
         this.path=file.getPath();
         pathText.setText(this.path);
     }

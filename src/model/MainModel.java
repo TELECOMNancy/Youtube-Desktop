@@ -66,6 +66,7 @@ public class MainModel extends Model{
     public UploadModel getUploadModel(){
         return this.uploadModel;
     }
+
     public void setUploadModel(UploadModel uploadModel) {
         this.uploadModel=uploadModel;
     }

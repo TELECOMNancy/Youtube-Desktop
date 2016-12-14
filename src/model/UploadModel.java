@@ -11,6 +11,7 @@ import com.google.api.services.youtube.model.VideoStatus;
 import com.google.common.collect.Lists;
 import main.Main;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -19,13 +20,11 @@ import java.util.List;
  */
 
 public class UploadModel {
-    MainModel mainModel;
+    private MainModel mainModel;
 
     public UploadModel(MainModel mainModel){
         this.mainModel=mainModel;
     }
-
-    private MainModel mainModel;
 
 
     private static YouTube youtube;
@@ -38,7 +37,7 @@ public class UploadModel {
     }
 
     public MainModel getMainModel(){
-        return mainModel;
+        return this.mainModel;
     }
 
 
@@ -49,7 +48,7 @@ public class UploadModel {
             List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.upload");
 
             // Authorize the request.
-            Credential credential = Auth.authorize(scopes, "uploadvideo");
+            Credential credential = Auth.authorize(scopes, "myprofile");
 
             youtube = new YouTube.Builder(Auth.HTTP_TRANSPORT, Auth.JSON_FACTORY, credential).setApplicationName(
                         "youtube-uploadvideo").build();
@@ -80,7 +79,7 @@ public class UploadModel {
 
 
             InputStreamContent mediaContent = new InputStreamContent(VIDEO_FILE_FORMAT,
-                    MainModel.class.getResourceAsStream(pathToFile));
+                    new FileInputStream(pathToFile));
 
 
             YouTube.Videos.Insert videoInsert = youtube.videos()
