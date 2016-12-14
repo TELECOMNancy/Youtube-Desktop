@@ -52,7 +52,9 @@ public class Main extends Application {
         AnchorPane playerView = playerViewLoader.load();
         background.getChildren().add(playerView);
         background.setBottomAnchor(playerView,100.0);
+        background.setTopAnchor(playerView,100.0);
         background.setLeftAnchor(playerView,200.0);
+        //background.setRightAnchor(playerView,100.0);
         PlayerViewController playerViewController=playerViewLoader.getController();
         PlayerModel playerModel= new PlayerModel("_GuOjXYl5ew","Youtube Rewind 2016");
 
