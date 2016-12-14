@@ -60,25 +60,6 @@ public class VideoListController {
 
     }
 
-    /*public void initPlayer(PlayerModel playerModel) throws IOException{
-        videoListModel.getMainModel().setPlayerModel(playerModel);
-        AnchorPane background= videoListModel.getMainModel().getBackgroundModel().getBackground();
-        FXMLLoader playerLoader = new FXMLLoader(getClass().getResource("/view/PlayerView.fxml"));
-
-        background.getChildren().remove(videoListModel.getMainModel().getBackgroundModel().getMainChildren());
-        AnchorPane player = playerLoader.load();
-        //background.setPlayerView(player);
-        background.getChildren().add(player);
-        videoListModel.getMainModel().getBackgroundModel().setMainChildren(player);
-        background.setBottomAnchor(player,100.0);
-        background.setTopAnchor(player,100.0);
-        background.setLeftAnchor(player,300.0);
-        background.setRightAnchor(player,50.0);
-        background.autosize();
-        PlayerViewController playerViewController = playerLoader.getController();
-        playerViewController.initPlayerModel(playerModel);
-    }*/
-
 
 
 
