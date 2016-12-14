@@ -9,6 +9,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import model.BackgroundModel;
 import model.MainModel;
+import model.PlayerModel;
 import model.VideoListModel;
 import java.io.IOException;
 
@@ -60,7 +61,19 @@ public class BackgroundController {
 
 
     @FXML
-    void clickHome(){
+    void clickHome() throws IOException{
+        FXMLLoader playerLoader = new FXMLLoader(getClass().getResource("/view/PlayerView.fxml"));
+
+        AnchorPane player = playerLoader.load();
+        background.getChildren().add(player);
+        background.setBottomAnchor(player,100.0);
+        background.setTopAnchor(player,100.0);
+        background.setLeftAnchor(player,200.0);
+        //background.setRightAnchor(player,100.0);
+        background.autosize();
+        PlayerViewController playerViewController = playerLoader.getController();
+        PlayerModel playerModel = new PlayerModel("_GuOjXYl5ew","Youtube Rewind 2016");
+        playerViewController.initPlayerModel(playerModel);
     }
 
     @FXML
