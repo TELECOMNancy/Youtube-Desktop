@@ -14,6 +14,8 @@ public class VideoListModel extends Model{
     private MainModel mainModel;
 
 
+    List<Video> uploadVideo;
+
     public List<SearchResult> getSearchResult() {
         return searchResult;
     }
@@ -27,4 +29,7 @@ public class VideoListModel extends Model{
         this.mainModel = mainModel;
     }
 
+    public VideoListModel(ChannelModel model) {
+        //uploadVideo=model.myUploads();
+    }
 }

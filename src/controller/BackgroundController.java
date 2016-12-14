@@ -1,6 +1,5 @@
 package controller;
 
-import com.google.api.services.youtube.model.Video;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
@@ -107,7 +106,27 @@ public class BackgroundController {
 
 
     @FXML
-    void switchToProfile(){
+    void switchToProfile() throws IOException{
+        FXMLLoader channelViewLoader = new FXMLLoader(getClass().getResource("/view/ChannelView.fxml"));
+
+        AnchorPane channelView = channelViewLoader.load();
+        background.getChildren().add(channelView);
+        background.setBottomAnchor(channelView,100.0);
+        background.setTopAnchor(channelView,100.0);
+        background.setLeftAnchor(channelView,200.0);
+        background.setRightAnchor(channelView,100.0);
+        background.autosize();
+
+        //ListUpload
+        FXMLLoader uploadListLoader = new FXMLLoader(getClass().getResource("/view/VideoListView.fxml"));
+        ScrollPane uploadList = uploadListLoader.load();
+
+
+
+
+        ChannelController channelController = channelViewLoader.getController();
+        ChannelModel channelModel = new ChannelModel(uploadList);
+        channelController.initChannelModel(channelModel,uploadListLoader);
     }
 
 

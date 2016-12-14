@@ -8,6 +8,7 @@ import com.google.api.services.youtube.model.ChannelListResponse;
 import com.google.api.services.youtube.model.PlaylistItem;
 import com.google.api.services.youtube.model.PlaylistItemListResponse;
 import com.google.common.collect.Lists;
+import javafx.scene.control.ScrollPane;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,25 @@ import java.util.List;
  */
 
 public class ChannelModel extends Model {
+    private ScrollPane upload;
+    private ScrollPane playlist;
+    private ScrollPane liked;
+    public ChannelModel(ScrollPane upload) {
+        this.upload=upload;
+    }
+    public ChannelModel(){
+
+    }
+
+    public ScrollPane getUpload(){
+        return upload;
+    }
+    public ScrollPane getPlaylist(){
+        return playlist;
+    }
+    public ScrollPane getLiked(){
+        return liked;
+    }
 
     private static YouTube youtube;
     // Define a list to store items in the list of uploaded videos.
