@@ -21,10 +21,10 @@ public class PlayerModel extends Model{
         this.player=new Player(model.getVideoID(video));
     }
 
-    public PlayerModel(String videoid, String videotitle){
+    public PlayerModel(String videoId, String videoTitle){
         model=new Model();
-        this.title= videotitle;
-        this.player=new Player(videoid);
+        this.title= videoTitle;
+        this.player=new Player(videoId);
     }
 
 
