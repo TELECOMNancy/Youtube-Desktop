@@ -7,25 +7,25 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainAnchorPlayer" prefHeight="500.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PlayerViewController">
+<AnchorPane fx:id="mainAnchorPlayer" prefHeight="600.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PlayerViewController">
    <children>
-      <GridPane fx:id="gridPlayer" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <GridPane fx:id="gridPlayer" prefHeight="600.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="200.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints prefHeight="360.0" />
+          <RowConstraints prefHeight="400.0" />
           <RowConstraints prefHeight="129.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <AnchorPane fx:id="anchorPlayerVideo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="640.0" style="-fx-background-color: Black;" />
-            <AnchorPane fx:id="anchorUnderPlayer" prefHeight="165.0" prefWidth="391.0" style="-fx-background-color: E0E0E0;" GridPane.rowIndex="1">
+            <AnchorPane fx:id="anchorPlayerVideo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="720.0" style="-fx-background-color: Black;" />
+            <AnchorPane fx:id="anchorUnderPlayer" prefHeight="100.0" prefWidth="714.0" style="-fx-background-color: white;" GridPane.rowIndex="1">
                <children>
-                  <AnchorPane fx:id="anchorText" layoutX="15.0" layoutY="64.0" maxHeight="-Infinity" prefHeight="121.0" prefWidth="343.0" style="-fx-background-color: E0E0E0;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
+                  <AnchorPane fx:id="anchorText" layoutX="8.0" layoutY="4.0" maxHeight="-Infinity" prefHeight="75.0" prefWidth="900.0" style="-fx-background-color: #BDBDBD;" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="88.0" AnchorPane.topAnchor="4.0">
                      <children>
-                        <Text fx:id="title" fontSmoothingType="LCD" layoutX="60.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tiltle" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+                        <Text fx:id="title" fontSmoothingType="LCD" layoutX="42.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tiltle" textAlignment="CENTER" AnchorPane.leftAnchor="42.0" AnchorPane.topAnchor="21.86328125">
                            <font>
-                              <Font name="System Bold" size="26.0" />
+                              <Font name="System Medium" size="26.0" />
                            </font>
                         </Text>
                      </children>

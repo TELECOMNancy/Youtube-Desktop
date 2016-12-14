@@ -38,6 +38,7 @@ public class Main extends Application {
 
         AnchorPane root = new AnchorPane();
 
+
         FXMLLoader backgroundLoader = new FXMLLoader(getClass().getResource("/view/BackgroundView.fxml"));
         AnchorPane background = backgroundLoader.load();
         root.getChildren().add(background);
@@ -45,7 +46,7 @@ public class Main extends Application {
         root.setTopAnchor(background,0.0);
         root.setLeftAnchor(background,0.0);
         root.setRightAnchor(background,0.0);
-        root.autosize();
+        //root.autosize();
         BackgroundModel backgroundModel = new BackgroundModel(mainModel);
         backgroundModel.setBackground(background);
         mainModel.setBackgroundModel(backgroundModel);
