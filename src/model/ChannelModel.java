@@ -25,7 +25,7 @@ public class ChannelModel extends Model {
         this.upload=upload;
     }
     public ChannelModel(){
-        
+
     }
 
     public ScrollPane getUpload(){
