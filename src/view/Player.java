@@ -43,11 +43,11 @@ public class Player extends Region {
         //Prevent from quitting the player
         videoPlayer.getEngine().locationProperty().addListener(new ChangeListener<String>() {
             public void changed(ObservableValue<? extends String> prop, final String before, final String after) {
-                System.out.println("Loaded: " + after);
+                //System.out.println("Loaded: " + after);
                 Platform.runLater(new Runnable() {
                     public void run() {
                         if (after == null || !after.startsWith("http://docs.oracle.com/javafx/2/get_started")) {
-                            System.out.println("Access denied: " + after);
+                            //System.out.println("Access denied: " + after);
                             videoPlayer.getEngine().loadContent(htmlStringFinal);
                         }
                     }

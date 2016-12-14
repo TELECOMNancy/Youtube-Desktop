@@ -71,6 +71,20 @@ public class MainModel extends Model{
 
 
 
+    public String getVideoTitle(PlaylistItem video) {
+
+        return video.getSnippet().getTitle();
+    }
+    public String getVideoID(PlaylistItem video){
+        String rId = video.getContentDetails().getVideoId();
+        return rId;
+    }
+    public String getVideoThumbnail(PlaylistItem video){
+        Thumbnail thumbnail = video.getSnippet().getThumbnails().getDefault();
+        return thumbnail.getUrl();
+    }
+
+
     //returns true after sucessfully signing in, used for mainView
 
     public boolean signIn(){

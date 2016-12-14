@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
+<?import javafx.scene.layout.VBox?>
 <AnchorPane fx:id="anchorChannelView" prefHeight="500.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ChannelController">
    <children>
       <GridPane fx:id="MainGridChannelView" layoutX="89.0" layoutY="122.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -18,8 +19,12 @@
           <RowConstraints maxHeight="267.0" minHeight="10.0" prefHeight="220.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <AnchorPane fx:id="AnchorPlaylist" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: ;" GridPane.rowIndex="1" />
-            <AnchorPane fx:id="AnchorUpload" prefHeight="251.0" prefWidth="317.0" style="-fx-background-color: ;" />
+            <AnchorPane fx:id="AnchorPlaylist" prefHeight="200.0" prefWidth="200.0"  GridPane.rowIndex="1" />
+            <AnchorPane fx:id="AnchorUpload" prefHeight="251.0" prefWidth="317.0" >
+                <children>
+                    <VBox fx:id="myUploadsVBox"/>
+                </children>
+            </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
                   <GridPane layoutX="50.0" layoutY="153.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -33,7 +38,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <AnchorPane fx:id="AnchorProfilePicture" prefHeight="143.0" prefWidth="156.0" style="-fx-background-color: ;" GridPane.columnIndex="1" />
+                        <AnchorPane fx:id="AnchorProfilePicture" prefHeight="143.0" prefWidth="156.0"  GridPane.columnIndex="1" />
                         <AnchorPane fx:id="AnchorUploadButton" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
                               <JFXButton fx:id="UploadButton" layoutX="5.0" layoutY="7.0" onMouseClicked="#clickUpload" prefHeight="65.0" prefWidth="147.0" text="Upload a Video" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" />

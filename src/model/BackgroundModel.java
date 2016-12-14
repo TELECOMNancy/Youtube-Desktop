@@ -22,13 +22,9 @@ public class BackgroundModel {
 
     private Node mainChildren;
 
-    private static final String PROPERTIES_FILENAME = "youtube.properties";
     private MainModel mainModel;
-    private VideoListModel videoListModel;
     private AnchorPane root;
     private AnchorPane background;
-    private Stage stage;
-    private AnchorPane playerView;
 
     public BackgroundModel(MainModel mainModel){
         this.mainModel=mainModel;
