@@ -39,6 +39,6 @@ public class ChannelController {
         AnchorUpload.getChildren().add(model.getUpload());
         VideoListController uploadListController = uploadListLoader.getController();
         VideoListModel uploadListModel = new VideoListModel(this.model);
-        uploadListController.initVideoListModel(uploadListModel, AnchorUpload);
+        //uploadListController.initVideoListModel(uploadListModel, AnchorUpload);
     }
 }
