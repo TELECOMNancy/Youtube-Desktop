@@ -31,7 +31,7 @@ public class VideoListController {
 
 
 
-    public void initVideoListModel(VideoListModel videoListModel) {
+    public void initVideoListModel(final VideoListModel videoListModel) {
         this.videoListModel = videoListModel;
         final VideoListModel tempVideoListModel = this.videoListModel;
         final int nbResults = 20;
@@ -43,7 +43,8 @@ public class VideoListController {
                    for (int j=0; j<nbResults; j++) {
                        if (event.getSource().equals(listButton.get(j))) {
                            try {
-                               initPlayer(new PlayerModel(tempVideoListModel.getSearchResult().get(j)));
+                               PlayerModel playerModel = new PlayerModel(tempVideoListModel.getSearchResult().get(j),videoListModel.getMainModel());
+                               playerModel.initPlayer();
 
                            }
                            catch (IOException e){
@@ -59,14 +60,8 @@ public class VideoListController {
 
     }
 
-    public void initPlayer(PlayerModel playerModel) throws IOException{
-        System.out.println(videoListModel.getMainModel());
-        System.out.println(videoListModel.getMainModel().getBackgroundModel());
-        System.out.println(videoListModel.getMainModel().getBackgroundModel().getMainChildren());
+    /*public void initPlayer(PlayerModel playerModel) throws IOException{
         videoListModel.getMainModel().setPlayerModel(playerModel);
-
-
-
         AnchorPane background= videoListModel.getMainModel().getBackgroundModel().getBackground();
         FXMLLoader playerLoader = new FXMLLoader(getClass().getResource("/view/PlayerView.fxml"));
 
@@ -82,7 +77,7 @@ public class VideoListController {
         background.autosize();
         PlayerViewController playerViewController = playerLoader.getController();
         playerViewController.initPlayerModel(playerModel);
-    }
+    }*/
 
 
 

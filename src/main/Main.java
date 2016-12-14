@@ -52,7 +52,7 @@ public class Main extends Application {
         BackgroundController backgroundController = backgroundLoader.getController();
         backgroundController.initBackgroundController(backgroundModel,background);
 
-        System.out.println("main control"+background.getChildren()+"\n");
+
 
 
 
@@ -65,12 +65,12 @@ public class Main extends Application {
         background.setTopAnchor(playerView,100.0);
         background.setLeftAnchor(playerView,200.0);
         //background.setRightAnchor(playerView,100.0);
-        PlayerModel playerModel= new PlayerModel("_GuOjXYl5ew","Youtube Rewind 2016");
+        PlayerModel playerModel= new PlayerModel("_GuOjXYl5ew","Youtube Rewind 2016",mainModel);
         mainModel.setPlayerModel(playerModel);
         PlayerViewController playerViewController=playerViewLoader.getController();
         playerViewController.initPlayerModel(playerModel);
 
-        System.out.println("main player"+background.getChildren()+"\n");
+
 
 
 

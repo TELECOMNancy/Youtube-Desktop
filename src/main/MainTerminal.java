@@ -21,7 +21,7 @@ public class MainTerminal {
     static MainModel mainModel = new MainModel();
     static Model model = new Model();
     static UploadModel uploadModel = new UploadModel();
-    static ChannelModel channelModel = new ChannelModel();
+    static ChannelModel channelModel = new ChannelModel(mainModel);
 
 
     private static String getInputQuery() throws IOException {
@@ -76,7 +76,7 @@ public class MainTerminal {
             PlaylistItem playlistItem = playlistEntries.next();
             System.out.println(" video name  = " + playlistItem.getSnippet().getTitle());
             System.out.println(" video id    = " + playlistItem.getContentDetails().getVideoId());
-            System.out.println(" upload date = " + playlistItem.getSnippet().getPublishedAt());
+            System.out.println(" thumbnail = " + playlistItem.getSnippet().getThumbnails().getDefault().getUrl());
             System.out.println("\n-------------------------------------------------------------\n");
         }
     }
@@ -103,7 +103,7 @@ public class MainTerminal {
             menuQuery = getInputQuery();
             switch (Integer.parseInt(menuQuery)){
 
-                case 1:
+                case 1: /* Search */
 
                     System.out.print("Please enter a search term: ");
                     searchQuery = getInputQuery();
@@ -120,12 +120,12 @@ public class MainTerminal {
                     menuQuery="0";
                     break;
 
-                case 2:
+                case 2: /* Sign in */
 
                     mainModel.signIn();
                     break;
 
-                case 3:
+                case 3: /* Upload a video */
 
                     System.out.print("Please enter the path to your video: ");
                     uploadPath = getInputQuery();
@@ -143,14 +143,14 @@ public class MainTerminal {
 
                     break;
 
-                case 4:
+                case 4: /* Print my uploads */
                     List<PlaylistItem> playlistItemList = channelModel.myUploads();
                     prettyPrint(playlistItemList.size(), playlistItemList.iterator());
 
 
                     break;
 
-                case 5:
+                case 5: /* Quit */
                     return;
 
                 default:
