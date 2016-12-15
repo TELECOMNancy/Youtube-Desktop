@@ -55,7 +55,9 @@ public class UploadController {
         } else if (unreferencedButton.isSelected()) {
             this.status="unlisted";
         }
+        //UploadButton.setText("Uploading");
         uploadModel.getMainModel().getUploadModel().upload(title,path,description,status);
+        //UploadButton.setText("Upload");
     }
 
     @FXML

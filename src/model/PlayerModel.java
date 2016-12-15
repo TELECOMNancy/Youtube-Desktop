@@ -31,7 +31,7 @@ public class PlayerModel {
     public PlayerModel(String videoId, String videoTitle, MainModel mainModel){
         this.mainModel=mainModel;
         this.title= videoTitle;
-        this.player=new Player(videoId);
+            this.player=new Player(videoId);
     }
 
     public Player getPlayer(){
