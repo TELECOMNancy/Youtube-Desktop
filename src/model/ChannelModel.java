@@ -10,6 +10,7 @@ import com.google.api.services.youtube.model.PlaylistItemListResponse;
 import com.google.common.collect.Lists;
 import javafx.scene.control.ScrollPane;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -121,7 +122,10 @@ public class ChannelModel {
         return playlistItemList;
     }
 
-    public List<PlaylistItem> channelUploads(){
+    public List<PlaylistItem> channelUploads(String channelID) throws IOException {
+        ChannelListResponse channelListResponse = youtube.channels().list("contentDetails").setId(channelID).execute();
+
+
         return playlistItemList;
     }
 

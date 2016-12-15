@@ -115,7 +115,7 @@ public class ChannelController {
 
     public void initChannelModel(ChannelModel channelModel){
         this.channelModel=channelModel;
-        final List<PlaylistItem> myUploadsItemList = channelModel.channelUploads();
+        final List<PlaylistItem> myUploadsItemList = channelModel.channelUploads(channelModel.getMainModel().getPlayerModel().getChannelId());
         final List<PlaylistItem> tempMyUploadsItemList = myUploadsItemList;
         final Iterator iterator = tempMyUploadsItemList.iterator();
     }
