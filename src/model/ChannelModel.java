@@ -121,6 +121,10 @@ public class ChannelModel extends Model {
         return playlistItemList;
     }
 
+    public List<PlaylistItem> channelUploads(){
+        return playlistItemList;
+    }
+
 
 
 }

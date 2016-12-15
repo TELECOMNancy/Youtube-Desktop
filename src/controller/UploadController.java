@@ -26,6 +26,8 @@ public class UploadController {
     private String status;
 
     public void initUploadModel(UploadModel uploadModel){
+        this.title="null";
+        this.description="null";
         this.uploadModel=uploadModel;
     }
 
@@ -65,7 +67,7 @@ public class UploadController {
         }
 
 
-        if(title==null || description==null || path==null){
+        if(title.equals("")|| description.equals("") || path==null){
             FXMLLoader popUpLoader = new FXMLLoader(getClass().getResource("/view/PopUp.fxml"));
             AnchorPane popUpView = popUpLoader.load();
             PopUpController popUpController = popUpLoader.getController();
