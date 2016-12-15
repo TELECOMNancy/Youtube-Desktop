@@ -12,7 +12,6 @@ import javafx.scene.layout.AnchorPane;
 import model.*;
 
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Created by tld on 13/12/2016.

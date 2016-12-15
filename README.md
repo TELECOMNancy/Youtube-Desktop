@@ -18,12 +18,19 @@ Accès aux vidéos uploads
 Upload d'une vidéo
 Correction de nombreux bugs
 
+Release Day 4:
+Intégration des channels
+Réglage des problèmes de connexion
+Multithreading pour l'upload
+Rajout de la déconnexion
+Amélioration graphique
+
 Compilation du Projet:
 Importer le projet dans un IDE en tant que projet Maven, lancer la synchronisation pour récupérer les dépendances.
 Marquer le dossier resources comme dossier de ressources.
 
 Lancement:
-java -jar YoutubeDesktopV3.jar
+java -jar YoutubeDesktopV4.jar
 
 (note: Il est necessaire d'avoir la version 1.8_112 de Java pour le lancement de l'application.)
 
@@ -62,6 +69,9 @@ java -jar YoutubeDesktopV3.jar
 1. Résolution de bugs éventuelles
 2. Procédure de test générale
 3. Empaquetage finale de l'application
+4. Image de profil
+5. Changement de police
+6. Autoplay
 
 
 
