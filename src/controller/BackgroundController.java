@@ -55,6 +55,8 @@ public class BackgroundController {
     @FXML
     private  JFXButton profileButton;
 
+    @FXML
+    private JFXButton uploadButton;
 
     @FXML
     void clickHome() throws IOException{
@@ -71,12 +73,27 @@ public class BackgroundController {
         backgroundView.setRightAnchor(player,50.0);
         backgroundView.autosize();
         PlayerViewController playerViewController = playerLoader.getController();
-        PlayerModel playerModel = new PlayerModel("_GuOjXYl5ew","Youtube Rewind 2016",backgroundModel.getMainModel());
+        PlayerModel playerModel =  new PlayerModel("_GuOjXYl5ew","YouTube Rewind: The Ultimate 2016 Challenge | #YouTubeRewind","YouTube Spotlight","UCBR8-60-B28hp2BmDPdntcQ",backgroundModel.getMainModel());
+        backgroundModel.getMainModel().setPlayerModel(playerModel);
         playerViewController.initPlayerModel(playerModel);
     }
 
     @FXML
-    void clickSample(){
+    void clickUpload() throws IOException{
+        backgroundModel.getMainModel().getBackgroundModel().getBackground().getChildren().remove(backgroundModel.getMainModel().getBackgroundModel().getMainChildren());
+        FXMLLoader uploadLoader = new FXMLLoader(getClass().getResource("/view/UploadView.fxml"));
+        AnchorPane uploadView = uploadLoader.load();
+        backgroundModel.getMainModel().getBackgroundModel().getBackground().getChildren().add(uploadView);
+        backgroundModel.getMainModel().getBackgroundModel().setMainChildren(uploadView);
+        backgroundModel.getMainModel().getBackgroundModel().getBackground().setBottomAnchor(uploadView,100.0);
+        backgroundModel.getMainModel().getBackgroundModel().getBackground().setTopAnchor(uploadView,100.0);
+        backgroundModel.getMainModel().getBackgroundModel().getBackground().setLeftAnchor(uploadView,200.0);
+        //background.setRightAnchor(player,100.0);
+        backgroundModel.getMainModel().getBackgroundModel().getBackground().autosize();
+        UploadController uploadController = uploadLoader.getController();
+        UploadModel uploadModel = new UploadModel(backgroundModel.getMainModel());
+        backgroundModel.getMainModel().setUploadModel(uploadModel);
+        uploadController.initUploadModel(uploadModel);
     }
 
     @FXML
@@ -114,7 +131,8 @@ public class BackgroundController {
         profileButton.setVisible(true);
         signOutButton.setDisable(false);
         signOutButton.setVisible(true);
-
+        uploadButton.setDisable(false);
+        uploadButton.setVisible(true);
     }
 
     @FXML
@@ -126,6 +144,9 @@ public class BackgroundController {
         profileButton.setVisible(false);
         signInButton.setDisable(false);
         signInButton.setVisible(true);
+        uploadButton.setDisable(true);
+        uploadButton.setVisible(false);
+
 
         backgroundModel.getMainModel().getPlayerModel().getPlayer().getVideoPlayer().getEngine().load(null);
         backgroundView.getChildren().remove(backgroundModel.getMainChildren());
@@ -139,7 +160,7 @@ public class BackgroundController {
         backgroundView.setRightAnchor(player,50.0);
         backgroundView.autosize();
         PlayerViewController playerViewController = playerLoader.getController();
-        PlayerModel playerModel = new PlayerModel("_GuOjXYl5ew","Youtube Rewind 2016",backgroundModel.getMainModel());
+        PlayerModel playerModel =  new PlayerModel("_GuOjXYl5ew","YouTube Rewind: The Ultimate 2016 Challenge | #YouTubeRewind","YouTube Spotlight","UCBR8-60-B28hp2BmDPdntcQ",backgroundModel.getMainModel());
         playerViewController.initPlayerModel(playerModel);
 
 
@@ -165,7 +186,7 @@ public class BackgroundController {
         ChannelController channelController = channelLoader.getController();
         ChannelModel channelModel = new ChannelModel(backgroundModel.getMainModel());
         channelController.initMyChannelModel(channelModel);
-
+        
     }
 
 

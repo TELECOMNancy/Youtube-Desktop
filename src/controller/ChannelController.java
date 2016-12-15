@@ -31,12 +31,9 @@ public class ChannelController {
     }
 
 
-    @FXML
+    /*@FXML
     private JFXButton UploadButton;
-    @FXML
-    private AnchorPane AnchorPlaylist;
-    @FXML
-    private AnchorPane AnchorUpload;
+    */
     @FXML
     private AnchorPane AnchorProfilePicture;
     @FXML
@@ -47,26 +44,6 @@ public class ChannelController {
     @FXML
     private VBox myUploadsVBox;
 
-
-
-
-    @FXML
-    public void clickUpload() throws IOException {
-        channelModel.getMainModel().getBackgroundModel().getBackground().getChildren().remove(channelModel.getMainModel().getBackgroundModel().getMainChildren());
-        FXMLLoader uploadLoader = new FXMLLoader(getClass().getResource("/view/UploadView.fxml"));
-        AnchorPane uploadView = uploadLoader.load();
-        channelModel.getMainModel().getBackgroundModel().getBackground().getChildren().add(uploadView);
-        channelModel.getMainModel().getBackgroundModel().setMainChildren(uploadView);
-        channelModel.getMainModel().getBackgroundModel().getBackground().setBottomAnchor(uploadView,100.0);
-        channelModel.getMainModel().getBackgroundModel().getBackground().setTopAnchor(uploadView,100.0);
-        channelModel.getMainModel().getBackgroundModel().getBackground().setLeftAnchor(uploadView,200.0);
-        //background.setRightAnchor(player,100.0);
-        channelModel.getMainModel().getBackgroundModel().getBackground().autosize();
-        UploadController uploadController = uploadLoader.getController();
-        UploadModel uploadModel = new UploadModel(channelModel.getMainModel());
-        channelModel.getMainModel().setUploadModel(uploadModel);
-        uploadController.initUploadModel(uploadModel);
-    }
 
     public void initMyChannelModel(final ChannelModel channelModel/*, FXMLLoader uploadListLoader*/) {
         this.channelModel=channelModel;
@@ -113,11 +90,34 @@ public class ChannelController {
         //prettyPrint(playlistItemList.size(), playlistItemList.iterator());
     }
 
-    public void initChannelModel(ChannelModel channelModel){
+    public void initChannelModel(final ChannelModel channelModel) throws IOException {
         this.channelModel=channelModel;
-        final List<PlaylistItem> myUploadsItemList = channelModel.channelUploads();
-        final List<PlaylistItem> tempMyUploadsItemList = myUploadsItemList;
-        final Iterator iterator = tempMyUploadsItemList.iterator();
+        final List<PlaylistItem> UploadsItemList = channelModel.channelUploads(channelModel.getMainModel().getPlayerModel().getChannelId());
+        final List<PlaylistItem> tempUploadsItemList = UploadsItemList;
+        final Iterator iterator = tempUploadsItemList.iterator();
+        for (int i=0; i<10;i++) {
+            PlaylistItem UploadsItem = (PlaylistItem)iterator.next();
+            ImageView image = new ImageView(channelModel.getMainModel().getVideoThumbnail(UploadsItem));
+            JFXButton button = new JFXButton(UploadsItem.getSnippet().getTitle());
+            button.setOnAction(new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent event) {
+                    for (int j=0; j<10; j++) {
+                        if (event.getSource().equals(uploadListButton.get(j))) {
+                            try {
+                                PlayerModel playerModel = new PlayerModel(tempUploadsItemList.get(j),channelModel.getMainModel());
+                                playerModel.initPlayer();
+
+                            }
+                            catch (IOException e){
+
+                            }
+                        }
+                    }
+                }
+            });
+            uploadListButton.add(button);
+            myUploadsVBox.getChildren().add(new HBox(image, button));
+        }
     }
 
 

@@ -59,7 +59,8 @@ public class UploadModel {
 
         try {
 
-            List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.upload","https://www.googleapis.com/auth/youtube.readonly","https://www.googleapis.com/auth/userinfo.profile");
+
+            List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.upload","https://www.googleapis.com/auth/youtube.readonly","https://www.googleapis.com/auth/userinfo.profile","https://www.googleapis.com/youtube/v3/channels");
             Credential credential = Auth.authorize(scopes, "myprofile");
 
            // FileDataStoreFactory.load(String userId, Credential credential);
