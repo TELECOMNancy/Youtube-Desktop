@@ -2,7 +2,6 @@ package main;
 
 import com.google.api.services.youtube.model.*;
 import model.*;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -15,8 +14,6 @@ import java.util.List;
 public class MainTerminal {
 
     private static final long NUMBER_OF_VIDEOS_RETURNED = 5;
-
-
     static MainModel mainModel = new MainModel();
     static UploadModel uploadModel = new UploadModel();
     static ChannelModel channelModel = new ChannelModel(mainModel);

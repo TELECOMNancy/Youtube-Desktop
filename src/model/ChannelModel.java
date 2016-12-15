@@ -2,16 +2,12 @@ package model;
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
-import com.google.api.client.http.HttpRequest;
-import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.Channel;
 import com.google.api.services.youtube.model.ChannelListResponse;
 import com.google.api.services.youtube.model.PlaylistItem;
 import com.google.api.services.youtube.model.PlaylistItemListResponse;
 import com.google.common.collect.Lists;
-import javafx.scene.control.ScrollPane;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +17,11 @@ import java.util.List;
  */
 
 public class ChannelModel {
-    private ScrollPane upload;
-    private ScrollPane playlist;
-    private ScrollPane liked;
+
     private MainModel mainModel;
+    private static YouTube youtube;
+    List<PlaylistItem> playlistItemList = new ArrayList<PlaylistItem>();
+
 
     public ChannelModel(MainModel mainModel) {
         this.mainModel=mainModel;
@@ -34,34 +31,19 @@ public class ChannelModel {
         return this.mainModel;
     }
 
-
-    public ScrollPane getUpload(){
-        return upload;
-    }
-    public ScrollPane getPlaylist(){
-        return playlist;
-    }
-    public ScrollPane getLiked(){
-        return liked;
-    }
-
-    private static YouTube youtube;
-    // Define a list to store items in the list of uploaded videos.
-    List<PlaylistItem> playlistItemList = new ArrayList<PlaylistItem>();
-
     public List<PlaylistItem> myUploads() {
 
         // This OAuth 2.0 access scope allows for read-only access to the
         // authenticated user's account, but not other types of account access.
-        List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.upload","https://www.googleapis.com/auth/youtube.readonly","profile");
+        List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.upload","https://www.googleapis.com/auth/youtube.readonly");
         try {
             // Authorize the request.
             //Credential credential = this.getMainModel().signIn();
 
 
-            Credential credential = Auth.authorize(scopes, "myprofile");
+            Credential credential = mainModel.authorize(scopes, "myprofile");
             // This object is used to make YouTube Data API requests.
-            youtube = new YouTube.Builder(Auth.HTTP_TRANSPORT, Auth.JSON_FACTORY, credential).setApplicationName("youtube-cmdline-myuploads-sample").build();
+            youtube = new YouTube.Builder(mainModel.HTTP_TRANSPORT, mainModel.JSON_FACTORY, credential).setApplicationName("youtube-cmdline-myuploads-sample").build();
 
             // Call the API's channels.list method to retrieve the
             // resource that represents the authenticated user's channel.
@@ -124,13 +106,12 @@ public class ChannelModel {
         return playlistItemList;
     }
 
-
     public List<PlaylistItem> channelUploads(String channelID) throws IOException {
 
-        List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.upload","https://www.googleapis.com/auth/youtube.readonly","https://www.googleapis.com/auth/userinfo.profile");
+        List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.upload","https://www.googleapis.com/auth/youtube.readonly");
         try {
-            Credential credential = Auth.authorize(scopes, "myprofile");
-            youtube = new YouTube.Builder(Auth.HTTP_TRANSPORT, Auth.JSON_FACTORY,credential/*new HttpRequestInitializer() {
+            Credential credential = mainModel.authorize(scopes, "myprofile");
+            youtube = new YouTube.Builder(mainModel.HTTP_TRANSPORT, mainModel.JSON_FACTORY,credential/*new HttpRequestInitializer() {
                 public void initialize(HttpRequest request) throws IOException {
                 }
             }*/).setApplicationName("youtube-cmdline-search-sample").build();
@@ -171,8 +152,5 @@ public class ChannelModel {
             t.printStackTrace(); }
         return playlistItemList;
     }
-
-
-
 
 }

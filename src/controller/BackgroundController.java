@@ -17,35 +17,22 @@ public class BackgroundController {
 
     private BackgroundModel backgroundModel;
     private AnchorPane backgroundView;
-
+    @FXML
+    private  JFXButton signOutButton;
+    @FXML
+    private JFXTextField searchField;
+    @FXML
+    private JFXButton signInButton;
+    @FXML
+    private  JFXButton profileButton;
+    @FXML
+    private JFXButton uploadButton;
 
 
     public void initBackgroundController(BackgroundModel backgroundModel,AnchorPane backgroundView){
         this.backgroundModel=backgroundModel;
         this.backgroundView=backgroundView;
     }
-
-
-    @FXML
-    private JFXButton homeButton;
-
-
-    @FXML
-    private  JFXButton signOutButton;
-
-
-    @FXML
-    private JFXTextField searchField;
-
-
-    @FXML
-    private JFXButton signInButton;
-
-    @FXML
-    private  JFXButton profileButton;
-
-    @FXML
-    private JFXButton uploadButton;
 
     @FXML
     void clickHome() throws IOException{
@@ -154,7 +141,6 @@ public class BackgroundController {
 
     }
 
-
     @FXML
     void switchToProfile() throws IOException {
 
@@ -176,8 +162,5 @@ public class BackgroundController {
         channelController.initMyChannelModel(channelModel);
         
     }
-
-
-
 
 }

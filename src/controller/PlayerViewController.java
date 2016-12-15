@@ -8,7 +8,6 @@ import javafx.scene.text.Text;
 import model.ChannelModel;
 import model.PlayerModel;
 import view.Player;
-
 import java.io.IOException;
 
 /**
@@ -17,10 +16,6 @@ import java.io.IOException;
 public class PlayerViewController  {
     private PlayerModel playerModel;
     private Player player;
-
-    @FXML
-    private Text description;
-    //private MainModel model;
     @FXML
     private Text title;
     @FXML
@@ -58,8 +53,5 @@ public class PlayerViewController  {
         ChannelModel channelModel = new ChannelModel(playerModel.getMainModel());
         channelController.initChannelModel(channelModel);
     }
-
-
-
 
 }

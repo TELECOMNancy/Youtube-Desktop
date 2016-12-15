@@ -1,18 +1,15 @@
 package controller;
 
-
 import com.google.api.services.youtube.model.PlaylistItem;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.*;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;

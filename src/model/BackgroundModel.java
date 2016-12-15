@@ -11,10 +11,9 @@ import javafx.scene.layout.AnchorPane;
 public class BackgroundModel {
 
     private Node mainChildren;
-
     private MainModel mainModel;
-    private AnchorPane root;
     private AnchorPane background;
+
 
     public BackgroundModel(MainModel mainModel){
         this.mainModel=mainModel;
@@ -39,9 +38,5 @@ public class BackgroundModel {
     public void setBackground(AnchorPane background){
         this.background=background;
     }
-
-
-
-
 
 }

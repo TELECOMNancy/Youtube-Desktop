@@ -10,29 +10,17 @@ import javafx.scene.Scene;
 import model.BackgroundModel;
 import model.MainModel;
 import model.PlayerModel;
-
-
-
 import java.io.IOException;
+
 
 public class Main extends Application {
 
-
-    //private Scene scene;
     @Override public void start(Stage stage) throws IOException {
-
-        /*view
-        //create Desktop
-        AnchorPane root = new AnchorPane();
-        //Stage stage = new Stage();
-        Scene mainView= new MainView(root,1280,800);*/
 
         MainModel mainModel = new MainModel();
 
-
         AnchorPane root = new AnchorPane();
         mainModel.initStage(stage);
-
 
         FXMLLoader backgroundLoader = new FXMLLoader(getClass().getResource("/view/BackgroundView.fxml"));
         AnchorPane background = backgroundLoader.load();
@@ -48,11 +36,6 @@ public class Main extends Application {
         BackgroundController backgroundController = backgroundLoader.getController();
         backgroundController.initBackgroundController(backgroundModel,background);
 
-
-
-
-
-
         FXMLLoader playerViewLoader = new FXMLLoader(getClass().getResource("/view/PlayerView.fxml"));
         AnchorPane playerView = playerViewLoader.load();
         background.getChildren().add(playerView);
@@ -66,21 +49,13 @@ public class Main extends Application {
         PlayerViewController playerViewController=playerViewLoader.getController();
         playerViewController.initPlayerModel(playerModel);
 
-
         Scene scene = new Scene(root,1280,800);
         stage.setTitle("Youtube Desktop");
         stage.setScene(scene);
         //stage.setScene(new OldMainView(root,1280,800));
         stage.show();
 
-
-
-
-
     }
-
-
-
 
     public static void main(String[] args) {
         launch(args);
