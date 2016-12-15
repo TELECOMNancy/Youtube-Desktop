@@ -1,7 +1,11 @@
 package controller;
 
+import com.google.api.services.youtube.model.SearchResult;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXSpinner;
 import com.jfoenix.controls.JFXTextField;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
@@ -9,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import model.*;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by tld on 13/12/2016.
@@ -17,6 +22,25 @@ public class BackgroundController {
 
     private BackgroundModel backgroundModel;
     private AnchorPane backgroundView;
+
+
+    public void initBackgroundController(BackgroundModel backgroundModel,AnchorPane backgroundView){
+        this.backgroundModel=backgroundModel;
+        this.backgroundModel.setLoadingSpinner(this.loadingSpinner);
+        this.backgroundView=backgroundView;
+    }
+
+    @FXML
+    private JFXSpinner loadingSpinner;
+
+    public JFXSpinner getLoadingSpinner() {
+        return loadingSpinner;
+    }
+
+    @FXML
+    private JFXButton homeButton;
+
+
     @FXML
     private  JFXButton signOutButton;
     @FXML
@@ -97,6 +121,7 @@ public class BackgroundController {
 
     }
 
+
     @FXML
     void switchToLogged(){
         backgroundModel.getMainModel().signIn();
@@ -160,7 +185,7 @@ public class BackgroundController {
         ChannelController channelController = channelLoader.getController();
         ChannelModel channelModel = new ChannelModel(backgroundModel.getMainModel());
         channelController.initMyChannelModel(channelModel);
-        
+
     }
 
 }
