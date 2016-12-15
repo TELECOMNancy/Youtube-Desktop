@@ -10,6 +10,19 @@ import com.google.api.services.youtube.model.Video;
 import com.google.api.services.youtube.model.VideoSnippet;
 import com.google.api.services.youtube.model.VideoStatus;
 import com.google.common.collect.Lists;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXProgressBar;
+import com.jfoenix.controls.JFXTabPane;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import view.MainView;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -20,6 +33,7 @@ import java.util.List;
  */
 
 public class UploadModel {
+
     private MainModel mainModel;
 
     public UploadModel(MainModel mainModel){
@@ -44,7 +58,6 @@ public class UploadModel {
     public void upload(String videoTitle, String pathToFile, String videoDesc, String videoStatus){
 
         try {
-
 
             List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.upload","https://www.googleapis.com/auth/youtube.readonly","https://www.googleapis.com/auth/userinfo.profile");
             Credential credential = Auth.authorize(scopes, "myprofile");
@@ -85,7 +98,7 @@ public class UploadModel {
                     new FileInputStream(pathToFile));
 
 
-            YouTube.Videos.Insert videoInsert = youtube.videos()
+            final YouTube.Videos.Insert videoInsert = youtube.videos()
                     .insert("snippet,statistics,status", videoObjectDefiningMetadata, mediaContent);
 
             // Set the upload type and add an event listener.
@@ -101,10 +114,38 @@ public class UploadModel {
             // time and bandwidth in the event of network failures.
             uploader.setDirectUploadEnabled(false);
 
-            //ADD PROGRESSLISTENER HERE ?
+
+            Service<Void> uploadService = new Service<Void>(){
+
+                @Override
+                protected Task<Void> createTask() {
+
+                    Task<Void> task = new Task<Void>(){
+
+                        {
+                            setOnSucceeded(workerStateEvent -> {
+                                mainModel.getBackgroundModel().getLoadingSpinner().setVisible(false);
+                            });
+
+                            setOnFailed(workerStateEvent -> getException().printStackTrace());
+                        }
+
+                        @Override
+                        protected Void call() throws Exception {
+                            mainModel.getBackgroundModel().getLoadingSpinner().setVisible(true);
+                            videoInsert.execute();
+                            return null;
+                        }
+                    };
+                    return task;
+                }
+            };
+            uploadService.start();
+
 
             // Call the API and upload the video.
-            Video returnedVideo = videoInsert.execute();
+
+            //Video returnedVideo = videoInsert.execute();
 
 
         } catch (GoogleJsonResponseException e) {

@@ -1,6 +1,7 @@
 package model;
 
 
+import com.jfoenix.controls.JFXSpinner;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 
@@ -15,6 +16,7 @@ public class BackgroundModel {
     private MainModel mainModel;
     private AnchorPane root;
     private AnchorPane background;
+    private JFXSpinner loadingSpinner;
 
     public BackgroundModel(MainModel mainModel){
         this.mainModel=mainModel;
@@ -26,6 +28,14 @@ public class BackgroundModel {
 
     public Node getMainChildren(){
         return this.mainChildren;
+    }
+
+    public JFXSpinner getLoadingSpinner() {
+        return this.loadingSpinner;
+    }
+
+    public void setLoadingSpinner(JFXSpinner loadingSpinner) {
+        this.loadingSpinner = loadingSpinner;
     }
 
     public void setMainChildren(Node children){

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXSpinner?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -18,6 +20,11 @@
                   <Image url="@../../../../../Pictures/meme_material/1018337-_1.jpg" />
                </image>
             </ImageView>
+            <JFXSpinner fx:id="loadingSpinner" cache="true" layoutX="37.0" layoutY="261.0" style="visibility:false;">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </JFXSpinner>
          </children>
       </AnchorPane>
       <JFXTextField fx:id="searchField" focusColor="#f44336" layoutX="203.0" layoutY="15.0" onMouseClicked="#keySearch" AnchorPane.topAnchor="15.0" />
