@@ -56,13 +56,7 @@ public class ChannelController {
         final List<PlaylistItem> myUploadsItemList = channelModel.myUploads();
         final List<PlaylistItem> tempMyUploadsItemList = myUploadsItemList;
         final Iterator iterator = tempMyUploadsItemList.iterator();
-        /*AnchorUpload.getChildren().add(model.getUpload());
-        VideoListController uploadListController = uploadListLoader.getController();
-        VideoListModel uploadListModel = new VideoListModel(this.model);
-        //uploadListController.initVideoListModel(uploadListModel, AnchorUpload);*/
-        //this.videoListModel = videoListModel;
-        //final VideoListModel uploadListModel = this.videoListModel;
-        //while(tempMyUploadsItemList.iterator().hasNext()) {
+
         for (int i=0; i<myUploadsItemList.size();i++) {
             PlaylistItem myUploadsItem = (PlaylistItem)iterator.next();
             ImageView image = new ImageView(channelModel.getMainModel().getVideoThumbnail(myUploadsItem));
