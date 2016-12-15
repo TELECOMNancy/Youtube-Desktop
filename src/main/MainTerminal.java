@@ -97,9 +97,10 @@ public class MainTerminal {
             System.out.println("What do you want to do ? \n");
             System.out.println("1-Search\n");
             System.out.println("2-Sign in\n");
-            System.out.println("3-Upload a video\n");
-            System.out.println("4-Print my uploads\n");
-            System.out.println("5-Quit\n");
+            System.out.println("3-Sign Out\n");
+            System.out.println("4-Upload a video\n");
+            System.out.println("5-Print my uploads\n");
+            System.out.println("6-Quit\n");
             menuQuery = getInputQuery();
             switch (Integer.parseInt(menuQuery)){
 
@@ -127,7 +128,11 @@ public class MainTerminal {
                     mainModel.signIn();
                     break;
 
-                case 3: /* Upload a video */
+                case 3:
+                    mainModel.signOut();
+                    break;
+
+                case 4: /* Upload a video */
 
                     System.out.print("Please enter the path to your video: ");
                     uploadPath = getInputQuery();
@@ -145,14 +150,14 @@ public class MainTerminal {
 
                     break;
 
-                case 4: /* Print my uploads */
+                case 5: /* Print my uploads */
                     List<PlaylistItem> playlistItemList = channelModel.myUploads();
                     prettyPrint(playlistItemList.size(), playlistItemList.iterator());
 
 
                     break;
 
-                case 5: /* Quit */
+                case 6: /* Quit */
                     return;
 
                 default:
