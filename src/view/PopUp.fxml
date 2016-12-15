@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PopUpController">
+   <children>
+      <Text layoutX="81.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please select all fields">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <JFXButton fx:id="buttonPopUp" buttonType="RAISED" layoutX="132.0" layoutY="121.0" onMouseClicked="#closePopUp" style="-fx-background-color: D50000;" text="Ok" textFill="WHITE" />
+   </children>
+</AnchorPane>

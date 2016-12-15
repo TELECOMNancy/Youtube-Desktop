@@ -10,37 +10,35 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="MainAnchorUpload" prefHeight="556.0" prefWidth="688.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UploadController">
+<AnchorPane fx:id="MainAnchorUpload" prefHeight="535.0" prefWidth="741.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UploadController">
    <children>
-      <Text fx:id="pathText" layoutX="254.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Path" AnchorPane.leftAnchor="254.0" AnchorPane.topAnchor="59.0" />
-      <Text fx:id="TitleText" layoutX="254.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" AnchorPane.leftAnchor="254.0" />
-      <Text fx:id="DescriptionText" layoutX="254.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" AnchorPane.leftAnchor="254.0" />
-      <JFXButton fx:id="BrowseButton" buttonType="RAISED" layoutX="435.0" layoutY="59.0" onMouseClicked="#clickBrowse" text="Browse" AnchorPane.topAnchor="59.0" />
-      <JFXTextField fx:id="TitleField" focusColor="#d50000" layoutX="374.0" layoutY="118.0" AnchorPane.leftAnchor="374.0" />
-      <JFXTextField fx:id="DescriptionField" focusColor="#d50000" layoutX="374.0" layoutY="171.0" AnchorPane.leftAnchor="374.0" />
-      <AnchorPane fx:id="AnchorStatus" layoutX="244.0" layoutY="259.0" prefHeight="161.0" prefWidth="250.0" AnchorPane.bottomAnchor="136.0" AnchorPane.leftAnchor="244.0" AnchorPane.topAnchor="259.0">
+      <Text fx:id="pathText" layoutX="369.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Path" AnchorPane.leftAnchor="369.0" AnchorPane.topAnchor="126.0" />
+      <Text fx:id="TitleText" layoutX="370.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" AnchorPane.leftAnchor="370.0" />
+      <Text fx:id="DescriptionText" layoutX="370.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" AnchorPane.leftAnchor="370.0" />
+      <JFXButton fx:id="BrowseButton" buttonType="RAISED" layoutX="360.0" layoutY="77.0" onMouseClicked="#clickBrowse" style="-fx-background-color: #E0E0E0;" text="Browse" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="77.0" />
+      <JFXTextField fx:id="TitleField" focusColor="#d50000" layoutX="490.0" layoutY="165.0" AnchorPane.leftAnchor="490.0" />
+      <JFXTextField fx:id="DescriptionField" focusColor="#d50000" layoutX="490.0" layoutY="220.0" AnchorPane.leftAnchor="490.0" />
+      <AnchorPane fx:id="AnchorStatus" layoutX="357.0" layoutY="300.0" prefHeight="162.0" prefWidth="279.0" AnchorPane.bottomAnchor="69.0" AnchorPane.leftAnchor="357.0" AnchorPane.topAnchor="300.0">
          <children>
             <VBox prefHeight="119.0" prefWidth="102.0" spacing="15.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="10.0">
                <padding>
                   <Insets top="10.0" />
                </padding>
                <children>
-                  <JFXRadioButton fx:id="publicButton" selected="true" style="-fx-selected-color: red;" text="Public">
+                  <JFXRadioButton fx:id="publicButton" selected="true" style="-fx-selected-color: #d50000;" text="Public">
                      <toggleGroup>
                         <ToggleGroup fx:id="Status" />
                      </toggleGroup></JFXRadioButton>
-                  <JFXRadioButton fx:id="privateButton" style="-fx-selected-color: red;" text="Private" toggleGroup="$Status" />
-                  <JFXRadioButton fx:id="unreferencedButton" style="-fx-selected-color: red;" text="Unreferenced" toggleGroup="$Status" />
+                  <JFXRadioButton fx:id="privateButton" style="-fx-selected-color: #d50000;" text="Private" toggleGroup="$Status" />
+                  <JFXRadioButton fx:id="unreferencedButton" style="-fx-selected-color: #d50000;" text="Unreferenced" toggleGroup="$Status" />
                </children>
             </VBox>
             <Text fx:id="TextStatus" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
          </children>
       </AnchorPane>
-      <JFXButton fx:id="UploadButton" buttonType="RAISED" layoutX="392.0" layoutY="485.0" onMouseClicked="#clickUpload" ripplerFill="WHITE" style="-fx-background-color: #e60000;" text="Upload" textFill="WHITE" AnchorPane.bottomAnchor="36.0">
+      <JFXButton fx:id="UploadButton" buttonType="RAISED" layoutX="468.0" layoutY="459.0" onMouseClicked="#clickUpload" ripplerFill="WHITE" style="-fx-background-color: #d50000;" text="Upload" textFill="WHITE" AnchorPane.bottomAnchor="41.0">
          <font>
             <Font size="18.0" />
          </font></JFXButton>
-      <JFXButton fx:id="titleOkButton" layoutX="574.0" layoutY="121.0" onMouseClicked="#titleOk" text="Ok" AnchorPane.leftAnchor="574.0" />
-      <JFXButton fx:id="descriptionOkButton" layoutX="574.0" layoutY="174.0" onMouseClicked="#DescriptionOk" text="Ok" AnchorPane.leftAnchor="574.0" />
    </children>
 </AnchorPane>
