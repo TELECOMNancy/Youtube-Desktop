@@ -53,7 +53,7 @@ public class UploadController {
 
 
     @FXML
-    void clickUpload (){
+    void clickUpload () throws IOException {
         this.title=TitleField.getText();
         this.description=DescriptionField.getText();
         if (publicButton.isSelected()){
