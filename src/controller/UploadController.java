@@ -1,18 +1,19 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import model.UploadModel;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Created by M.ESCAMEZ on 14/12/2016.
@@ -27,6 +28,9 @@ public class UploadController {
     public void initUploadModel(UploadModel uploadModel){
         this.uploadModel=uploadModel;
     }
+
+    Stage popUpStage;
+    Parent popUpRoot;
 
     @FXML
     private JFXRadioButton publicButton;
@@ -51,6 +55,7 @@ public class UploadController {
     @FXML
     private JFXTextField DescriptionField;
 
+
     @FXML
     void titleOk(){
         this.title=TitleField.getText();
@@ -63,7 +68,9 @@ public class UploadController {
 
 
     @FXML
-    void clickUpload (){
+    void clickUpload () throws IOException {
+        this.title=TitleField.getText();
+        this.description=DescriptionField.getText();
         if (publicButton.isSelected()){
             this.status="public";
         } else if (privateButton.isSelected()) {
@@ -71,7 +78,17 @@ public class UploadController {
         } else if (unreferencedButton.isSelected()) {
             this.status="unlisted";
         }
-        uploadModel.getMainModel().getUploadModel().upload(title,path,description,status);
+
+
+        if(title==null || description==null || path==null){
+            FXMLLoader popUpLoader = new FXMLLoader(getClass().getResource("/view/PopUp.fxml"));
+            AnchorPane popUpView = popUpLoader.load();
+            PopUpController popUpController = popUpLoader.getController();
+            popUpController.initPopUp(popUpView);
+        }
+        else {
+            uploadModel.getMainModel().getUploadModel().upload(title,path,description,status);
+        }
     }
 
     @FXML
