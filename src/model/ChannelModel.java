@@ -148,7 +148,7 @@ public class ChannelModel {
             // Only retrieve data used in this application, thereby making
             // the application more efficient. See:
             // https://developers.google.com/youtube/v3/getting-started#partial
-            playlistItemRequest.setFields("items(contentDetails/videoId,snippet/title,snippet/publishedAt,snippet/thumbnails),nextPageToken,pageInfo");
+            playlistItemRequest.setFields("items(contentDetails/videoId,snippet/title,snippet/publishedAt,snippet/thumbnails,snippet/channelId,snippet/channelTitle),nextPageToken,pageInfo");
             String nextToken = "";
             // Call the API one or more times to retrieve all items in the
             // list. As long as the API response returns a nextPageToken,

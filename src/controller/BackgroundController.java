@@ -63,6 +63,7 @@ public class BackgroundController {
         backgroundView.autosize();
         PlayerViewController playerViewController = playerLoader.getController();
         PlayerModel playerModel =  new PlayerModel("_GuOjXYl5ew","YouTube Rewind: The Ultimate 2016 Challenge | #YouTubeRewind","YouTube Spotlight","UCBR8-60-B28hp2BmDPdntcQ",backgroundModel.getMainModel());
+        backgroundModel.getMainModel().setPlayerModel(playerModel);
         playerViewController.initPlayerModel(playerModel);
     }
 

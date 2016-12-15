@@ -96,7 +96,6 @@ public class ChannelController {
         final List<PlaylistItem> tempUploadsItemList = UploadsItemList;
         final Iterator iterator = tempUploadsItemList.iterator();
         for (int i=0; i<10;i++) {
-            System.out.println("Uploads :"+UploadsItemList);
             PlaylistItem UploadsItem = (PlaylistItem)iterator.next();
             ImageView image = new ImageView(channelModel.getMainModel().getVideoThumbnail(UploadsItem));
             JFXButton button = new JFXButton(UploadsItem.getSnippet().getTitle());
