@@ -22,9 +22,9 @@
             <AnchorPane fx:id="anchorPlayerVideo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="720.0" style="-fx-background-color: Black;" />
             <AnchorPane fx:id="anchorUnderPlayer" prefHeight="100.0" prefWidth="714.0" style="-fx-background-color: white;" GridPane.rowIndex="1">
                <children>
-                  <AnchorPane fx:id="anchorText" layoutX="8.0" layoutY="4.0" minWidth="-Infinity" prefHeight="211.0" prefWidth="832.0" style="-fx-background-color: #BDBDBD;" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="4.0">
+                  <AnchorPane fx:id="anchorText" layoutX="8.0" layoutY="4.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="70.0" prefWidth="832.0" style="-fx-background-color: #BDBDBD;" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="4.0">
                      <children>
-                        <Text fx:id="title" fontSmoothingType="LCD" layoutX="42.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tiltle" textAlignment="CENTER" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="21.86328125">
+                        <Text fx:id="title" fontSmoothingType="LCD" layoutX="42.0" layoutY="47.13671875" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" wrappingWidth="762.27734375" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="27.72265625" AnchorPane.topAnchor="22.0">
                            <font>
                               <Font name="System Medium" size="26.0" />
                            </font>

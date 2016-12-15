@@ -6,6 +6,8 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import model.*;
 
@@ -42,11 +44,23 @@ public class BackgroundController {
     @FXML
     private JFXButton uploadButton;
 
+    @FXML
+    private ImageView homeLogo;
+
+    @FXML
+    private ImageView profilLogo;
+
+    @FXML
+    private ImageView uploadLogo;
+
 
     public void initBackgroundController(BackgroundModel backgroundModel,AnchorPane backgroundView){
         this.backgroundModel=backgroundModel;
         this.backgroundModel.setLoadingSpinner(this.loadingSpinner);
         this.backgroundView=backgroundView;
+        this.homeLogo.setImage(new Image("/home.png"));
+        this.profilLogo.setImage(new Image("/profil.png"));
+        this.uploadLogo.setImage(new Image("/upload.png"));
     }
     @FXML
     void clickHome() throws IOException{
