@@ -173,7 +173,7 @@ public class BackgroundController {
         ChannelController channelController = channelLoader.getController();
         ChannelModel channelModel = new ChannelModel(backgroundModel.getMainModel());
         channelController.initMyChannelModel(channelModel);
-        
+
     }
 
 
