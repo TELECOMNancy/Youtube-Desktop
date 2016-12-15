@@ -34,6 +34,7 @@ public class MainModel {
     private PlayerModel playerModel;
     private BackgroundModel backgroundModel;
     private UploadModel uploadModel;
+    private ChannelModel channelModel;
     private Stage stage;
     public static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
     public static final JsonFactory JSON_FACTORY = new JacksonFactory();
