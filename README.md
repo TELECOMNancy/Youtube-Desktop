@@ -66,7 +66,7 @@ java -jar YoutubeDesktopV4.jar
 
 ## Day 5
 
-1. Résolution de bugs éventuelles
+1. Résolution de bugs éventuels
 2. Procédure de test générale
 3. Empaquetage finale de l'application
 4. Image de profil
