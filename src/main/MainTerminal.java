@@ -6,7 +6,6 @@ import model.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -62,6 +61,7 @@ public class MainTerminal {
                 System.out.println(" Video Id" + rId.getVideoId());
                 System.out.println(" Title: " + singleVideo.getSnippet().getTitle());
                 System.out.println(" Thumbnail: " + thumbnail.getUrl());
+                System.out.println("channel title = "+singleVideo.getSnippet().getChannelTitle());
                 System.out.println("\n-------------------------------------------------------------\n");
             }
         }
@@ -124,6 +124,8 @@ public class MainTerminal {
                     System.out.println("    Video title : " + model.getVideoTitle(searchResultList.get(Integer.parseInt(selectVideo)))+"\n");
                     System.out.println("    Video id : " + model.getVideoID(searchResultList.get(Integer.parseInt(selectVideo)))+"\n");
                     System.out.println("    Video thumbnail URL : " + model.getVideoThumbnail(searchResultList.get(Integer.parseInt(selectVideo)))+"\n");
+                    //System.out.println("    Channel id : " + model.getChannelId(searchResultList.get(Integer.parseInt(selectVideo)))+"\n");
+                    //System.out.println("    Channel title : " + model.getChannelTitle(searchResultList.get(Integer.parseInt(selectVideo)))+"\n");
                     menuQuery="0";
                     break;
 

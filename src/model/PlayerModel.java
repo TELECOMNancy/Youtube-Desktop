@@ -1,19 +1,12 @@
 package model;
 
-import com.google.api.client.auth.oauth2.Credential;
-import com.google.api.services.youtube.YouTube;
+import com.google.api.client.repackaged.com.google.common.base.Strings;
 import com.google.api.services.youtube.model.PlaylistItem;
 import com.google.api.services.youtube.model.SearchResult;
-import com.google.api.services.youtube.model.Video;
-import com.google.common.collect.Lists;
 import controller.PlayerViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
-import main.Main;
 import view.Player;
-
-import java.awt.*;
 import java.io.IOException;
 import java.util.*;
 
@@ -22,20 +15,29 @@ import java.util.*;
  */
 public class PlayerModel {
     private String title;
+    private String channelTitle;
+    private String channelId;
     private Player player;
     private MainModel mainModel;
     private static YouTube youtube;
 
+
     public PlayerModel(SearchResult video, MainModel mainModel){
         this.mainModel=mainModel;
         this.title= ""+mainModel.getVideoTitle(video);
+        this.channelTitle=mainModel.getChannelTitle(video);
+        this.channelId=mainModel.getChannelId(video);
         this.player=new Player(mainModel.getVideoID(video));
+
+
     }
 
     public PlayerModel(PlaylistItem video, MainModel mainModel){
         this.mainModel=mainModel;
         this.title= ""+mainModel.getVideoTitle(video);
         this.player=new Player(mainModel.getVideoID(video));
+        this.channelTitle=video.getSnippet().getChannelTitle();
+        this.channelId=video.getSnippet().getChannelId();
     }
 
     public PlayerModel(String videoId, String videoTitle, MainModel mainModel){
@@ -51,10 +53,12 @@ public class PlayerModel {
     public MainModel getMainModel(){
         return this.mainModel;
     }
+    public String getChannelTitle(){return channelTitle;}
+    public String getChannelId() {return channelId;}
 
 
     public void initPlayer() throws IOException {
-        
+
 
         mainModel.setPlayerModel(this);
         AnchorPane background= this.getMainModel().getBackgroundModel().getBackground();

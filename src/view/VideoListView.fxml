@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<?import java.net.URL?>
-<ScrollPane prefHeight="2000" prefWidth="445.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VideoListController">
+<ScrollPane prefHeight="2191.0" prefWidth="445.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.VideoListController">
    <content>
-      <AnchorPane prefHeight="807.0" prefWidth="424.0">
+      <AnchorPane prefHeight="2201.0" prefWidth="424.0">
          <children>
-            <VBox fx:id="mainVBox" prefHeight="600.0" prefWidth="314.0" spacing="10.0" AnchorPane.bottomAnchor="-145.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox fx:id="mainVBox" prefHeight="2194.0" prefWidth="424.0" spacing="10.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
             </VBox>
          </children>

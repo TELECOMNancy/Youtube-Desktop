@@ -10,7 +10,6 @@ import com.google.api.services.youtube.model.Video;
 import com.google.api.services.youtube.model.VideoSnippet;
 import com.google.api.services.youtube.model.VideoStatus;
 import com.google.common.collect.Lists;
-import main.Main;
 
 import java.io.FileInputStream;
 import java.io.IOException;

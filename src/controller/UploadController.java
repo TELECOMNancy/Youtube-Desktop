@@ -1,18 +1,19 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import model.UploadModel;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Created by M.ESCAMEZ on 14/12/2016.
@@ -28,6 +29,9 @@ public class UploadController {
         this.uploadModel=uploadModel;
     }
 
+    Stage popUpStage;
+    Parent popUpRoot;
+
     @FXML
     private JFXRadioButton publicButton;
     @FXML
@@ -39,10 +43,6 @@ public class UploadController {
     @FXML
     private JFXButton UploadButton;
     @FXML
-    private JFXButton titleOkButton;
-    @FXML
-    private JFXButton descriptionOkButton;
-    @FXML
     private Text pathText;
     @FXML
     private Text TitleText;
@@ -51,19 +51,11 @@ public class UploadController {
     @FXML
     private JFXTextField DescriptionField;
 
+
     @FXML
-    void titleOk(){
+    void clickUpload () throws IOException {
         this.title=TitleField.getText();
-    }
-
-    @FXML
-    void DescriptionOk(){
         this.description=DescriptionField.getText();
-    }
-
-
-    @FXML
-    void clickUpload (){
         if (publicButton.isSelected()){
             this.status="public";
         } else if (privateButton.isSelected()) {
@@ -71,14 +63,24 @@ public class UploadController {
         } else if (unreferencedButton.isSelected()) {
             this.status="unlisted";
         }
-        uploadModel.getMainModel().getUploadModel().upload(title,path,description,status);
+
+
+        if(title==null || description==null || path==null){
+            FXMLLoader popUpLoader = new FXMLLoader(getClass().getResource("/view/PopUp.fxml"));
+            AnchorPane popUpView = popUpLoader.load();
+            PopUpController popUpController = popUpLoader.getController();
+            popUpController.initPopUp(popUpView);
+        }
+        else {
+            uploadModel.getMainModel().getUploadModel().upload(title,path,description,status);
+        }
     }
 
     @FXML
     void clickBrowse(){
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Choose a video");
-        chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Video Files","mpeg","mp4", "quicktime", "x-ms-wmv", "x-msvideo", "x-flv, webm"), new FileChooser.ExtensionFilter("All Files", "*.*"));
+        chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Video Files","*.mpeg4","*.mp4", "*.mov", "*.avi", "*.wmv", "*.mpegps", "*.flv", "*.3gp", "*.webm"), new FileChooser.ExtensionFilter("All Files", "*.*"));
         File file = chooser.showOpenDialog(uploadModel.getMainModel().getStage());
         this.path=file.getPath();
         pathText.setText(this.path);

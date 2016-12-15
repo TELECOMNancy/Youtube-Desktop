@@ -2,7 +2,6 @@ package model;
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
-import com.google.api.client.googleapis.media.MediaHttpUploader;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.client.http.InputStreamContent;
@@ -17,7 +16,7 @@ import java.nio.file.*;
 import java.util.Properties;
 import com.google.common.collect.Lists;
 import javafx.stage.Stage;
-
+import org.apache.commons.io.FileUtils;
 import java.util.List;
 
 /**
@@ -116,19 +115,25 @@ public class MainModel extends Model{
         return credential;
     }
 
-    public void signOut() {
+
+
+    public boolean signOut() {
+        boolean signedOut = false;
+
 
         try {
-            Files.delete(Paths.get("/Users/madmax/.oauth-credentials/myprofile"));
-        } catch (NoSuchFileException x) {
-            System.err.format("%s: no such" + " file or directory%n", Paths.get("/Users/madmax/.oauth-credentials"));
-        } catch (DirectoryNotEmptyException x) {
-            System.err.format("%s not empty%n", Paths.get("/Users/madmax/.oauth-credentials"));
-        } catch (IOException x) {
-            // File permission problems are caught here.
-            System.err.println(x);
+            FileUtils.deleteDirectory(new File(System.getProperty("user.home") + "/" + ".oauth-credentials"));
+            signedOut = true;
+
         }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        return signedOut;
     }
+
 
     public List<SearchResult> search(long count, String query) {
 
@@ -188,7 +193,7 @@ public class MainModel extends Model{
 
             // To increase efficiency, only retrieve the fields that the
             // application uses.
-            search.setFields("items(id/kind,id/videoId,snippet/title,snippet/thumbnails/default/url)");
+            search.setFields("items(id/kind,id/videoId,snippet/title,snippet/thumbnails/default/url,snippet/channelId,snippet/channelTitle)");
             search.setMaxResults(NUMBER_OF_VIDEOS_RETURNED);
 
             // Call the API and print results.
