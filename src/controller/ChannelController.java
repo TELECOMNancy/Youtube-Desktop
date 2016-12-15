@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -48,8 +49,9 @@ public class ChannelController {
 
 
 
+
     @FXML
-    protected void clickUpload() throws IOException {
+    public void clickUpload() throws IOException {
         channelModel.getMainModel().getBackgroundModel().getBackground().getChildren().remove(channelModel.getMainModel().getBackgroundModel().getMainChildren());
         FXMLLoader uploadLoader = new FXMLLoader(getClass().getResource("/view/UploadView.fxml"));
         AnchorPane uploadView = uploadLoader.load();
@@ -81,7 +83,7 @@ public class ChannelController {
         //while(tempMyUploadsItemList.iterator().hasNext()) {
         for (int i=0; i<myUploadsItemList.size();i++) {
             PlaylistItem myUploadsItem = (PlaylistItem)iterator.next();
-            //ImageView image = new ImageView(channelModel.getMainModel().getVideoThumbnail(myUploadsItem));
+            ImageView image = new ImageView(channelModel.getMainModel().getVideoThumbnail(myUploadsItem));
             JFXButton button = new JFXButton(myUploadsItem.getSnippet().getTitle());
             button.setOnAction(new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent event) {
@@ -100,7 +102,7 @@ public class ChannelController {
                 }
             });
             uploadListButton.add(button);
-            myUploadsVBox.getChildren().add(new HBox(/*image,*/ button));
+            myUploadsVBox.getChildren().add(new HBox(image, button));
         }
 
         //AnchorUpload.getChildren().add(myUploadsVBox);

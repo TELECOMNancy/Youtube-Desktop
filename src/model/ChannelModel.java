@@ -92,7 +92,7 @@ public class ChannelModel extends Model {
                 // the application more efficient. See:
                 // https://developers.google.com/youtube/v3/getting-started#partial
                 playlistItemRequest.setFields(
-                        "items(contentDetails/videoId,snippet/title,snippet/publishedAt),nextPageToken,pageInfo");
+                        "items(contentDetails/videoId,snippet/title,snippet/publishedAt,snippet/thumbnails),nextPageToken,pageInfo");
 
                 String nextToken = "";
 
