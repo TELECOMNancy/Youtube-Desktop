@@ -72,7 +72,9 @@ public class UploadController {
             popUpController.initPopUp(popUpView);
         }
         else {
+
             uploadModel.getMainModel().getUploadModel().upload(title,path,description,status);
+
         }
     }
 
