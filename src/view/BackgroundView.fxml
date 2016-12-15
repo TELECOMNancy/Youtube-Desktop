@@ -11,13 +11,14 @@
    <children>
       <AnchorPane layoutX="32.0" layoutY="26.0" prefHeight="389.0" prefWidth="106.0" style="-fx-background-color: #d50000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXButton fx:id="profileButton" buttonType="RAISED" disable="true" layoutX="22.0" layoutY="79.0" onMouseClicked="#switchToProfile" text="Profile" textFill="WHITE" visible="false" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="65.0" />
-            <JFXButton fx:id="homeButton" buttonType="RAISED" layoutX="14.0" layoutY="26.0" onMouseClicked="#clickHome" ripplerFill="WHITE" text="Home" textFill="WHITE" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="26.0" />
+            <JFXButton fx:id="profileButton" buttonType="RAISED" disable="true" layoutX="22.0" layoutY="79.0" onMouseClicked="#switchToProfile" text="Profile" textFill="WHITE" visible="false" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="65.0" />
+            <JFXButton fx:id="homeButton" buttonType="RAISED" layoutX="14.0" layoutY="26.0" onMouseClicked="#clickHome" ripplerFill="WHITE" text="Home" textFill="WHITE" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="26.0" />
             <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="23.0" layoutY="315.0" pickOnBounds="true">
                <image>
                   <Image url="@../../../../../Pictures/meme_material/1018337-_1.jpg" />
                </image>
             </ImageView>
+            <JFXButton fx:id="uploadButton" disable="true" layoutX="16.0" layoutY="107.0" onMouseClicked="#clickUpload" text="Upload" textFill="WHITE" visible="false" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="100.0" />
          </children>
       </AnchorPane>
       <JFXTextField fx:id="searchField" focusColor="#f44336" layoutX="203.0" layoutY="15.0" onMouseClicked="#keySearch" AnchorPane.topAnchor="15.0" />
