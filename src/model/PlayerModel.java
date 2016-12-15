@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import view.Player;
 import java.io.IOException;
+import java.util.*;
 
 /**
  * Created by quentin on 13/12/2016.
@@ -18,6 +19,7 @@ public class PlayerModel {
     private String channelId;
     private Player player;
     private MainModel mainModel;
+
 
 
     public PlayerModel(SearchResult video, MainModel mainModel){
@@ -56,6 +58,8 @@ public class PlayerModel {
 
 
     public void initPlayer() throws IOException {
+
+
         mainModel.setPlayerModel(this);
         AnchorPane background= this.getMainModel().getBackgroundModel().getBackground();
         FXMLLoader playerLoader = new FXMLLoader(getClass().getResource("/view/PlayerView.fxml"));

@@ -4,12 +4,15 @@ import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
+import com.google.api.client.http.InputStreamContent;
+import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.*;
 import java.util.Properties;
 import com.google.common.collect.Lists;
 import javafx.stage.Stage;
@@ -29,20 +32,14 @@ public class MainModel {
     private UploadModel uploadModel;
     private Stage stage;
 
-
-
-
-
     private static YouTube youtube;
     private static final String VIDEO_FILE_FORMAT = "video/*";
     private static final String SAMPLE_VIDEO_FILENAME = "sample-video.mp4";
     private static final String PROPERTIES_FILENAME = "youtube.properties";
+    private static final String CREDENTIALS_DIRECTORY = ".oauth-credentials";
+    boolean signInOk=false;
+    Credential credential;
 
-
-
-    /*public void initialize(String query){
-        this.result = this.search(5,query).get(1);
-    }*/
 
     public void initStage(Stage stage){
         this.stage=stage;
@@ -76,18 +73,6 @@ public class MainModel {
         return this.backgroundModel;
     }
 
-    //Used for UploadView
-
-    public void setVideoTitle(VideoSnippet snippet, String videoName){
-
-        snippet.setDescription(videoName);
-    }  //WOP
-    public void setVideoThumbnail(VideoSnippet snippet, String img){
-
-        //snippet.setDescription(img);
-    } //WOP
-
-
 
     public String getVideoTitle(PlaylistItem video) {
 
@@ -105,48 +90,45 @@ public class MainModel {
 
     //returns true after sucessfully signing in, used for mainView
 
-    public boolean signIn(){
+    public void signIn(){
 
-        boolean signedIn=false;
+        List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.upload","https://www.googleapis.com/auth/youtube.readonly","https://www.googleapis.com/auth/userinfo.profile");
 
-        List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.upload");
+            try {
 
-        try {
-
-            Credential credential = Auth.authorize(scopes, "myprofile");
-            signedIn=true;
+                credential = Auth.authorize(scopes, "myprofile");
 
 
-        } catch (GoogleJsonResponseException e) {
 
-            e.printStackTrace();
-            System.err.println("There was a service error: " + e.getDetails().getCode() + " : "
-                    + e.getDetails().getMessage());
+            } catch (GoogleJsonResponseException e) {
 
-        } catch (Throwable t) {
+                e.printStackTrace();
+                System.err.println("There was a service error: " + e.getDetails().getCode() + " : "
+                        + e.getDetails().getMessage());
 
-            t.printStackTrace();
+            } catch (Throwable t) {
 
+                t.printStackTrace();
+
+            }
         }
-        return signedIn;
-    }
 
 
-    public boolean signOut() {
-        boolean signedOut = false;
+
+
+
+    public void signOut() {
 
 
         try {
             FileUtils.deleteDirectory(new File(System.getProperty("user.home") + "/" + ".oauth-credentials"));
-            signedOut = true;
+
 
         }
         catch (IOException e) {
             e.printStackTrace();
         }
 
-
-        return signedOut;
     }
 
 

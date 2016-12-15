@@ -104,13 +104,31 @@ public class BackgroundController {
     }
 
     @FXML
-    void switchToUnlogged() {
+    void switchToUnlogged() throws IOException{
+        backgroundModel.getMainModel().signOut();
         signOutButton.setDisable(true);
         signOutButton.setVisible(false);
         profileButton.setDisable(true);
         profileButton.setVisible(false);
         signInButton.setDisable(false);
         signInButton.setVisible(true);
+
+        backgroundModel.getMainModel().getPlayerModel().getPlayer().getVideoPlayer().getEngine().load(null);
+        backgroundView.getChildren().remove(backgroundModel.getMainChildren());
+        FXMLLoader playerLoader = new FXMLLoader(getClass().getResource("/view/PlayerView.fxml"));
+        AnchorPane player = playerLoader.load();
+        backgroundView.getChildren().add(player);
+        backgroundModel.setMainChildren(player);
+        backgroundView.setBottomAnchor(player,30.0);
+        backgroundView.setTopAnchor(player,150.0);
+        backgroundView.setLeftAnchor(player,300.0);
+        backgroundView.setRightAnchor(player,50.0);
+        backgroundView.autosize();
+        PlayerViewController playerViewController = playerLoader.getController();
+        PlayerModel playerModel = new PlayerModel("_GuOjXYl5ew","Youtube Rewind 2016",backgroundModel.getMainModel());
+        playerViewController.initPlayerModel(playerModel);
+
+
     }
 
 
