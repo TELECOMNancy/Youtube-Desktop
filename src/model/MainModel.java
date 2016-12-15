@@ -90,14 +90,14 @@ public class MainModel {
 
     //returns true after sucessfully signing in, used for mainView
 
-    public Credential signIn(){
+    public void signIn(){
 
         List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.upload","https://www.googleapis.com/auth/youtube.readonly","https://www.googleapis.com/auth/userinfo.profile");
-        if(signInOk==false) {
+
             try {
 
                 credential = Auth.authorize(scopes, "myprofile");
-                signInOk = true;
+
 
 
             } catch (GoogleJsonResponseException e) {
@@ -112,26 +112,23 @@ public class MainModel {
 
             }
         }
-        return credential;
-    }
 
 
 
-    public boolean signOut() {
-        boolean signedOut = false;
+
+
+    public void signOut() {
 
 
         try {
             FileUtils.deleteDirectory(new File(System.getProperty("user.home") + "/" + ".oauth-credentials"));
-            signedOut = true;
+
 
         }
         catch (IOException e) {
             e.printStackTrace();
         }
 
-
-        return signedOut;
     }
 
 

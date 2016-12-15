@@ -19,7 +19,7 @@ public class PlayerModel {
     private String channelId;
     private Player player;
     private MainModel mainModel;
-    private static YouTube youtube;
+
 
 
     public PlayerModel(SearchResult video, MainModel mainModel){
