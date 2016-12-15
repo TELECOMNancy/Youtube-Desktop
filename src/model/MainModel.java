@@ -31,6 +31,7 @@ public class MainModel {
     private VideoListModel videoListModel;
     private UploadModel uploadModel;
     private Stage stage;
+    private ChannelModel channelModel;
 
     private static YouTube youtube;
     private static final String VIDEO_FILE_FORMAT = "video/*";
@@ -71,6 +72,14 @@ public class MainModel {
 
     public BackgroundModel getBackgroundModel(){
         return this.backgroundModel;
+    }
+
+    public void setChannelModel(ChannelModel channelModel){
+        this.channelModel=channelModel;
+    }
+
+    public ChannelModel getChannelModel(){
+        return this.channelModel;
     }
 
 
