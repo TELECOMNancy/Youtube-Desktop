@@ -23,13 +23,6 @@ public class BackgroundController {
     private BackgroundModel backgroundModel;
     private AnchorPane backgroundView;
 
-
-    public void initBackgroundController(BackgroundModel backgroundModel,AnchorPane backgroundView){
-        this.backgroundModel=backgroundModel;
-        this.backgroundModel.setLoadingSpinner(this.loadingSpinner);
-        this.backgroundView=backgroundView;
-    }
-
     @FXML
     private JFXSpinner loadingSpinner;
 
@@ -55,9 +48,9 @@ public class BackgroundController {
 
     public void initBackgroundController(BackgroundModel backgroundModel,AnchorPane backgroundView){
         this.backgroundModel=backgroundModel;
+        this.backgroundModel.setLoadingSpinner(this.loadingSpinner);
         this.backgroundView=backgroundView;
     }
-
     @FXML
     void clickHome() throws IOException{
 
