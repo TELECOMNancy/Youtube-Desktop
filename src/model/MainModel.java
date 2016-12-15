@@ -35,6 +35,7 @@ public class MainModel {
     private BackgroundModel backgroundModel;
     private UploadModel uploadModel;
     private Stage stage;
+    private ChannelModel channelModel;
     public static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
     public static final JsonFactory JSON_FACTORY = new JacksonFactory();
     private static final String CREDENTIALS_DIRECTORY = ".oauth-credentials";
