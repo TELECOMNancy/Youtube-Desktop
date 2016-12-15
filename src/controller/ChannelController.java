@@ -113,11 +113,35 @@ public class ChannelController {
         //prettyPrint(playlistItemList.size(), playlistItemList.iterator());
     }
 
-    public void initChannelModel(ChannelModel channelModel){
+    public void initChannelModel(final ChannelModel channelModel) throws IOException {
         this.channelModel=channelModel;
-        final List<PlaylistItem> myUploadsItemList = channelModel.channelUploads(channelModel.getMainModel().getPlayerModel().getChannelId());
-        final List<PlaylistItem> tempMyUploadsItemList = myUploadsItemList;
-        final Iterator iterator = tempMyUploadsItemList.iterator();
+        final List<PlaylistItem> UploadsItemList = channelModel.channelUploads(channelModel.getMainModel().getPlayerModel().getChannelId());
+        final List<PlaylistItem> tempUploadsItemList = UploadsItemList;
+        final Iterator iterator = tempUploadsItemList.iterator();
+        for (int i=0; i<10;i++) {
+            System.out.println("Uploads :"+UploadsItemList);
+            PlaylistItem UploadsItem = (PlaylistItem)iterator.next();
+            ImageView image = new ImageView(channelModel.getMainModel().getVideoThumbnail(UploadsItem));
+            JFXButton button = new JFXButton(UploadsItem.getSnippet().getTitle());
+            button.setOnAction(new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent event) {
+                    for (int j=0; j<10; j++) {
+                        if (event.getSource().equals(uploadListButton.get(j))) {
+                            try {
+                                PlayerModel playerModel = new PlayerModel(tempUploadsItemList.get(j),channelModel.getMainModel());
+                                playerModel.initPlayer();
+
+                            }
+                            catch (IOException e){
+
+                            }
+                        }
+                    }
+                }
+            });
+            uploadListButton.add(button);
+            myUploadsVBox.getChildren().add(new HBox(image, button));
+        }
     }
 
 
