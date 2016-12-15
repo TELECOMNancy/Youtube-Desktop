@@ -34,6 +34,7 @@ public class MainModel {
     private PlayerModel playerModel;
     private BackgroundModel backgroundModel;
     private UploadModel uploadModel;
+    private ChannelModel channelModel;
     private Stage stage;
     private ChannelModel channelModel;
     public static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
