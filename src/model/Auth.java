@@ -67,6 +67,8 @@ public class Auth {
         FileDataStoreFactory fileDataStoreFactory = new FileDataStoreFactory(new File(System.getProperty("user.home") + "/" + CREDENTIALS_DIRECTORY));
         DataStore<StoredCredential> datastore = fileDataStoreFactory.getDataStore(credentialDatastore);
 
+
+
         GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
                 HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, scopes).setCredentialDataStore(datastore)
                 .build();
@@ -79,7 +81,7 @@ public class Auth {
 
         //String redirectUri = localReceiver.getRedirectUri();
 
-
+        //System.out.println("credential(token ? ) : "+datastore.get(credentialDatastore).getAccessToken());
         // Authorize.
         return new AuthorizationCodeInstalledApp(flow, localReceiver).authorize("user");
     }

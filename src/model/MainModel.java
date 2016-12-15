@@ -1,10 +1,14 @@
 package model;
 
+import com.google.api.client.auth.oauth.OAuthGetAccessToken;
 import com.google.api.client.auth.oauth2.Credential;
+import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.client.http.InputStreamContent;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.*;
@@ -12,6 +16,7 @@ import com.google.api.services.youtube.model.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.nio.file.*;
 import java.util.Properties;
 import com.google.common.collect.Lists;
@@ -37,37 +42,42 @@ public class MainModel {
     private static final String SAMPLE_VIDEO_FILENAME = "sample-video.mp4";
     private static final String PROPERTIES_FILENAME = "youtube.properties";
     private static final String CREDENTIALS_DIRECTORY = ".oauth-credentials";
-    boolean signInOk=false;
-    Credential credential;
 
 
     public void initStage(Stage stage){
         this.stage=stage;
     }
 
+
     public Stage getStage(){
         return stage;
     }
+
 
     public void setPlayerModel(PlayerModel playerModel){
         this.playerModel=playerModel;
     }
 
+
     public PlayerModel getPlayerModel(){
         return this.playerModel;
     }
+
 
     public void setBackgroundModel(BackgroundModel backgroundModel){
         this.backgroundModel=backgroundModel;
     }
 
+
     public UploadModel getUploadModel(){
         return this.uploadModel;
     }
 
+
     public void setUploadModel(UploadModel uploadModel) {
         this.uploadModel=uploadModel;
     }
+
 
     public BackgroundModel getBackgroundModel(){
         return this.backgroundModel;
@@ -78,27 +88,27 @@ public class MainModel {
 
         return video.getSnippet().getTitle();
     }
+
+
     public String getVideoID(PlaylistItem video){
         String rId = video.getContentDetails().getVideoId();
         return rId;
     }
+
+
     public String getVideoThumbnail(PlaylistItem video){
         Thumbnail thumbnail = video.getSnippet().getThumbnails().getDefault();
         return thumbnail.getUrl();
     }
 
 
-    //returns true after sucessfully signing in, used for mainView
-
     public void signIn(){
 
-        List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.upload","https://www.googleapis.com/auth/youtube.readonly","https://www.googleapis.com/auth/userinfo.profile");
+        List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.upload","https://www.googleapis.com/auth/youtube.readonly","profile");
 
             try {
 
-                credential = Auth.authorize(scopes, "myprofile");
-
-
+               Credential credential = Auth.authorize(scopes, "myprofile");
 
             } catch (GoogleJsonResponseException e) {
 
@@ -112,9 +122,6 @@ public class MainModel {
 
             }
         }
-
-
-
 
 
     public void signOut() {
@@ -215,24 +222,27 @@ public class MainModel {
     }
 
 
-
     public String getVideoTitle(SearchResult video) {
 
         return video.getSnippet().getTitle();
     }
 
+
     public String getChannelId(SearchResult video){
         return video.getSnippet().getChannelId();
     }
+
 
     public String getChannelTitle(SearchResult video){
         return video.getSnippet().getChannelTitle();
     }
 
+
     public String getVideoID(SearchResult video){
         String rId = video.getId().getVideoId();
         return rId;
     }
+
 
     public String getVideoThumbnail(SearchResult video){
         Thumbnail thumbnail = video.getSnippet().getThumbnails().getDefault();
@@ -240,6 +250,20 @@ public class MainModel {
     }
 
 
+    /*public Userinfoplus getProfilePicture(String accessToken) throws IOException{
+
+        GoogleCredential credential = new GoogleCredential().setAccessToken(accessToken);
+        Oauth2 oauth2 = new Oauth2.Builder(new NetHttpTransport(), new JacksonFactory(), credential).setApplicationName(
+                "Oauth2").build();
+        Userinfoplus userinfo = oauth2.userinfo().get().execute();
+        return userinfo;
+    }*/
+
+
+  /*  public String getProfileName(){
+
+        return;
+    }*/
 
 
 }
