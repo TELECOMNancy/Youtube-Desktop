@@ -2,8 +2,6 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
-import javafx.concurrent.Service;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
@@ -49,6 +47,7 @@ public class BackgroundController {
 
     @FXML
     void clickHome() throws IOException{
+
         backgroundModel.getMainModel().getPlayerModel().getPlayer().getVideoPlayer().getEngine().load(null);
         backgroundView.getChildren().remove(backgroundModel.getMainChildren());
         FXMLLoader playerLoader = new FXMLLoader(getClass().getResource("/view/PlayerView.fxml"));
@@ -96,28 +95,13 @@ public class BackgroundController {
 
     @FXML
     void switchToLogged(){
-
-        Service<Void> switchToLoggedService = new Service<Void>(){
-
-            @Override
-            protected Task<Void> createTask() {
-                return new Task<Void>(){
-
-                    @Override
-                    protected Void call() throws Exception {
-                        backgroundModel.getMainModel().signIn();
-                        signInButton.setDisable(true);
-                        signInButton.setVisible(false);
-                        profileButton.setDisable(false);
-                        profileButton.setVisible(true);
-                        signOutButton.setDisable(false);
-                        signOutButton.setVisible(true);
-                        return null;
-                    }
-                };
-            }
-        };
-        switchToLoggedService.start();
+        backgroundModel.getMainModel().signIn();
+        signInButton.setDisable(true);
+        signInButton.setVisible(false);
+        profileButton.setDisable(false);
+        profileButton.setVisible(true);
+        signOutButton.setDisable(false);
+        signOutButton.setVisible(true);
 
     }
 
@@ -153,21 +137,7 @@ public class BackgroundController {
     @FXML
     void switchToProfile() throws IOException {
 
-        Service<Void> fileSaveService = new Service<Void>(){
 
-            @Override
-            protected Task<Void> createTask() {
-                return new Task<Void>(){
-
-                    @Override
-                    protected Void call() throws Exception {
-
-                        return null;
-                    }
-                };
-            }
-        };
-        fileSaveService.start();
 
         backgroundModel.getMainModel().getPlayerModel().getPlayer().getVideoPlayer().getEngine().load(null);
         backgroundView.getChildren().remove(backgroundModel.getMainChildren());
