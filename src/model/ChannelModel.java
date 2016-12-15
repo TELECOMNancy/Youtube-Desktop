@@ -68,9 +68,9 @@ public class ChannelModel {
             // this use case. The channel's contentDetails part contains
             // playlist IDs relevant to the channel, including the ID for the
             // list that contains videos uploaded to the channel.
-            YouTube.Channels.List channelRequest = youtube.channels().list("contentDetails");
+            YouTube.Channels.List channelRequest = youtube.channels().list("contentDetails,snippet");
             channelRequest.setMine(true);
-            channelRequest.setFields("items/contentDetails,nextPageToken,pageInfo");
+            channelRequest.setFields("items/contentDetails,items/snippet/title,items/snippet/thumbnails,nextPageToken,pageInfo ");
             ChannelListResponse channelResult = channelRequest.execute();
 
             List<Channel> channelsList = channelResult.getItems();
@@ -79,10 +79,10 @@ public class ChannelModel {
                 // The user's default channel is the first item in the list.
                 // Extract the playlist ID for the channel's videos from the
                 // API response.
-                String uploadPlaylistId =
-                        channelsList.get(0).getContentDetails().getRelatedPlaylists().getUploads();
-
-
+                String uploadPlaylistId = channelsList.get(0).getContentDetails().getRelatedPlaylists().getUploads();
+                //System.out.println(""+channelsList.get(0).getSnippet());
+                this.channelTitle = channelsList.get(0).getSnippet().getTitle();
+                this.channelThumbnail = channelsList.get(0).getSnippet().getThumbnails().getHigh().getUrl();
 
 
                 // Retrieve the playlist of the channel's uploaded videos.

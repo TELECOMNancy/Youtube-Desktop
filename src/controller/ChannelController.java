@@ -56,13 +56,8 @@ public class ChannelController {
         final List<PlaylistItem> myUploadsItemList = channelModel.myUploads();
         final List<PlaylistItem> tempMyUploadsItemList = myUploadsItemList;
         final Iterator iterator = tempMyUploadsItemList.iterator();
-        /*AnchorUpload.getChildren().add(model.getUpload());
-        VideoListController uploadListController = uploadListLoader.getController();
-        VideoListModel uploadListModel = new VideoListModel(this.model);
-        //uploadListController.initVideoListModel(uploadListModel, AnchorUpload);*/
-        //this.videoListModel = videoListModel;
-        //final VideoListModel uploadListModel = this.videoListModel;
-        //while(tempMyUploadsItemList.iterator().hasNext()) {
+        channelTitle.setText(channelModel.getChannelTitle());
+        channelThumbnail.setImage(new ImageView(channelModel.getChannelThumbnail()).getImage());
         for (int i=0; i<myUploadsItemList.size();i++) {
             PlaylistItem myUploadsItem = (PlaylistItem)iterator.next();
             ImageView image = new ImageView(channelModel.getMainModel().getVideoThumbnail(myUploadsItem));
@@ -103,7 +98,6 @@ public class ChannelController {
         final Iterator iterator = tempUploadsItemList.iterator();
         channelTitle.setText(channelModel.getChannelTitle());
         channelThumbnail.setImage(new ImageView(channelModel.getChannelThumbnail()).getImage());
-        this.channelThumbnail = new ImageView(channelModel.getChannelThumbnail());
         for (int i=0; i<20;i++) {
             PlaylistItem UploadsItem = (PlaylistItem)iterator.next();
             ImageView image = new ImageView(channelModel.getMainModel().getVideoThumbnail(UploadsItem));
