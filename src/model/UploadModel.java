@@ -4,6 +4,7 @@ import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.googleapis.media.MediaHttpUploader;
 import com.google.api.client.http.InputStreamContent;
+import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.Video;
 import com.google.api.services.youtube.model.VideoSnippet;
@@ -45,13 +46,15 @@ public class UploadModel {
 
         try {
 
-            List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.upload");
 
-            // Authorize the request.
+            List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.upload","https://www.googleapis.com/auth/youtube.readonly","https://www.googleapis.com/auth/userinfo.profile");
             Credential credential = Auth.authorize(scopes, "myprofile");
 
+           // FileDataStoreFactory.load(String userId, Credential credential);
             youtube = new YouTube.Builder(Auth.HTTP_TRANSPORT, Auth.JSON_FACTORY, credential).setApplicationName(
                         "youtube-uploadvideo").build();
+
+
 
 
             // step1: Add extra information to the video before uploading.

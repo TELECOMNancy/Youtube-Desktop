@@ -38,12 +38,9 @@ public class MainModel extends Model{
     private static final String SAMPLE_VIDEO_FILENAME = "sample-video.mp4";
     private static final String PROPERTIES_FILENAME = "youtube.properties";
     private static final String CREDENTIALS_DIRECTORY = ".oauth-credentials";
+    boolean signInOk=false;
+    Credential credential;
 
-
-
-    /*public void initialize(String query){
-        this.result = this.search(5,query).get(1);
-    }*/
 
     public void initStage(Stage stage){
         this.stage=stage;
@@ -77,18 +74,6 @@ public class MainModel extends Model{
         return this.backgroundModel;
     }
 
-    //Used for UploadView
-
-    public void setVideoTitle(VideoSnippet snippet, String videoName){
-
-        snippet.setDescription(videoName);
-    }  //WOP
-    public void setVideoThumbnail(VideoSnippet snippet, String img){
-
-        //snippet.setDescription(img);
-    } //WOP
-
-
 
     public String getVideoTitle(PlaylistItem video) {
 
@@ -106,36 +91,35 @@ public class MainModel extends Model{
 
     //returns true after sucessfully signing in, used for mainView
 
-    public boolean signIn(){
+    public Credential signIn(){
 
-        boolean signedIn=false;
+        List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.upload","https://www.googleapis.com/auth/youtube.readonly","https://www.googleapis.com/auth/userinfo.profile");
+        if(signInOk==false) {
+            try {
 
-        List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.upload");
-
-        try {
-
-            Credential credential = Auth.authorize(scopes, "myprofile");
-            signedIn=true;
+                credential = Auth.authorize(scopes, "myprofile");
+                signInOk = true;
 
 
-        } catch (GoogleJsonResponseException e) {
+            } catch (GoogleJsonResponseException e) {
 
-            e.printStackTrace();
-            System.err.println("There was a service error: " + e.getDetails().getCode() + " : "
-                    + e.getDetails().getMessage());
+                e.printStackTrace();
+                System.err.println("There was a service error: " + e.getDetails().getCode() + " : "
+                        + e.getDetails().getMessage());
 
-        } catch (Throwable t) {
+            } catch (Throwable t) {
 
-            t.printStackTrace();
+                t.printStackTrace();
 
+            }
         }
-        return signedIn;
+        return credential;
     }
 
     public void signOut() {
 
         try {
-            Files.delete(Paths.get("/Users/madmax/.oauth-credentials"));
+            Files.delete(Paths.get("/Users/madmax/.oauth-credentials/myprofile"));
         } catch (NoSuchFileException x) {
             System.err.format("%s: no such" + " file or directory%n", Paths.get("/Users/madmax/.oauth-credentials"));
         } catch (DirectoryNotEmptyException x) {

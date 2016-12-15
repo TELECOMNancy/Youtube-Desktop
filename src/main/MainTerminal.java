@@ -80,9 +80,9 @@ public class MainTerminal {
             System.out.println(" video name  = " + playlistItem.getSnippet().getTitle());
             System.out.println(" video id    = " + playlistItem.getContentDetails().getVideoId());
 
-            for (int i=0;i<playlistListResponse.getItems().size();i++){
-            System.out.println(" thumbnail = " + playlistListResponse.getItems().get(i).getSnippet().getThumbnails().getDefault().getUrl());
-            }
+            //for (int i=0;i<playlistListResponse.getItems().size();i++){
+            //System.out.println(" thumbnail = " + playlistListResponse.getItems().get(i).getSnippet().getThumbnails().getDefault().getUrl());
+            //}
             System.out.println("\n-------------------------------------------------------------\n");
         }
     }
