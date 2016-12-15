@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import model.*;
 
 import java.io.IOException;
@@ -32,7 +31,7 @@ public class BackgroundController {
 
 
     @FXML
-    private  JFXButton testSample;
+    private  JFXButton signOutButton;
 
 
     @FXML
@@ -97,9 +96,21 @@ public class BackgroundController {
 
         backgroundModel.getMainModel().signIn();
         signInButton.setDisable(true);
-        profileButton.setDisable(false);
         signInButton.setVisible(false);
+        profileButton.setDisable(false);
         profileButton.setVisible(true);
+        signOutButton.setDisable(false);
+        signOutButton.setVisible(true);
+    }
+
+    @FXML
+    void switchToUnlogged() {
+        signOutButton.setDisable(true);
+        signOutButton.setVisible(false);
+        profileButton.setDisable(true);
+        profileButton.setVisible(false);
+        signInButton.setDisable(false);
+        signInButton.setVisible(true);
     }
 
 

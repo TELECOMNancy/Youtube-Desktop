@@ -2,15 +2,10 @@ package model;
 
 import com.google.api.services.youtube.model.PlaylistItem;
 import com.google.api.services.youtube.model.SearchResult;
-import com.google.api.services.youtube.model.Video;
 import controller.PlayerViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
-import main.Main;
 import view.Player;
-
-import java.awt.*;
 import java.io.IOException;
 
 /**

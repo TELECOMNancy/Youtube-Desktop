@@ -13,12 +13,17 @@ Refonte du système de vue
 Mise en place de la recherche
 Mise en place de la connexion
 
+Realease Day 3:
+Accès aux vidéos uploads
+Upload d'une vidéo
+Correction de nombreux bugs
+
 Compilation du Projet:
 Importer le projet dans un IDE en tant que projet Maven, lancer la synchronisation pour récupérer les dépendances.
 Marquer le dossier resources comme dossier de ressources.
 
 Lancement:
-java -jar YoutubeDesktopV2.jar
+java -jar YoutubeDesktopV3.jar
 
 (note: Il est necessaire d'avoir la version 1.8_112 de Java pour le lancement de l'application.)
 
@@ -47,15 +52,16 @@ java -jar YoutubeDesktopV2.jar
 
 ## Day 4 
 
-1. Gestion de playlist
-2. Gestion des vidéos aimées
-3. Affichage des commentaires.
+1. Fonction de déconnexion et résolution de problème de connexion
+2. Gestion des chaines
+3. Recherche pour améliorer la réactivité
 
 
 ## Day 5
 
-1. Recherche de chaines
-2. Streaming API
+1. Résolution de bugs éventuelles
+2. Procédure de test générale
+3. Empaquetage finale de l'application
 
 
 

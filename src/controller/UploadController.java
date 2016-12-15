@@ -43,10 +43,6 @@ public class UploadController {
     @FXML
     private JFXButton UploadButton;
     @FXML
-    private JFXButton titleOkButton;
-    @FXML
-    private JFXButton descriptionOkButton;
-    @FXML
     private Text pathText;
     @FXML
     private Text TitleText;
@@ -57,18 +53,7 @@ public class UploadController {
 
 
     @FXML
-    void titleOk(){
-        this.title=TitleField.getText();
-    }
-
-    @FXML
-    void DescriptionOk(){
-        this.description=DescriptionField.getText();
-    }
-
-
-    @FXML
-    void clickUpload () throws IOException {
+    void clickUpload (){
         this.title=TitleField.getText();
         this.description=DescriptionField.getText();
         if (publicButton.isSelected()){
@@ -95,7 +80,7 @@ public class UploadController {
     void clickBrowse(){
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Choose a video");
-        chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Video Files","mpeg","mp4", "quicktime", "x-ms-wmv", "x-msvideo", "x-flv, webm"), new FileChooser.ExtensionFilter("All Files", "*.*"));
+        chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Video Files","*.mpeg4","*.mp4", "*.mov", "*.avi", "*.wmv", "*.mpegps", "*.flv", "*.3gp", "*.webm"), new FileChooser.ExtensionFilter("All Files", "*.*"));
         File file = chooser.showOpenDialog(uploadModel.getMainModel().getStage());
         this.path=file.getPath();
         pathText.setText(this.path);

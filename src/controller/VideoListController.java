@@ -4,9 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.PlayerModel;
@@ -38,6 +36,7 @@ public class VideoListController {
         for (int i=0; i<nbResults;i++) {
            ImageView image = new ImageView(this.videoListModel.getSearchResult().get(i).getSnippet().getThumbnails().getDefault().getUrl());
            JFXButton button = new JFXButton(videoListModel.getSearchResult().get(i).getSnippet().getTitle());
+           //button.setPrefSize(100,20);
            button.setOnAction(new EventHandler<ActionEvent>() {
                public void handle(ActionEvent event) {
                    for (int j=0; j<nbResults; j++) {
