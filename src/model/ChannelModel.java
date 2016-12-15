@@ -19,8 +19,7 @@ import java.util.List;
 public class ChannelModel {
 
     private MainModel mainModel;
-    private static YouTube youtube;
-    List<PlaylistItem> playlistItemList = new ArrayList<PlaylistItem>();
+    private long NUMBER_OF_VIDEOS_RETURNED = 20;
 
 
     public ChannelModel(MainModel mainModel) {
@@ -30,6 +29,24 @@ public class ChannelModel {
     public MainModel getMainModel(){
         return this.mainModel;
     }
+
+    private String channelTitle;
+    private String channelThumbnail;
+
+    public String getChannelTitle(){
+        return this.channelTitle;
+    }
+
+    public String getChannelThumbnail(){
+        return this.channelThumbnail;
+    }
+
+
+    
+
+    private static YouTube youtube;
+    // Define a list to store items in the list of uploaded videos.
+    List<PlaylistItem> playlistItemList = new ArrayList<PlaylistItem>();
 
     public List<PlaylistItem> myUploads() {
 
@@ -78,6 +95,7 @@ public class ChannelModel {
                 // https://developers.google.com/youtube/v3/getting-started#partial
                 playlistItemRequest.setFields(
                         "items(contentDetails/videoId,snippet/title,snippet/publishedAt,snippet/thumbnails,snippet/channelTitle,snippet/channelId),nextPageToken,pageInfo");
+                playlistItemRequest.setMaxResults(NUMBER_OF_VIDEOS_RETURNED);
 
                 String nextToken = "";
 
@@ -115,7 +133,8 @@ public class ChannelModel {
                 public void initialize(HttpRequest request) throws IOException {
                 }
             }*/).setApplicationName("youtube-cmdline-search-sample").build();
-            ChannelListResponse channelListResponse = youtube.channels().list("contentDetails").setId(channelID).execute();
+            ChannelListResponse channelListResponse = youtube.channels().list("contentDetails, snippet").setId(channelID).execute();
+
             List<Channel> channelsList = channelListResponse.getItems();
             Channel channel = channelsList.get(0);
             if (channelsList != null) {
@@ -123,6 +142,8 @@ public class ChannelModel {
             // Extract the playlist ID for the channel's videos from the
             // API response.
             String uploadPlaylistId = channelsList.get(0).getContentDetails().getRelatedPlaylists().getUploads();
+            this.channelTitle = channelsList.get(0).getSnippet().getTitle();
+            this.channelThumbnail = channelsList.get(0).getSnippet().getThumbnails().getHigh().getUrl();
             // Retrieve the playlist of the channel's uploaded videos.
             YouTube.PlaylistItems.List playlistItemRequest = youtube.playlistItems().list("id,contentDetails,snippet");
             playlistItemRequest.setPlaylistId(uploadPlaylistId);
@@ -130,6 +151,7 @@ public class ChannelModel {
             // the application more efficient. See:
             // https://developers.google.com/youtube/v3/getting-started#partial
             playlistItemRequest.setFields("items(contentDetails/videoId,snippet/title,snippet/publishedAt,snippet/thumbnails,snippet/channelId,snippet/channelTitle),nextPageToken,pageInfo");
+            playlistItemRequest.setMaxResults(NUMBER_OF_VIDEOS_RETURNED);
             String nextToken = "";
             // Call the API one or more times to retrieve all items in the
             // list. As long as the API response returns a nextPageToken,

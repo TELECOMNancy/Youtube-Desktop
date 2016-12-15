@@ -51,6 +51,7 @@ public class PlayerViewController  {
         playerModel.getMainModel().getBackgroundModel().getBackground().autosize();
         ChannelController channelController = channelLoader.getController();
         ChannelModel channelModel = new ChannelModel(playerModel.getMainModel());
+        playerModel.getMainModel().setChannelModel(channelModel);
         channelController.initChannelModel(channelModel);
     }
 

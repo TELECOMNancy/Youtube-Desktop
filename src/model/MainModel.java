@@ -80,6 +80,14 @@ public class MainModel {
         return this.backgroundModel;
     }
 
+    public void setChannelModel(ChannelModel channelModel){
+        this.channelModel=channelModel;
+    }
+
+    public ChannelModel getChannelModel(){
+        return this.channelModel;
+    }
+
 
     public String getVideoTitle(PlaylistItem video) {
 
