@@ -1,6 +1,7 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXSpinner;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import model.*;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by tld on 13/12/2016.
@@ -18,13 +20,12 @@ public class BackgroundController {
     private BackgroundModel backgroundModel;
     private AnchorPane backgroundView;
 
+    @FXML
+    private JFXSpinner loadingSpinner;
 
-
-    public void initBackgroundController(BackgroundModel backgroundModel,AnchorPane backgroundView){
-        this.backgroundModel=backgroundModel;
-        this.backgroundView=backgroundView;
+    public JFXSpinner getLoadingSpinner() {
+        return loadingSpinner;
     }
-
 
     @FXML
     private JFXButton homeButton;
@@ -32,21 +33,21 @@ public class BackgroundController {
 
     @FXML
     private  JFXButton signOutButton;
-
-
     @FXML
     private JFXTextField searchField;
-
-
     @FXML
     private JFXButton signInButton;
-
     @FXML
     private  JFXButton profileButton;
-
     @FXML
     private JFXButton uploadButton;
 
+
+    public void initBackgroundController(BackgroundModel backgroundModel,AnchorPane backgroundView){
+        this.backgroundModel=backgroundModel;
+        this.backgroundModel.setLoadingSpinner(this.loadingSpinner);
+        this.backgroundView=backgroundView;
+    }
     @FXML
     void clickHome() throws IOException{
 
@@ -110,6 +111,7 @@ public class BackgroundController {
 
     }
 
+
     @FXML
     void switchToLogged(){
         backgroundModel.getMainModel().signIn();
@@ -154,7 +156,6 @@ public class BackgroundController {
 
     }
 
-
     @FXML
     void switchToProfile() throws IOException {
 
@@ -174,10 +175,7 @@ public class BackgroundController {
         ChannelController channelController = channelLoader.getController();
         ChannelModel channelModel = new ChannelModel(backgroundModel.getMainModel());
         channelController.initMyChannelModel(channelModel);
-        
+
     }
-
-
-
 
 }

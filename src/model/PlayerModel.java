@@ -1,6 +1,6 @@
 package model;
 
-import com.google.api.client.repackaged.com.google.common.base.Strings;
+
 import com.google.api.services.youtube.model.PlaylistItem;
 import com.google.api.services.youtube.model.SearchResult;
 import controller.PlayerViewController;
@@ -8,18 +8,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import view.Player;
 import java.io.IOException;
-import java.util.*;
 
 /**
  * Created by quentin on 13/12/2016.
  */
 public class PlayerModel {
+
     private String title;
     private String channelTitle;
     private String channelId;
     private Player player;
     private MainModel mainModel;
-
 
 
     public PlayerModel(SearchResult video, MainModel mainModel){
@@ -51,13 +50,16 @@ public class PlayerModel {
     public Player getPlayer(){
         return this.player;
     }
+
     public String getTitle() {return this.title;}
+
     public MainModel getMainModel(){
         return this.mainModel;
     }
-    public String getChannelTitle(){return channelTitle;}
-    public String getChannelId() {return channelId;}
 
+    public String getChannelTitle(){return channelTitle;}
+
+    public String getChannelId() {return channelId;}
 
     public void initPlayer() throws IOException {
 

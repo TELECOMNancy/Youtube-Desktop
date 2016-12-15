@@ -1,8 +1,6 @@
 package model;
 
 import com.google.api.services.youtube.model.SearchResult;
-import com.google.api.services.youtube.model.Video;
-
 import java.util.List;
 
 /**
@@ -13,9 +11,6 @@ public class VideoListModel {
     private List<SearchResult> searchResult;
 
     private MainModel mainModel;
-
-
-    List<Video> uploadVideo;
 
     public List<SearchResult> getSearchResult() {
         return searchResult;
@@ -30,7 +25,4 @@ public class VideoListModel {
         this.mainModel = mainModel;
     }
 
-    public VideoListModel(ChannelModel channelModel) {
-        //uploadVideo=model.myUploads();
-    }
 }

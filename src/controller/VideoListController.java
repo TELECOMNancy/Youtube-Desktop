@@ -19,14 +19,10 @@ import java.util.ArrayList;
 public class VideoListController {
 
     private VideoListModel videoListModel;
-
     private ArrayList<ImageView> listImageView = new ArrayList<ImageView>();
     private ArrayList<JFXButton> listButton = new ArrayList<JFXButton>();
-
-
     @FXML
     private VBox mainVBox;
-
 
 
     public void initVideoListModel(final VideoListModel videoListModel) {
@@ -59,8 +55,5 @@ public class VideoListController {
         }
 
     }
-
-
-
 
 }

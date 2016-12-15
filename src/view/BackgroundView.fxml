@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXSpinner?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -18,6 +20,11 @@
                   <Image url="@../../../../../Pictures/meme_material/1018337-_1.jpg" />
                </image>
             </ImageView>
+            <JFXSpinner fx:id="loadingSpinner" cache="true" layoutX="37.0" layoutY="261.0" style="visibility:false;">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </JFXSpinner>
             <JFXButton fx:id="uploadButton" disable="true" layoutX="16.0" layoutY="107.0" onMouseClicked="#clickUpload" text="Upload" textFill="WHITE" visible="false" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="100.0" />
          </children>
       </AnchorPane>
