@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by quentin on 13/12/2016.
  */
-public class VideoListModel extends Model{
+public class VideoListModel {
 
     private List<SearchResult> searchResult;
 

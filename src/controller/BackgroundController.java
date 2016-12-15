@@ -147,7 +147,7 @@ public class BackgroundController {
         backgroundView.autosize();
         ChannelController channelController = channelLoader.getController();
         ChannelModel channelModel = new ChannelModel(backgroundModel.getMainModel());
-        channelController.initChannelModel(channelModel);
+        channelController.initMyChannelModel(channelModel);
         /*
         FXMLLoader channelViewLoader = new FXMLLoader(getClass().getResource("/view/ChannelView.fxml"));
 
@@ -168,7 +168,7 @@ public class BackgroundController {
 
         ChannelController channelController = channelViewLoader.getController();
         ChannelModel channelModel = new ChannelModel(uploadList);
-        channelController.initChannelModel(channelModel,uploadListLoader);*/
+        channelController.initMyChannelModel(channelModel,uploadListLoader);*/
     }
 
 

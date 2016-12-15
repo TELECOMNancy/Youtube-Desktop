@@ -17,7 +17,7 @@ import java.util.List;
  * Created by quentin on 13/12/2016.
  */
 
-public class ChannelModel extends Model {
+public class ChannelModel {
     private ScrollPane upload;
     private ScrollPane playlist;
     private ScrollPane liked;
@@ -50,12 +50,13 @@ public class ChannelModel extends Model {
 
         // This OAuth 2.0 access scope allows for read-only access to the
         // authenticated user's account, but not other types of account access.
-        List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.readonly");
-
+        List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.upload","https://www.googleapis.com/auth/youtube.readonly","https://www.googleapis.com/auth/userinfo.profile");
         try {
             // Authorize the request.
-            Credential credential = Auth.authorize(scopes, "myuploads");
+            //Credential credential = this.getMainModel().signIn();
 
+
+            Credential credential = Auth.authorize(scopes, "myprofile");
             // This object is used to make YouTube Data API requests.
             youtube = new YouTube.Builder(Auth.HTTP_TRANSPORT, Auth.JSON_FACTORY, credential).setApplicationName(
                     "youtube-cmdline-myuploads-sample").build();
@@ -118,6 +119,10 @@ public class ChannelModel extends Model {
         } catch (Throwable t) {
             t.printStackTrace();
         }
+        return playlistItemList;
+    }
+
+    public List<PlaylistItem> channelUploads(){
         return playlistItemList;
     }
 

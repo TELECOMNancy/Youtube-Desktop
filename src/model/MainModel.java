@@ -4,12 +4,15 @@ import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
+import com.google.api.client.http.InputStreamContent;
+import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.*;
 import java.util.Properties;
 import com.google.common.collect.Lists;
 import javafx.stage.Stage;
@@ -20,7 +23,7 @@ import java.util.List;
  * Created by tld on 12/12/2016.
  */
 
-public class MainModel extends Model{
+public class MainModel {
 
     private String mainVideoName;
     private PlayerModel playerModel;
@@ -29,20 +32,14 @@ public class MainModel extends Model{
     private UploadModel uploadModel;
     private Stage stage;
 
-
-
-
-
     private static YouTube youtube;
     private static final String VIDEO_FILE_FORMAT = "video/*";
     private static final String SAMPLE_VIDEO_FILENAME = "sample-video.mp4";
     private static final String PROPERTIES_FILENAME = "youtube.properties";
+    private static final String CREDENTIALS_DIRECTORY = ".oauth-credentials";
+    boolean signInOk=false;
+    Credential credential;
 
-
-
-    /*public void initialize(String query){
-        this.result = this.search(5,query).get(1);
-    }*/
 
     public void initStage(Stage stage){
         this.stage=stage;
@@ -76,18 +73,6 @@ public class MainModel extends Model{
         return this.backgroundModel;
     }
 
-    //Used for UploadView
-
-    public void setVideoTitle(VideoSnippet snippet, String videoName){
-
-        snippet.setDescription(videoName);
-    }  //WOP
-    public void setVideoThumbnail(VideoSnippet snippet, String img){
-
-        //snippet.setDescription(img);
-    } //WOP
-
-
 
     public String getVideoTitle(PlaylistItem video) {
 
@@ -105,31 +90,31 @@ public class MainModel extends Model{
 
     //returns true after sucessfully signing in, used for mainView
 
-    public boolean signIn(){
+    public Credential signIn(){
 
-        boolean signedIn=false;
+        List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.upload","https://www.googleapis.com/auth/youtube.readonly","https://www.googleapis.com/auth/userinfo.profile");
+        if(signInOk==false) {
+            try {
 
-        List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.upload");
-
-        try {
-
-            Credential credential = Auth.authorize(scopes, "myprofile");
-            signedIn=true;
+                credential = Auth.authorize(scopes, "myprofile");
+                signInOk = true;
 
 
-        } catch (GoogleJsonResponseException e) {
+            } catch (GoogleJsonResponseException e) {
 
-            e.printStackTrace();
-            System.err.println("There was a service error: " + e.getDetails().getCode() + " : "
-                    + e.getDetails().getMessage());
+                e.printStackTrace();
+                System.err.println("There was a service error: " + e.getDetails().getCode() + " : "
+                        + e.getDetails().getMessage());
 
-        } catch (Throwable t) {
+            } catch (Throwable t) {
 
-            t.printStackTrace();
+                t.printStackTrace();
 
+            }
         }
-        return signedIn;
+        return credential;
     }
+
 
 
     public boolean signOut() {
@@ -208,7 +193,7 @@ public class MainModel extends Model{
 
             // To increase efficiency, only retrieve the fields that the
             // application uses.
-            search.setFields("items(id/kind,id/videoId,snippet/title,snippet/thumbnails/default/url)");
+            search.setFields("items(id/kind,id/videoId,snippet/title,snippet/thumbnails/default/url,snippet/channelId,snippet/channelTitle)");
             search.setMaxResults(NUMBER_OF_VIDEOS_RETURNED);
 
             // Call the API and print results.
@@ -231,6 +216,32 @@ public class MainModel extends Model{
 
         return null;
     }
+
+
+
+    public String getVideoTitle(SearchResult video) {
+
+        return video.getSnippet().getTitle();
+    }
+
+    public String getChannelId(SearchResult video){
+        return video.getSnippet().getChannelId();
+    }
+
+    public String getChannelTitle(SearchResult video){
+        return video.getSnippet().getChannelTitle();
+    }
+
+    public String getVideoID(SearchResult video){
+        String rId = video.getId().getVideoId();
+        return rId;
+    }
+
+    public String getVideoThumbnail(SearchResult video){
+        Thumbnail thumbnail = video.getSnippet().getThumbnails().getDefault();
+        return thumbnail.getUrl();
+    }
+
 
 
 
