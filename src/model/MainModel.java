@@ -1,18 +1,24 @@
 package model;
 
+
 import com.google.api.client.auth.oauth2.Credential;
+import com.google.api.client.auth.oauth2.StoredCredential;
+import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
+import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
+import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
+import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
-import com.google.api.client.http.InputStreamContent;
+import com.google.api.client.http.HttpTransport;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.JsonFactory;
+import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.client.util.store.DataStore;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.*;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.*;
+import java.io.*;
 import java.util.Properties;
 import com.google.common.collect.Lists;
 import javafx.stage.Stage;
@@ -25,52 +31,61 @@ import java.util.List;
 
 public class MainModel {
 
-    private String mainVideoName;
     private PlayerModel playerModel;
     private BackgroundModel backgroundModel;
-    private VideoListModel videoListModel;
     private UploadModel uploadModel;
     private Stage stage;
-
-    private static YouTube youtube;
-    private static final String VIDEO_FILE_FORMAT = "video/*";
-    private static final String SAMPLE_VIDEO_FILENAME = "sample-video.mp4";
-    private static final String PROPERTIES_FILENAME = "youtube.properties";
+    public static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
+    public static final JsonFactory JSON_FACTORY = new JacksonFactory();
     private static final String CREDENTIALS_DIRECTORY = ".oauth-credentials";
-    boolean signInOk=false;
-    Credential credential;
+    private static final String PROPERTIES_FILENAME = "youtube.properties";
 
 
     public void initStage(Stage stage){
         this.stage=stage;
     }
 
+
     public Stage getStage(){
         return stage;
     }
+
 
     public void setPlayerModel(PlayerModel playerModel){
         this.playerModel=playerModel;
     }
 
+
     public PlayerModel getPlayerModel(){
         return this.playerModel;
     }
+
 
     public void setBackgroundModel(BackgroundModel backgroundModel){
         this.backgroundModel=backgroundModel;
     }
 
+
     public UploadModel getUploadModel(){
         return this.uploadModel;
     }
+
 
     public void setUploadModel(UploadModel uploadModel) {
         this.uploadModel=uploadModel;
     }
 
+
     public BackgroundModel getBackgroundModel(){
         return this.backgroundModel;
+    }
+
+    public void setChannelModel(ChannelModel channelModel){
+        this.channelModel=channelModel;
+    }
+
+    public ChannelModel getChannelModel(){
+        return this.channelModel;
     }
 
 
@@ -78,27 +93,27 @@ public class MainModel {
 
         return video.getSnippet().getTitle();
     }
+
+
     public String getVideoID(PlaylistItem video){
         String rId = video.getContentDetails().getVideoId();
         return rId;
     }
+
+
     public String getVideoThumbnail(PlaylistItem video){
         Thumbnail thumbnail = video.getSnippet().getThumbnails().getDefault();
         return thumbnail.getUrl();
     }
 
 
-    //returns true after sucessfully signing in, used for mainView
-
     public void signIn(){
 
-        List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.upload","https://www.googleapis.com/auth/youtube.readonly","https://www.googleapis.com/auth/userinfo.profile");
+        List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.upload","https://www.googleapis.com/auth/youtube.readonly");
 
             try {
 
-                credential = Auth.authorize(scopes, "myprofile");
-
-
+               Credential credential = this.authorize(scopes, "myprofile");
 
             } catch (GoogleJsonResponseException e) {
 
@@ -112,9 +127,6 @@ public class MainModel {
 
             }
         }
-
-
-
 
 
     public void signOut() {
@@ -166,7 +178,7 @@ public class MainModel {
             // argument is required, but since we don't need anything
             // initialized when the HttpRequest is initialized, we override
             // the interface and provide a no-op function.
-            youtube = new YouTube.Builder(Auth.HTTP_TRANSPORT, Auth.JSON_FACTORY, new HttpRequestInitializer() {
+            youtube = new YouTube.Builder(this.HTTP_TRANSPORT, this.JSON_FACTORY, new HttpRequestInitializer() {
                 public void initialize(HttpRequest request) throws IOException {
                 }
             }).setApplicationName("youtube-cmdline-search-sample").build();
@@ -215,24 +227,27 @@ public class MainModel {
     }
 
 
-
     public String getVideoTitle(SearchResult video) {
 
         return video.getSnippet().getTitle();
     }
 
+
     public String getChannelId(SearchResult video){
         return video.getSnippet().getChannelId();
     }
+
 
     public String getChannelTitle(SearchResult video){
         return video.getSnippet().getChannelTitle();
     }
 
+
     public String getVideoID(SearchResult video){
         String rId = video.getId().getVideoId();
         return rId;
     }
+
 
     public String getVideoThumbnail(SearchResult video){
         Thumbnail thumbnail = video.getSnippet().getThumbnails().getDefault();
@@ -240,6 +255,42 @@ public class MainModel {
     }
 
 
+    public static Credential authorize(List<String> scopes, String credentialDatastore) throws IOException {
 
+        // Load client secrets.
+        Reader clientSecretReader = new InputStreamReader(MainModel.class.getResourceAsStream("/client_secrets.json"));
+        GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, clientSecretReader);
+
+        // Checks that the defaults have been replaced (Default = "Enter X here").
+        if (clientSecrets.getDetails().getClientId().startsWith("Enter")
+                || clientSecrets.getDetails().getClientSecret().startsWith("Enter ")) {
+            System.out.println(
+                    "Enter Client ID and Secret from https://console.developers.google.com/project/_/apiui/credential "
+                            + "into src/main/resources/client_secrets.json");
+            System.exit(1);
+        }
+
+        // This creates the credentials datastore at ~/.oauth-credentials/${credentialDatastore}
+        FileDataStoreFactory fileDataStoreFactory = new FileDataStoreFactory(new File(System.getProperty("user.home") + "/" + CREDENTIALS_DIRECTORY));
+        DataStore<StoredCredential> datastore = fileDataStoreFactory.getDataStore(credentialDatastore);
+
+
+
+        GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
+                HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, scopes).setCredentialDataStore(datastore)
+                .build();
+
+        // Build the local server and bind it to port 8080
+
+        LocalServerReceiver localReceiver = new LocalServerReceiver.Builder().setPort(8080).build();
+
+        // Getting the redirect URI
+
+        //String redirectUri = localReceiver.getRedirectUri();
+
+        //System.out.println("credential(token ? ) : "+datastore.get(credentialDatastore).getAccessToken());
+        // Authorize.
+        return new AuthorizationCodeInstalledApp(flow, localReceiver).authorize("user");
+    }
 
 }

@@ -4,12 +4,13 @@ import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.googleapis.media.MediaHttpUploader;
 import com.google.api.client.http.InputStreamContent;
-import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.Video;
 import com.google.api.services.youtube.model.VideoSnippet;
 import com.google.api.services.youtube.model.VideoStatus;
 import com.google.common.collect.Lists;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -20,17 +21,15 @@ import java.util.List;
  */
 
 public class UploadModel {
+
     private MainModel mainModel;
+    private static YouTube youtube;
+    private static final String VIDEO_FILE_FORMAT = "video/*";
+
 
     public UploadModel(MainModel mainModel){
         this.mainModel=mainModel;
     }
-
-
-    private static YouTube youtube;
-
-    //defines the MIME type. Here: video type (mpeg, mp4, quicktime, x-ms-wmv, x-msvideo, x-flv, webm)
-    private static final String VIDEO_FILE_FORMAT = "video/*";
 
     public UploadModel(){
         //this.mainModel=mainModel;
@@ -40,17 +39,16 @@ public class UploadModel {
         return this.mainModel;
     }
 
-
     public void upload(String videoTitle, String pathToFile, String videoDesc, String videoStatus){
 
         try {
 
 
-            List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.upload","https://www.googleapis.com/auth/youtube.readonly","https://www.googleapis.com/auth/userinfo.profile","https://www.googleapis.com/youtube/v3/channels");
-            Credential credential = Auth.authorize(scopes, "myprofile");
+            List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube.upload","https://www.googleapis.com/auth/youtube.readonly");
+            Credential credential = mainModel.authorize(scopes, "myprofile");
 
            // FileDataStoreFactory.load(String userId, Credential credential);
-            youtube = new YouTube.Builder(Auth.HTTP_TRANSPORT, Auth.JSON_FACTORY, credential).setApplicationName(
+            youtube = new YouTube.Builder(mainModel.HTTP_TRANSPORT, mainModel.JSON_FACTORY, credential).setApplicationName(
                         "youtube-uploadvideo").build();
 
 
@@ -85,7 +83,7 @@ public class UploadModel {
                     new FileInputStream(pathToFile));
 
 
-            YouTube.Videos.Insert videoInsert = youtube.videos()
+            final YouTube.Videos.Insert videoInsert = youtube.videos()
                     .insert("snippet,statistics,status", videoObjectDefiningMetadata, mediaContent);
 
             // Set the upload type and add an event listener.
@@ -101,10 +99,38 @@ public class UploadModel {
             // time and bandwidth in the event of network failures.
             uploader.setDirectUploadEnabled(false);
 
-            //ADD PROGRESSLISTENER HERE ?
+
+            Service<Void> uploadService = new Service<Void>(){
+
+                @Override
+                protected Task<Void> createTask() {
+
+                    Task<Void> task = new Task<Void>(){
+
+                        {
+                            setOnSucceeded(workerStateEvent -> {
+                                mainModel.getBackgroundModel().getLoadingSpinner().setVisible(false);
+                            });
+
+                            setOnFailed(workerStateEvent -> getException().printStackTrace());
+                        }
+
+                        @Override
+                        protected Void call() throws Exception {
+                            mainModel.getBackgroundModel().getLoadingSpinner().setVisible(true);
+                            videoInsert.execute();
+                            return null;
+                        }
+                    };
+                    return task;
+                }
+            };
+            uploadService.start();
+
 
             // Call the API and upload the video.
-            Video returnedVideo = videoInsert.execute();
+
+            //Video returnedVideo = videoInsert.execute();
 
 
         } catch (GoogleJsonResponseException e) {

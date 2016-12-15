@@ -5,13 +5,10 @@ import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import model.UploadModel;
-
 import java.io.File;
 import java.io.IOException;
 
@@ -24,16 +21,6 @@ public class UploadController {
     private String title;
     private String description;
     private String status;
-
-    public void initUploadModel(UploadModel uploadModel){
-        this.title="null";
-        this.description="null";
-        this.uploadModel=uploadModel;
-    }
-
-    Stage popUpStage;
-    Parent popUpRoot;
-
     @FXML
     private JFXRadioButton publicButton;
     @FXML
@@ -53,6 +40,12 @@ public class UploadController {
     @FXML
     private JFXTextField DescriptionField;
 
+
+    public void initUploadModel(UploadModel uploadModel){
+        this.title="null";
+        this.description="null";
+        this.uploadModel=uploadModel;
+    }
 
     @FXML
     void clickUpload () throws IOException {
@@ -89,7 +82,5 @@ public class UploadController {
         this.path=file.getPath();
         pathText.setText(this.path);
     }
-
-
 
 }

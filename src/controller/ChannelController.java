@@ -1,18 +1,16 @@
 package controller;
 
-
 import com.google.api.services.youtube.model.PlaylistItem;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import model.*;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -43,6 +41,14 @@ public class ChannelController {
 
     @FXML
     private VBox myUploadsVBox;
+
+    @FXML
+    private ImageView channelThumbnail;
+
+    @FXML
+    private Text channelTitle;
+
+
 
 
     public void initMyChannelModel(final ChannelModel channelModel/*, FXMLLoader uploadListLoader*/) {
@@ -95,13 +101,16 @@ public class ChannelController {
         final List<PlaylistItem> UploadsItemList = channelModel.channelUploads(channelModel.getMainModel().getPlayerModel().getChannelId());
         final List<PlaylistItem> tempUploadsItemList = UploadsItemList;
         final Iterator iterator = tempUploadsItemList.iterator();
-        for (int i=0; i<10;i++) {
+        channelTitle.setText(channelModel.getChannelTitle());
+        channelThumbnail.setImage(new ImageView(channelModel.getChannelThumbnail()).getImage());
+        this.channelThumbnail = new ImageView(channelModel.getChannelThumbnail());
+        for (int i=0; i<20;i++) {
             PlaylistItem UploadsItem = (PlaylistItem)iterator.next();
             ImageView image = new ImageView(channelModel.getMainModel().getVideoThumbnail(UploadsItem));
             JFXButton button = new JFXButton(UploadsItem.getSnippet().getTitle());
             button.setOnAction(new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent event) {
-                    for (int j=0; j<10; j++) {
+                    for (int j=0; j<20; j++) {
                         if (event.getSource().equals(uploadListButton.get(j))) {
                             try {
                                 PlayerModel playerModel = new PlayerModel(tempUploadsItemList.get(j),channelModel.getMainModel());
