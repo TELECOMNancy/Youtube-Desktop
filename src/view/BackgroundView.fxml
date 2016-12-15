@@ -7,25 +7,47 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="389.0" prefWidth="593.0" style="-fx-background-color: white ;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BackgroundController">
    <children>
-      <AnchorPane layoutX="32.0" layoutY="26.0" prefHeight="389.0" prefWidth="106.0" style="-fx-background-color: #d50000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="32.0" layoutY="26.0" prefHeight="389.0" prefWidth="128.0" style="-fx-background-color: #d50000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXButton fx:id="profileButton" buttonType="RAISED" disable="true" layoutX="22.0" layoutY="79.0" onMouseClicked="#switchToProfile" text="Profile" textFill="WHITE" visible="false" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="65.0" />
-            <JFXButton fx:id="homeButton" buttonType="RAISED" layoutX="14.0" layoutY="26.0" onMouseClicked="#clickHome" ripplerFill="WHITE" text="Home" textFill="WHITE" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="26.0" />
             <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="23.0" layoutY="315.0" pickOnBounds="true">
                <image>
                   <Image url="@../../../../../Pictures/meme_material/1018337-_1.jpg" />
                </image>
             </ImageView>
-            <JFXSpinner fx:id="loadingSpinner" cache="true" layoutX="37.0" layoutY="261.0" style="visibility:false;">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </JFXSpinner>
-            <JFXButton fx:id="uploadButton" disable="true" layoutX="16.0" layoutY="107.0" onMouseClicked="#clickUpload" text="Upload" textFill="WHITE" visible="false" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="100.0" />
+            <VBox layoutX="10.0" layoutY="14.0" prefHeight="153.0" prefWidth="117.0">
+               <children>
+                  <HBox prefHeight="35.0" prefWidth="117.0">
+                     <children>
+                        <ImageView fx:id="homeLogo" fitHeight="32.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" />
+
+                        <JFXButton fx:id="homeButton" buttonType="RAISED" onMouseClicked="#clickHome" prefHeight="27.0" prefWidth="58.0" ripplerFill="WHITE" text="Home" textFill="WHITE" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="32.0" prefWidth="117.0">
+                     <children>
+                        <ImageView fx:id="profilLogo" fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" />
+                        <JFXButton fx:id="profileButton" buttonType="RAISED" disable="true" onMouseClicked="#switchToProfile" prefHeight="27.0" prefWidth="60.0" style="visibility: true;" text="Profile" textFill="WHITE" visible="false" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="35.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fx:id="uploadLogo" fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" />
+                        <JFXButton fx:id="uploadButton" disable="true" onMouseClicked="#clickUpload" prefHeight="27.0" prefWidth="64.0" style="visibility: true;" text="Upload" textFill="WHITE" visible="false" />
+                        <JFXSpinner fx:id="loadingSpinner" cache="true" radius="8.0" style="visibility: false;">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </JFXSpinner>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
       </AnchorPane>
       <JFXTextField fx:id="searchField" focusColor="#f44336" layoutX="203.0" layoutY="15.0" onMouseClicked="#keySearch" AnchorPane.topAnchor="15.0" />
