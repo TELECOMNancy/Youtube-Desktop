@@ -30,6 +30,7 @@ public class VideoListController {
 
 
     public void initVideoListModel(final VideoListModel videoListModel) {
+
         this.videoListModel = videoListModel;
         final VideoListModel tempVideoListModel = this.videoListModel;
         final int nbResults = 20;

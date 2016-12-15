@@ -2,6 +2,8 @@ package controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
@@ -74,6 +76,7 @@ public class BackgroundController {
 
     @FXML
     void clickSearch() throws IOException {
+
         backgroundModel.getMainModel().getPlayerModel().getPlayer().getVideoPlayer().getEngine().load(null);
         FXMLLoader videoListLoader = new FXMLLoader(getClass().getResource("/view/VideoListView.fxml"));
         ScrollPane videoList = videoListLoader.load();
@@ -94,13 +97,28 @@ public class BackgroundController {
     @FXML
     void switchToLogged(){
 
-        backgroundModel.getMainModel().signIn();
-        signInButton.setDisable(true);
-        signInButton.setVisible(false);
-        profileButton.setDisable(false);
-        profileButton.setVisible(true);
-        signOutButton.setDisable(false);
-        signOutButton.setVisible(true);
+        Service<Void> switchToLoggedService = new Service<Void>(){
+
+            @Override
+            protected Task<Void> createTask() {
+                return new Task<Void>(){
+
+                    @Override
+                    protected Void call() throws Exception {
+                        backgroundModel.getMainModel().signIn();
+                        signInButton.setDisable(true);
+                        signInButton.setVisible(false);
+                        profileButton.setDisable(false);
+                        profileButton.setVisible(true);
+                        signOutButton.setDisable(false);
+                        signOutButton.setVisible(true);
+                        return null;
+                    }
+                };
+            }
+        };
+        switchToLoggedService.start();
+
     }
 
     @FXML
@@ -133,7 +151,24 @@ public class BackgroundController {
 
 
     @FXML
-    void switchToProfile() throws IOException{
+    void switchToProfile() throws IOException {
+
+        Service<Void> fileSaveService = new Service<Void>(){
+
+            @Override
+            protected Task<Void> createTask() {
+                return new Task<Void>(){
+
+                    @Override
+                    protected Void call() throws Exception {
+
+                        return null;
+                    }
+                };
+            }
+        };
+        fileSaveService.start();
+
         backgroundModel.getMainModel().getPlayerModel().getPlayer().getVideoPlayer().getEngine().load(null);
         backgroundView.getChildren().remove(backgroundModel.getMainChildren());
         FXMLLoader channelLoader = new FXMLLoader(getClass().getResource("/view/ChannelView.fxml"));
@@ -148,27 +183,7 @@ public class BackgroundController {
         ChannelController channelController = channelLoader.getController();
         ChannelModel channelModel = new ChannelModel(backgroundModel.getMainModel());
         channelController.initMyChannelModel(channelModel);
-        /*
-        FXMLLoader channelViewLoader = new FXMLLoader(getClass().getResource("/view/ChannelView.fxml"));
 
-        AnchorPane channelView = channelViewLoader.load();
-        background.getChildren().add(channelView);
-        background.setBottomAnchor(channelView,100.0);
-        background.setTopAnchor(channelView,100.0);
-        background.setLeftAnchor(channelView,200.0);
-        background.setRightAnchor(channelView,100.0);
-        background.autosize();
-
-        //ListUpload
-        FXMLLoader uploadListLoader = new FXMLLoader(getClass().getResource("/view/VideoListView.fxml"));
-        ScrollPane uploadList = uploadListLoader.load();
-
-
-
-
-        ChannelController channelController = channelViewLoader.getController();
-        ChannelModel channelModel = new ChannelModel(uploadList);
-        channelController.initMyChannelModel(channelModel,uploadListLoader);*/
     }
 
 
