@@ -14,6 +14,14 @@ public class Model {
         return video.getSnippet().getTitle();
     }
 
+    public String getChannelId(SearchResult video){
+        return video.getSnippet().getChannelId();
+    }
+
+    public String getChannelTitle(SearchResult video){
+        return video.getSnippet().getChannelTitle();
+    }
+
     public String getVideoID(SearchResult video){
         String rId = video.getId().getVideoId();
         return rId;

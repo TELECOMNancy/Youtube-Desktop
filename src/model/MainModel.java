@@ -6,12 +6,14 @@ import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.*;
+
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 import com.google.common.collect.Lists;
 import javafx.stage.Stage;
-
+import org.apache.commons.io.FileUtils;
 import java.util.List;
 
 /**
@@ -130,6 +132,24 @@ public class MainModel extends Model{
     }
 
 
+    public boolean signOut() {
+        boolean signedOut = false;
+
+
+        try {
+            FileUtils.deleteDirectory(new File(System.getProperty("user.home") + "/" + ".oauth-credentials"));
+            signedOut = true;
+
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        return signedOut;
+    }
+
+
     public List<SearchResult> search(long count, String query) {
 
         long NUMBER_OF_VIDEOS_RETURNED = count;
@@ -188,7 +208,7 @@ public class MainModel extends Model{
 
             // To increase efficiency, only retrieve the fields that the
             // application uses.
-            search.setFields("items(id/kind,id/videoId,snippet/title,snippet/thumbnails/default/url)");
+            search.setFields("items(id/kind,id/videoId,snippet/title,snippet/thumbnails/default/url,snippet/channelId,snippet/channelTitle)");
             search.setMaxResults(NUMBER_OF_VIDEOS_RETURNED);
 
             // Call the API and print results.

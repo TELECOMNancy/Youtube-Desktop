@@ -1,5 +1,7 @@
 package controller;
 
+import com.jfoenix.controls.JFXBadge;
+import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -16,6 +18,7 @@ import java.io.IOException;
 public class PlayerViewController  {
     private PlayerModel playerModel;
     private Player player;
+
     @FXML
     private Text description;
     //private MainModel model;
@@ -23,11 +26,14 @@ public class PlayerViewController  {
     private Text title;
     @FXML
     private AnchorPane anchorPlayerVideo;
+    @FXML
+    private JFXButton channelButton;
 
 
     public void initPlayerModel(PlayerModel model){
         this.playerModel = model;
         title.setText(model.getTitle());
+        channelButton.setText(model.getChannelTitle());
         this.player=model.getPlayer();
         anchorPlayerVideo.getChildren().add(player);
         anchorPlayerVideo.setBottomAnchor(player,0.0);
