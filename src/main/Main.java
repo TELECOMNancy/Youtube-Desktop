@@ -61,7 +61,7 @@ public class Main extends Application {
         background.setTopAnchor(playerView,150.0);
         background.setLeftAnchor(playerView,300.0);
         background.setRightAnchor(playerView,50.0);
-        PlayerModel playerModel= new PlayerModel("_GuOjXYl5ew","Youtube Rewind 2016",mainModel);
+        PlayerModel playerModel= new PlayerModel("_GuOjXYl5ew","YouTube Rewind: The Ultimate 2016 Challenge | #YouTubeRewind","YouTube Spotlight","UCBR8-60-B28hp2BmDPdntcQ",mainModel);
         mainModel.setPlayerModel(playerModel);
         PlayerViewController playerViewController=playerViewLoader.getController();
         playerViewController.initPlayerModel(playerModel);

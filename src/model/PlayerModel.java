@@ -40,10 +40,12 @@ public class PlayerModel {
         this.channelId=video.getSnippet().getChannelId();
     }
 
-    public PlayerModel(String videoId, String videoTitle, MainModel mainModel){
+    public PlayerModel(String videoId, String videoTitle, String channelTitle, String channelId, MainModel mainModel){
         this.mainModel=mainModel;
         this.title= videoTitle;
         this.player=new Player(videoId);
+        this.channelTitle=channelTitle;
+        this.channelId=channelId;
     }
 
     public Player getPlayer(){
