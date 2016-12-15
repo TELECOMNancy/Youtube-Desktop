@@ -173,10 +173,7 @@ public class BackgroundController {
         ChannelController channelController = channelLoader.getController();
         ChannelModel channelModel = new ChannelModel(backgroundModel.getMainModel());
         channelController.initMyChannelModel(channelModel);
-
-        ChannelController channelController = channelViewLoader.getController();
-        backgroudmodel backgroudmodel = new backgroudmodel(uploadList);
-        channelController.initMybackgroudmodel(backgroudmodel,uploadListLoader);*/
+        
     }
 
 
