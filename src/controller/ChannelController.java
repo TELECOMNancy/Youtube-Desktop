@@ -68,12 +68,11 @@ public class ChannelController {
         uploadController.initUploadModel(uploadModel);
     }
 
-    public void initChannelModel(final ChannelModel channelModel/*, FXMLLoader uploadListLoader*/) {
+    public void initMyChannelModel(final ChannelModel channelModel/*, FXMLLoader uploadListLoader*/) {
         this.channelModel=channelModel;
         final List<PlaylistItem> myUploadsItemList = channelModel.myUploads();
         final List<PlaylistItem> tempMyUploadsItemList = myUploadsItemList;
         final Iterator iterator = tempMyUploadsItemList.iterator();
-
         /*AnchorUpload.getChildren().add(model.getUpload());
         VideoListController uploadListController = uploadListLoader.getController();
         VideoListModel uploadListModel = new VideoListModel(this.model);
@@ -113,4 +112,13 @@ public class ChannelController {
 
         //prettyPrint(playlistItemList.size(), playlistItemList.iterator());
     }
+
+    public void initChannelModel(ChannelModel channelModel){
+        this.channelModel=channelModel;
+        final List<PlaylistItem> myUploadsItemList = channelModel.channelUploads();
+        final List<PlaylistItem> tempMyUploadsItemList = myUploadsItemList;
+        final Iterator iterator = tempMyUploadsItemList.iterator();
+    }
+
+
 }
