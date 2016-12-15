@@ -9,18 +9,8 @@ import com.google.api.services.youtube.model.Video;
 import com.google.api.services.youtube.model.VideoSnippet;
 import com.google.api.services.youtube.model.VideoStatus;
 import com.google.common.collect.Lists;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXProgressBar;
-import com.jfoenix.controls.JFXTabPane;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.IOException;
