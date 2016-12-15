@@ -18,7 +18,6 @@ public class MainTerminal {
 
 
     static MainModel mainModel = new MainModel();
-    static Model model = new Model();
     static UploadModel uploadModel = new UploadModel();
     static ChannelModel channelModel = new ChannelModel(mainModel);
 
@@ -115,9 +114,9 @@ public class MainTerminal {
                     System.out.print("Please select a video (0-4) : ");
                     selectVideo = getInputQuery();
 
-                    System.out.println("    Video title : " + model.getVideoTitle(searchResultList.get(Integer.parseInt(selectVideo)))+"\n");
-                    System.out.println("    Video id : " + model.getVideoID(searchResultList.get(Integer.parseInt(selectVideo)))+"\n");
-                    System.out.println("    Video thumbnail URL : " + model.getVideoThumbnail(searchResultList.get(Integer.parseInt(selectVideo)))+"\n");
+                    System.out.println("    Video title : " + mainModel.getVideoTitle(searchResultList.get(Integer.parseInt(selectVideo)))+"\n");
+                    System.out.println("    Video id : " + mainModel.getVideoID(searchResultList.get(Integer.parseInt(selectVideo)))+"\n");
+                    System.out.println("    Video thumbnail URL : " + mainModel.getVideoThumbnail(searchResultList.get(Integer.parseInt(selectVideo)))+"\n");
                     //System.out.println("    Channel id : " + model.getChannelId(searchResultList.get(Integer.parseInt(selectVideo)))+"\n");
                     //System.out.println("    Channel title : " + model.getChannelTitle(searchResultList.get(Integer.parseInt(selectVideo)))+"\n");
                     menuQuery="0";

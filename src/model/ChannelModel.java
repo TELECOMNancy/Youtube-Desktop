@@ -17,7 +17,7 @@ import java.util.List;
  * Created by quentin on 13/12/2016.
  */
 
-public class ChannelModel extends Model {
+public class ChannelModel {
     private ScrollPane upload;
     private ScrollPane playlist;
     private ScrollPane liked;
