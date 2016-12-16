@@ -125,8 +125,10 @@ public class BackgroundController {
         backgroundView.autosize();
         VideoListController videoListController = videoListLoader.getController();
         if (searchField.getText().equals("kamino")) {
-            Thread playWave=new AePlayWave("soundtrack.wav");
-            playWave.start();
+            FXMLLoader popUpLoader = new FXMLLoader(getClass().getResource("/view/credits.fxml"));
+            AnchorPane popUpView = popUpLoader.load();
+            PopUpController popUpController = popUpLoader.getController();
+            popUpController.initCredits(popUpView);
         }
         VideoListModel videoListModel = new VideoListModel(searchField.getText(), backgroundModel.getMainModel(),20);
         videoListController.initVideoListModel(videoListModel);
