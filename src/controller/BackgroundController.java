@@ -124,10 +124,6 @@ public class BackgroundController {
         backgroundView.setRightAnchor(videoList,100.0);
         backgroundView.autosize();
         VideoListController videoListController = videoListLoader.getController();
-        if (searchField.getText().equals("kamino")) {
-            Thread playWave=new AePlayWave("soundtrack.wav");
-            playWave.start();
-        }
         VideoListModel videoListModel = new VideoListModel(searchField.getText(), backgroundModel.getMainModel(),20);
         videoListController.initVideoListModel(videoListModel);
 
