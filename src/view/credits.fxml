@@ -5,14 +5,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="352.0" prefWidth="433.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PopUpController">
+<AnchorPane prefHeight="558.0" prefWidth="582.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PopUpController">
    <children>
       <JFXButton fx:id="buttonPopUp" buttonType="RAISED" layoutX="158.0" layoutY="215.0" onMouseClicked="#closePopUp" style="-fx-background-color: D50000;" text="Ok" textFill="WHITE" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="158.0" AnchorPane.rightAnchor="158.0" />
-      <ImageView fx:id="imageCredit" fitHeight="176.0" fitWidth="237.0" layoutX="98.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="155.0" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="98.0" AnchorPane.topAnchor="21.0" />
-      <Text layoutX="149.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A project by :" textAlignment="CENTER" wrappingWidth="122.21875" AnchorPane.leftAnchor="149.0" AnchorPane.rightAnchor="161.78125" />
-      <Text layoutX="164.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Théo Le Donné" textAlignment="CENTER" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="164.0" AnchorPane.rightAnchor="164.0" />
-      <Text layoutX="164.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Maxime Escamez" textAlignment="CENTER" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="164.0" AnchorPane.rightAnchor="164.0" />
-      <Text layoutX="164.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Léo Jouët-Pastré" textAlignment="CENTER" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="164.0" AnchorPane.rightAnchor="164.0" />
-      <Text layoutX="164.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quentin Tardivon" textAlignment="CENTER" AnchorPane.bottomAnchor="105.0" AnchorPane.leftAnchor="164.0" AnchorPane.rightAnchor="164.0" />
+      <ImageView fx:id="imageCredit" fitHeight="372.0" fitWidth="331.0" layoutX="126.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="165.0" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="21.0" />
+      <Text layoutX="230.0" layoutY="431.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A project by :" textAlignment="CENTER" wrappingWidth="122.21875" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="229.78125" />
+      <Text layoutX="245.0" layoutY="497.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Théo Le Donné" textAlignment="CENTER" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="245.0" AnchorPane.rightAnchor="244.0703125" />
+      <Text layoutX="238.0" layoutY="463.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Maxime Escamez" textAlignment="CENTER" AnchorPane.bottomAnchor="91.0" AnchorPane.leftAnchor="238.0" AnchorPane.rightAnchor="238.2861328125" />
+      <Text layoutX="238.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Léo Jouët-Pastré" textAlignment="CENTER" AnchorPane.bottomAnchor="74.0" AnchorPane.leftAnchor="238.0" AnchorPane.rightAnchor="237.9560546875" />
+      <Text layoutX="238.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quentin Tardivon" textAlignment="CENTER" AnchorPane.bottomAnchor="107.0" AnchorPane.leftAnchor="238.0" AnchorPane.rightAnchor="238.3369140625" />
    </children>
 </AnchorPane>

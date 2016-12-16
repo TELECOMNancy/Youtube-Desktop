@@ -38,7 +38,7 @@ public class PopUpController {
         popUpStage = new Stage();
         popUpStage.setScene(new Scene(popUpView));
         popUpStage.setTitle("Crédits");
-        imageCredit.setImage();
+        imageCredit.setImage(new ImageView("/logo.png").getImage());
         popUpStage.showAndWait();
     }
 
