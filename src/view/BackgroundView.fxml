@@ -4,7 +4,6 @@
 <?import com.jfoenix.controls.JFXSpinner?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -13,32 +12,28 @@
 
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="389.0" prefWidth="593.0" style="-fx-background-color: white ;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BackgroundController">
    <children>
-      <AnchorPane layoutX="32.0" layoutY="26.0" prefHeight="389.0" prefWidth="128.0" style="-fx-background-color: #d50000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutY="6.0" prefHeight="389.0" prefWidth="130.0" style="-fx-background-color: #d50000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="23.0" layoutY="315.0" pickOnBounds="true">
-               <image>
-                  <Image url="@../../../../../Pictures/meme_material/1018337-_1.jpg" />
-               </image>
-            </ImageView>
-            <VBox layoutX="10.0" layoutY="14.0" prefHeight="153.0" prefWidth="117.0">
+            <ImageView fx:id="profileImageView" fitHeight="80.0" fitWidth="80.0" layoutX="23.0" layoutY="315.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" />
+            <VBox layoutX="10.0" layoutY="14.0" prefHeight="153.0" prefWidth="117.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
                <children>
                   <HBox prefHeight="35.0" prefWidth="117.0">
                      <children>
                         <ImageView fx:id="homeLogo" fitHeight="32.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" />
 
-                        <JFXButton fx:id="homeButton" buttonType="RAISED" onMouseClicked="#clickHome" prefHeight="27.0" prefWidth="58.0" ripplerFill="WHITE" text="Home" textFill="WHITE" />
+                        <JFXButton fx:id="homeButton" buttonType="RAISED" onMouseClicked="#clickHome" prefHeight="31.0" prefWidth="69.0" ripplerFill="WHITE" text="Home" textFill="WHITE" />
                      </children>
                   </HBox>
                   <HBox prefHeight="32.0" prefWidth="117.0">
                      <children>
                         <ImageView fx:id="profilLogo" fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" />
-                        <JFXButton fx:id="profileButton" buttonType="RAISED" disable="true" onMouseClicked="#switchToProfile" prefHeight="27.0" prefWidth="60.0" style="visibility: true;" text="Profile" textFill="WHITE" visible="false" />
+                        <JFXButton fx:id="profileButton" buttonType="RAISED" disable="true" onMouseClicked="#switchToProfile" prefHeight="31.0" prefWidth="69.0" style="visibility: true;" text="Profile" textFill="WHITE" visible="false" />
                      </children>
                   </HBox>
                   <HBox prefHeight="35.0" prefWidth="100.0">
                      <children>
                         <ImageView fx:id="uploadLogo" fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" />
-                        <JFXButton fx:id="uploadButton" disable="true" onMouseClicked="#clickUpload" prefHeight="27.0" prefWidth="64.0" style="visibility: true;" text="Upload" textFill="WHITE" visible="false" />
+                        <JFXButton fx:id="uploadButton" disable="true" onMouseClicked="#clickUpload" prefHeight="31.0" prefWidth="84.0" style="visibility: true;" text="Upload" textFill="WHITE" visible="false" />
                         <JFXSpinner fx:id="loadingSpinner" cache="true" radius="8.0" style="visibility: false;">
                            <opaqueInsets>
                               <Insets />

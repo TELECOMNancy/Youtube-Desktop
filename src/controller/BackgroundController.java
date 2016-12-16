@@ -14,7 +14,6 @@ import model.*;
 
 import java.awt.event.KeyEvent;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Created by tld on 13/12/2016.
@@ -54,6 +53,9 @@ public class BackgroundController {
 
     @FXML
     private ImageView uploadLogo;
+
+    @FXML
+    private ImageView profileImageView;
 
 
     public void initBackgroundController(BackgroundModel backgroundModel,AnchorPane backgroundView){
@@ -146,6 +148,7 @@ public class BackgroundController {
         signOutButton.setVisible(true);
         uploadButton.setDisable(false);
         uploadButton.setVisible(true);
+        profileImageView.setImage(new ImageView(backgroundModel.getMainModel().getMyChannelThumbnail()).getImage());
     }
 
     @FXML
@@ -159,8 +162,7 @@ public class BackgroundController {
         signInButton.setVisible(true);
         uploadButton.setDisable(true);
         uploadButton.setVisible(false);
-
-
+        profileImageView.setImage(null);
         backgroundModel.getMainModel().getPlayerModel().getPlayer().getVideoPlayer().getEngine().load(null);
         backgroundView.getChildren().remove(backgroundModel.getMainChildren());
         FXMLLoader playerLoader = new FXMLLoader(getClass().getResource("/view/PlayerView.fxml"));
