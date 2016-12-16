@@ -40,6 +40,12 @@ public class MainModel {
     public static final JsonFactory JSON_FACTORY = new JacksonFactory();
     private static final String CREDENTIALS_DIRECTORY = ".oauth-credentials";
     private static final String PROPERTIES_FILENAME = "youtube.properties";
+    private static YouTube youtube;
+    private String myChannelThumbnail;
+
+    public String getMyChannelThumbnail(){
+        return this.myChannelThumbnail;
+    }
 
 
     public void initStage(Stage stage){
@@ -115,6 +121,18 @@ public class MainModel {
             try {
 
                Credential credential = this.authorize(scopes, "myprofile");
+                youtube = new YouTube.Builder(this.HTTP_TRANSPORT, this.JSON_FACTORY, credential).setApplicationName("youtube-cmdline-myuploads-sample").build();
+
+                YouTube.Channels.List channelRequest = youtube.channels().list("snippet");
+                channelRequest.setMine(true);
+                channelRequest.setFields("items/snippet/thumbnails,nextPageToken,pageInfo ");
+                ChannelListResponse channelResult = channelRequest.execute();
+
+                List<Channel> channelsList = channelResult.getItems();
+                if (channelsList != null) {
+                    this.myChannelThumbnail = channelsList.get(0).getSnippet().getThumbnails().getHigh().getUrl();
+                }
+
 
             } catch (GoogleJsonResponseException e) {
 
