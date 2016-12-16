@@ -50,7 +50,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <JFXTextField fx:id="searchField" focusColor="#f44336" layoutX="203.0" layoutY="15.0" onMouseClicked="#keySearch" AnchorPane.topAnchor="15.0" />
+      <JFXTextField fx:id="searchField" focusColor="#f44336" layoutX="203.0" layoutY="15.0" onMouseClicked="#keySearch" AnchorPane.topAnchor="15.0" onKeyPressed="#pressEnter"/>
       <Text layoutX="142.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search :" wrappingWidth="60.00000125169754" AnchorPane.topAnchor="23.0" />
       <JFXButton fx:id="signInButton" buttonType="RAISED" layoutX="493.0" layoutY="18.0" onMouseClicked="#switchToLogged" ripplerFill="#d32f2f" style="-fx-background-color: #d50000;" text="Sign in" textFill="WHITE" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="18.0" />
       <JFXButton fx:id="searchButton" buttonType="RAISED" layoutX="360.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#clickSearch" ripplerFill="#d32f2f" text="Ok" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="17.0" />

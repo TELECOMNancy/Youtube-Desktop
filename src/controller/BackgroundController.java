@@ -8,9 +8,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import model.*;
 
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.List;
 
@@ -123,6 +125,13 @@ public class BackgroundController {
         VideoListModel videoListModel = new VideoListModel(searchField.getText(), backgroundModel.getMainModel(),20);
         videoListController.initVideoListModel(videoListModel);
 
+    }
+
+    @FXML
+    void pressEnter(javafx.scene.input.KeyEvent event) throws IOException {
+        if (event.getCode() == KeyCode.ENTER){
+            clickSearch();
+        }
     }
 
 
